@@ -28,7 +28,7 @@ Identifies code patterns, design patterns in use, and coding conventions through
 - Grep: Search for pattern indicators
 - Glob: Find files that match pattern criteria
 
-## Investigation Process
+## Audit Process
 
 1. **Architectural Pattern Detection**
    - Look for MVC structure (models/, views/, controllers/)

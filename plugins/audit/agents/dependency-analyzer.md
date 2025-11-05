@@ -29,7 +29,7 @@ Analyzes external dependencies, versions, dependency tree, and identifies unused
 - Bash: Run package manager commands (npm list, pip list, composer show, go list)
 - Grep: Search for import/require statements to verify usage
 
-## Investigation Process
+## Audit Process
 
 1. **Locate Dependency Files**
    - package.json & package-lock.json (Node.js)

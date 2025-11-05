@@ -1,9 +1,0 @@
-{
-  "name": "investigation",
-  "description": "Deep codebase exploration and architectural understanding for legacy code analysis, architecture documentation, and dependency mapping",
-  "version": "1.0.0",
-  "author": {
-    "name": "Claude Code Marketplace Contributors",
-    "email": "noreply@anthropic.com"
-  }
-}

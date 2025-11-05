@@ -1,27 +1,29 @@
-# Investigation Plugin 🔍
+# Audit Plugin 🔍
 
-Deep codebase exploration and architectural understanding for legacy code analysis, architecture documentation, and dependency mapping.
+Internal codebase audit for legacy code analysis, architecture documentation, technical debt assessment, and dependency mapping.
 
 ## Overview
 
-The Investigation plugin provides systematic codebase analysis through 5 specialized agents that work in parallel to understand your code's structure, dependencies, patterns, and technical debt.
+The Audit plugin provides systematic analysis of YOUR INTERNAL codebase through 5 specialized agents that work in parallel to understand your existing code's structure, dependencies, patterns, and technical debt.
+
+**Key Distinction**: Audit analyzes YOUR code (internal), while Research analyzes EXTERNAL options (technologies, libraries).
 
 ## Use Cases
 
-- **Legacy Code Analysis**: Understand unfamiliar or inherited codebases
-- **Architecture Documentation**: Generate comprehensive architecture docs
-- **Dependency Audit**: Analyze dependencies and identify issues
-- **Technical Debt Assessment**: Identify and prioritize technical debt
-- **Onboarding**: Create guides for new team members
+- **Legacy Code Analysis**: Understand unfamiliar or inherited codebases you already have
+- **Architecture Documentation**: Generate docs for your existing system
+- **Internal Dependency Audit**: Analyze YOUR project's dependencies
+- **Technical Debt Assessment**: Identify and prioritize technical debt in your code
+- **Team Onboarding**: Create guides for new team members joining your project
 
 ## Installation
 
 ```bash
 # Install the plugin
-claude-code plugin install investigation
+claude-code plugin install audit
 
 # Or manually copy to your project
-cp -r investigation .claude/plugins/
+cp -r audit .claude/plugins/
 ```
 
 ## Usage
@@ -29,14 +31,14 @@ cp -r investigation .claude/plugins/
 ### Basic Usage
 
 ```bash
-# Investigate current directory
-/investigate
+# Audit current directory
+/audit
 
-# Investigate specific directory
-/investigate src/auth
+# Audit specific directory
+/audit src/auth
 
-# Investigate entire codebase
-/investigate .
+# Audit entire codebase
+/audit .
 ```
 
 ### What It Does
@@ -70,19 +72,19 @@ cp -r investigation .claude/plugins/
    - COMPONENTS.md
    - DEPENDENCIES.md
    - TECHNICAL_DEBT.md
-   - INVESTIGATION_REPORT.md
+   - AUDIT_REPORT.md
 
 ## Output
 
-The investigation creates:
+The audit creates:
 
 ```
-investigation-output/
+audit-output/
 ├── ARCHITECTURE.md          # System architecture overview
 ├── COMPONENTS.md            # Component documentation
 ├── DEPENDENCIES.md          # Dependency analysis
 ├── TECHNICAL_DEBT.md        # Technical debt assessment
-└── INVESTIGATION_REPORT.md  # Complete investigation summary
+└── AUDIT_REPORT.md          # Complete audit summary
 ```
 
 ## Specialized Agents
@@ -118,10 +120,10 @@ Creates comprehensive documentation from all findings.
 
 ```bash
 # Generate comprehensive onboarding documentation
-/investigate
+/audit
 
 # New developer reads:
-# - INVESTIGATION_REPORT.md (start here)
+# - AUDIT_REPORT.md (start here)
 # - ARCHITECTURE.md (understand system design)
 # - COMPONENTS.md (learn key components)
 ```
@@ -130,7 +132,7 @@ Creates comprehensive documentation from all findings.
 
 ```bash
 # Assess technical debt before major refactoring
-/investigate
+/audit
 
 # Review TECHNICAL_DEBT.md for:
 # - Critical issues requiring immediate attention
@@ -142,7 +144,7 @@ Creates comprehensive documentation from all findings.
 
 ```bash
 # Audit dependencies for security and updates
-/investigate
+/audit
 
 # Review DEPENDENCIES.md for:
 # - Outdated dependencies
@@ -154,12 +156,12 @@ Creates comprehensive documentation from all findings.
 
 ```bash
 # Document architecture for stakeholders
-/investigate
+/audit
 
 # Use generated docs:
 # - ARCHITECTURE.md (for architects)
 # - COMPONENTS.md (for developers)
-# - INVESTIGATION_REPORT.md (for managers)
+# - AUDIT_REPORT.md (for managers)
 ```
 
 ## Configuration
@@ -168,21 +170,21 @@ No configuration required - works out of the box.
 
 ## Notes
 
-- **Read-only**: Investigation never modifies code
+- **Read-only**: Audit never modifies code
 - **Parallel execution**: All agents run simultaneously for speed
 - **Language agnostic**: Works with Node.js, Python, PHP, Go, Java, and more
 - **Output format**: All documentation in markdown
 
 ## FAQ
 
-**Q: How long does investigation take?**
+**Q: How long does audit take?**
 A: Typically 2-5 minutes for medium-sized codebases (< 50k lines)
 
 **Q: Does it modify any code?**
-A: No, investigation is completely read-only
+A: No, audit is completely read-only
 
 **Q: What if my codebase is huge?**
-A: You can investigate specific directories instead of the entire codebase
+A: You can audit specific directories instead of the entire codebase
 
 **Q: Can I customize the output?**
 A: The agents produce standardized output, but you can customize by modifying agent files

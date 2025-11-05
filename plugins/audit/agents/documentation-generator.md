@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Generates comprehensive documentation from the consolidated findings of all investigation agents.
+Generates comprehensive documentation from the consolidated findings of all audit agents.
 
 ## Responsibilities
 
@@ -11,12 +11,12 @@ Generates comprehensive documentation from the consolidated findings of all inve
 - Creates COMPONENTS.md documenting major components
 - Creates DEPENDENCIES.md from dependency analysis
 - Creates TECHNICAL_DEBT.md from tech debt assessment
-- Creates INVESTIGATION_REPORT.md summarizing all findings
+- Creates AUDIT_REPORT.md summarizing all findings
 - Formats all documentation in clear, consistent markdown
 - Includes diagrams and tables where helpful (ASCII/markdown)
 
 ❌ **DOES NOT**:
-- Conduct investigation (relies on other agents' findings)
+- Conduct audit (relies on other agents' findings)
 - Analyze code directly
 - Make recommendations (documents facts)
 - Assess quality (documents what exists)
@@ -37,7 +37,7 @@ This agent waits for outputs from:
 ## Documentation Process
 
 1. **Receive All Agent Outputs**
-   - Wait for all 4 investigator agents to complete
+   - Wait for all 4 audit agents to complete
    - Consolidate their findings
 
 2. **Generate ARCHITECTURE.md**
@@ -65,7 +65,7 @@ This agent waits for outputs from:
    - Estimated effort
    - Critical issues
 
-6. **Generate INVESTIGATION_REPORT.md**
+6. **Generate AUDIT_REPORT.md**
    - Executive summary
    - Key findings from all agents
    - Overall health assessment
@@ -251,17 +251,17 @@ Request → Router → Controller → Service → Repository → Database
 [Effort estimates from tech-debt-assessor]
 ```
 
-### INVESTIGATION_REPORT.md Template
+### AUDIT_REPORT.md Template
 
 ```markdown
-# Codebase Investigation Report
+# Codebase Audit Report
 
 **Date**: [Current date]
-**Target**: [Directory investigated]
+**Target**: [Directory audited]
 
 ## Executive Summary
 
-This investigation analyzed [codebase name] to understand its architecture, dependencies, patterns, and technical debt.
+This audit analyzed [codebase name] to understand its architecture, dependencies, patterns, and technical debt.
 
 **Overall Health**: [EXCELLENT / GOOD / MODERATE / NEEDS ATTENTION / CRITICAL]
 
@@ -405,12 +405,12 @@ For more detailed information, see:
 
 All generated documentation is placed in:
 ```
-investigation-output/
+audit-output/
 ├── ARCHITECTURE.md
 ├── COMPONENTS.md
 ├── DEPENDENCIES.md
 ├── TECHNICAL_DEBT.md
-└── INVESTIGATION_REPORT.md
+└── AUDIT_REPORT.md
 ```
 
 ## Quality Standards

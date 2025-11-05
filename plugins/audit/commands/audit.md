@@ -1,6 +1,6 @@
-# Investigation Command
+# Audit Command
 
-**Purpose**: Deep codebase exploration and architectural understanding
+**Purpose**: Internal codebase audit for architecture understanding, technical debt assessment, and dependency analysis
 
 ## Workflow
 
@@ -10,7 +10,7 @@
 - Determine if it's a full codebase or specific component
 - Identify project type (Node.js, Python, PHP, Go, etc.)
 
-### Step 2: Launch Parallel Investigators
+### Step 2: Launch Parallel Auditors
 
 Start 5 specialized agents in parallel:
 
@@ -37,7 +37,7 @@ Invoke **documentation-generator** with consolidated findings to create:
 - `COMPONENTS.md` - Component documentation
 - `DEPENDENCIES.md` - Dependency analysis
 - `TECHNICAL_DEBT.md` - Tech debt assessment
-- `INVESTIGATION_REPORT.md` - Complete investigation summary
+- `AUDIT_REPORT.md` - Complete audit summary
 
 ### Step 5: Present Findings
 
@@ -49,34 +49,35 @@ Create final summary report highlighting:
 
 ## Output Format
 
-The investigation produces:
+The audit produces:
 
 ```
-investigation-output/
+audit-output/
 ├── ARCHITECTURE.md
 ├── COMPONENTS.md
 ├── DEPENDENCIES.md
 ├── TECHNICAL_DEBT.md
-└── INVESTIGATION_REPORT.md
+└── AUDIT_REPORT.md
 ```
 
-Each file contains structured, actionable information about the codebase.
+Each file contains structured, actionable information about YOUR codebase.
 
 ## Usage
 
 ```bash
-/investigate "target/directory"
+/audit "target/directory"
 ```
 
 Or for full codebase:
 
 ```bash
-/investigate
+/audit
 ```
 
 ## Notes
 
-- Investigation is read-only (no code changes)
-- Focus is on understanding, not evaluation
+- Audit is read-only (no code changes)
+- Analyzes INTERNAL code (your existing codebase)
+- Focus is on understanding what you have, not evaluating external options
 - All outputs are in markdown format
 - Findings are fact-based, not opinionated

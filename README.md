@@ -17,14 +17,16 @@ The Claude Code Marketplace provides production-ready plugins that follow the of
 
 ## Plugins
 
-### 🔍 Investigation Plugin
-**Purpose**: Deep codebase exploration and architectural understanding
+### 🔍 Audit Plugin
+**Purpose**: Internal codebase audit for legacy code analysis and architecture documentation
 
 **Agents (5)**: structure-mapper, dependency-analyzer, pattern-detector, tech-debt-assessor, documentation-generator
 
-**Usage**: `/investigate` or `/investigate src/auth`
+**Usage**: `/audit` or `/audit src/auth`
 
-**Output**: ARCHITECTURE.md, COMPONENTS.md, DEPENDENCIES.md, TECHNICAL_DEBT.md, INVESTIGATION_REPORT.md
+**Output**: ARCHITECTURE.md, COMPONENTS.md, DEPENDENCIES.md, TECHNICAL_DEBT.md, AUDIT_REPORT.md
+
+**Key Distinction**: Audit analyzes YOUR code (internal), while Research analyzes EXTERNAL options (technologies, libraries)
 
 ---
 
@@ -88,10 +90,10 @@ cp -r claude-code-marketplace/plugins/review .claude/plugins/
 
 ## Usage Examples
 
-### Investigation
+### Audit
 ```bash
-/investigate                    # Full codebase
-/investigate src/auth          # Specific directory
+/audit                         # Full codebase
+/audit src/auth               # Specific directory
 ```
 
 ### Research
@@ -136,7 +138,7 @@ plugin-name/
 
 - **Total Plugins**: 5
 - **Total Subagents**: 44
-- **Investigation**: 5 agents
+- **Audit**: 5 agents
 - **Research**: 5 agents
 - **Review**: 19 reviewers (most complex)
 - **Feature**: 8 agents

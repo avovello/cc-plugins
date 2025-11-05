@@ -29,7 +29,7 @@ Maps directory structure, file organization, and naming conventions to understan
 - Bash: Run ls, find, tree commands
 - Read: Read configuration files to determine project type
 
-## Investigation Process
+## Audit Process
 
 1. **Map Directory Tree**
    ```bash

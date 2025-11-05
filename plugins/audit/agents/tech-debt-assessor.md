@@ -31,7 +31,7 @@ Identifies technical debt, code smells, TODO/FIXME comments, deprecated code, an
 - Read: Read files to assess code smells
 - Bash: Run complexity analysis tools if available
 
-## Investigation Process
+## Audit Process
 
 1. **Find TODO/FIXME Comments**
    ```bash
