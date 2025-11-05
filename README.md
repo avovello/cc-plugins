@@ -1,14 +1,18 @@
 # Claude Code Marketplace
 
-A comprehensive collection of professional development workflow plugins for Claude Code with intelligent processing loops and specialized subagents covering the complete R&D lifecycle.
+A comprehensive collection of professional development workflow plugins for Claude Code with intelligent processing loops and specialized agents covering the complete R&D lifecycle.
 
 ## Overview
 
 The Claude Code Marketplace provides production-ready plugins that follow the official Claude Code plugin architecture. The marketplace offers **13 plugins with 78 specialized agents** covering 95% of software development workflows.
 
+## What are Claude Code Plugins?
+
+Claude Code plugins extend Claude Code capabilities through custom slash commands, specialized agents, hooks, and workflows. They enable consistent tooling across projects and teams. Each plugin is self-contained with its own commands and agents.
+
 ## Key Features
 
-- **78 Specialized Subagents** across 13 plugins
+- **78 Specialized Agents** across 13 plugins
 - **Official Claude Code Format**: Markdown-based commands and agents
 - **Intelligent Processing Loops**: Automatic test-fix-retest and review-fix-rereview cycles
 - **Non-Overlapping Responsibilities**: Each agent has ONE clear job
@@ -23,7 +27,7 @@ The Claude Code Marketplace provides production-ready plugins that follow the of
 
 **Agents (5)**: structure-mapper, dependency-analyzer, pattern-detector, tech-debt-assessor, documentation-generator
 
-**Usage**: `/audit` or `/audit src/auth`
+**Slash Command**: `/audit` or `/audit src/auth`
 
 **Covers**: Architecture mapping, technical debt identification, dependency analysis
 
@@ -36,7 +40,7 @@ The Claude Code Marketplace provides production-ready plugins that follow the of
 
 **Agents (5)**: information-gatherer, feature-comparator, performance-evaluator, ecosystem-evaluator, recommendation-synthesizer
 
-**Usage**: `/research "Compare React vs Vue vs Svelte"`
+**Slash Command**: `/research "Compare React vs Vue vs Svelte"`
 
 **Covers**: Technology evaluation, framework comparison, library selection
 
@@ -53,7 +57,7 @@ The Claude Code Marketplace provides production-ready plugins that follow the of
 - Frontend (4): React, Vue, HTML, CSS
 - DevOps (3): Docker, Kubernetes, CI/CD
 
-**Usage**: `/review` or `/review src/**/*.php`
+**Slash Command**: `/review` or `/review src/**/*.php`
 
 **Covers**: Code quality, security, performance, best practices
 
@@ -64,7 +68,7 @@ The Claude Code Marketplace provides production-ready plugins that follow the of
 
 **Agents (8)**: architecture-planner, implementation-planner, code-implementer, test-writer, test-runner, test-failure-analyzer, code-quality-reviewer, implementation-documenter
 
-**Usage**: `/feature "Add OAuth2 authentication"`
+**Slash Command**: `/feature "Add OAuth2 authentication"`
 
 **Covers**: Full feature development from planning to documentation
 
@@ -75,7 +79,7 @@ The Claude Code Marketplace provides production-ready plugins that follow the of
 
 **Agents (7)**: bug-reproducer, root-cause-analyst, impact-assessor, fix-planner, fix-implementer, fix-tester, regression-tester
 
-**Usage**: `/bugfix "Login fails with special characters"`
+**Slash Command**: `/bugfix "Login fails with special characters"`
 
 **Covers**: Bug reproduction, root cause analysis, fix validation
 
@@ -86,7 +90,7 @@ The Claude Code Marketplace provides production-ready plugins that follow the of
 
 **Agents (7)**: debt-prioritizer, complexity-reducer, test-preserver, duplication-eliminator, code-modernizer, dependency-updater, refactor-validator
 
-**Usage**: `/refactor "reduce complexity in src/auth/validateUser.js"`
+**Slash Command**: `/refactor "reduce complexity in src/auth/validateUser.js"`
 
 **Covers**: Complexity reduction, duplication elimination, code modernization, dependency updates
 
@@ -99,7 +103,7 @@ The Claude Code Marketplace provides production-ready plugins that follow the of
 
 **Agents (7)**: compatibility-analyzer, migration-planner, code-transformer, dual-write-implementer, migration-tester, rollback-planner, documentation-updater
 
-**Usage**: `/migrate "Upgrade React 17 to 18"` or `/migrate "PostgreSQL 12 to 15"`
+**Slash Command**: `/migrate "Upgrade React 17 to 18"` or `/migrate "PostgreSQL 12 to 15"`
 
 **Covers**: Framework upgrades, database migrations, API versioning
 
@@ -110,7 +114,7 @@ The Claude Code Marketplace provides production-ready plugins that follow the of
 
 **Agents (7)**: ci-cd-configurator, infrastructure-coder, monitoring-configurator, deployment-strategist, rollback-planner, feature-flag-implementer, deployment-validator
 
-**Usage**: `/deploy "Setup GitHub Actions CI/CD"` or `/deploy production`
+**Slash Command**: `/deploy "Setup GitHub Actions CI/CD"` or `/deploy production`
 
 **Covers**: CI/CD pipelines, infrastructure as code, monitoring, deployment strategies
 
@@ -121,7 +125,7 @@ The Claude Code Marketplace provides production-ready plugins that follow the of
 
 **Agents (7)**: performance-profiler, bottleneck-identifier, query-optimizer, cache-strategist, load-tester, code-optimizer, benchmark-validator
 
-**Usage**: `/optimize "reduce API response time"` or `/optimize src/api/search`
+**Slash Command**: `/optimize "reduce API response time"` or `/optimize src/api/search`
 
 **Covers**: Performance profiling, bottleneck identification, query optimization, caching
 
@@ -134,7 +138,7 @@ The Claude Code Marketplace provides production-ready plugins that follow the of
 
 **Agents (7)**: vulnerability-scanner, security-config-auditor, auth-hardener, secrets-manager, security-header-configurator, penetration-tester, compliance-checker
 
-**Usage**: `/harden src/auth` or `/harden "OWASP Top 10 compliance"`
+**Slash Command**: `/harden src/auth` or `/harden "OWASP Top 10 compliance"`
 
 **Covers**: Vulnerability scanning, security configuration, authentication hardening, compliance
 
@@ -145,7 +149,7 @@ The Claude Code Marketplace provides production-ready plugins that follow the of
 
 **Agents (7)**: api-documenter, architecture-documenter, onboarding-guide-creator, runbook-writer, doc-consistency-checker, example-generator, diagram-creator
 
-**Usage**: `/document src/api` or `/document "Create onboarding guide"`
+**Slash Command**: `/document src/api` or `/document "Create onboarding guide"`
 
 **Covers**: API documentation, architecture docs, onboarding, runbooks, diagrams
 
@@ -156,7 +160,7 @@ The Claude Code Marketplace provides production-ready plugins that follow the of
 
 **Agents (6)**: experiment-planner, quick-implementer, results-analyzer, decision-synthesizer, cleanup-agent, ab-test-setup
 
-**Usage**: `/prototype "Test Redis vs Memcached"` or `/prototype "GraphQL API for users"`
+**Slash Command**: `/prototype "Test Redis vs Memcached"` or `/prototype "GraphQL API for users"`
 
 **Covers**: Time-boxed experiments, POC development, A/B testing, decision support
 
@@ -167,131 +171,129 @@ The Claude Code Marketplace provides production-ready plugins that follow the of
 
 **Agents (7)**: llm-integrator, vector-db-configurator, embedding-generator, rag-implementer, prompt-optimizer, ml-pipeline-builder, model-evaluator
 
-**Usage**: `/ai-integration "Add ChatGPT to customer support"` or `/ai-integration "Setup RAG system"`
+**Slash Command**: `/ai-integration "Add ChatGPT to customer support"` or `/ai-integration "Setup RAG system"`
 
 **Covers**: LLM APIs (OpenAI, Anthropic), vector databases (Pinecone, Weaviate), embeddings, RAG, prompt engineering
 
 ---
 
-## Complete R&D Workflow Coverage
-
-```
-Understanding      → Audit ✅
-Researching        → Research ✅, Prototype ✅
-Planning           → Feature ✅
-Developing         → Feature ✅
-Improving          → Refactor ✅, Optimize ✅, Harden ✅
-Testing            → Review ✅
-Fixing             → Bugfix ✅
-Upgrading          → Migrate ✅
-Deploying          → Deploy ✅
-AI/ML Integration  → AI Integration ✅
-Documenting        → Document ✅
-```
-
 ## Installation
+
+### Prerequisites
+
+First, ensure Claude Code is installed:
+
+```bash
+# Install Claude Code globally
+npm install -g @anthropic-ai/claude-code
+```
+
+### Method 1: Using the Plugin Command (Recommended)
+
+```bash
+# Navigate to your project
+cd your-project
+
+# Start Claude Code
+claude
+
+# Install a specific plugin using the /plugin command
+/plugin install https://github.com/avovello/claude-code-marketplace.git#plugins/refactor
+```
+
+### Method 2: Manual Installation
 
 ```bash
 # Clone the marketplace
 git clone https://github.com/avovello/claude-code-marketplace.git
 
-# Install a specific plugin
+# Copy a specific plugin to your project
 cp -r claude-code-marketplace/plugins/refactor .claude/plugins/
 
-# Install all plugins
+# Or copy all plugins
 cp -r claude-code-marketplace/plugins/* .claude/plugins/
 ```
 
-## Usage Examples
+### Method 3: Configuration File
 
-### Audit Internal Code
-```bash
-/audit                         # Full codebase
-/audit src/auth               # Specific directory
+Add to your `.claude/settings.json`:
+
+```json
+{
+  "plugins": [
+    {
+      "source": "https://github.com/avovello/claude-code-marketplace.git",
+      "path": "plugins/refactor"
+    }
+  ]
+}
 ```
 
-### Research External Technologies
-```bash
-/research "Compare React vs Vue vs Svelte"
-/research "Best ORM for Node.js"
+## Usage
+
+All plugins are invoked using **slash commands** within Claude Code:
+
+### Basic Command Structure
+
+```
+/command-name [arguments]
 ```
 
-### Code Review
-```bash
-/review                        # Review current changes
-/review src/**/*.php          # Review specific files
-```
+### Examples
 
-### Feature Development
 ```bash
+# Audit commands
+/audit
+/audit src/auth
+
+# Research commands
+/research "Compare React vs Vue"
+
+# Review commands
+/review
+/review src/**/*.js
+
+# Feature development
 /feature "Add OAuth2 authentication"
-/feature "Implement real-time notifications"
-```
 
-### Bug Fixing
-```bash
+# Bug fixing
 /bugfix "Login fails with special characters"
-/bugfix "Memory leak in background worker"
-```
 
-### Refactor Code
-```bash
-/refactor "reduce complexity in src/auth/validateUser.js"
-/refactor "eliminate duplication in src/services/"
-/refactor "update outdated dependencies"
-```
+# Refactoring
+/refactor "reduce complexity in UserService"
+/refactor "eliminate duplication"
 
-### Migrate Frameworks
-```bash
+# Migrations
 /migrate "Upgrade React 17 to 18"
-/migrate "PostgreSQL 12 to 15"
-```
 
-### Deploy & DevOps
-```bash
-/deploy "Setup GitHub Actions CI/CD"
-/deploy "Configure production monitoring"
+# Deployment
+/deploy "Setup GitHub Actions"
 /deploy production
-```
 
-### Optimize Performance
-```bash
-/optimize "reduce API response time"
-/optimize src/api/search
-```
+# Performance optimization
+/optimize "reduce API latency"
 
-### Harden Security
-```bash
-/harden src/auth
-/harden "OWASP Top 10 compliance"
-```
+# Security hardening
+/harden "OWASP compliance"
 
-### Generate Documentation
-```bash
+# Documentation
 /document src/api
-/document "Create onboarding guide"
+
+# Prototyping
+/prototype "Test GraphQL implementation"
+
+# AI Integration
+/ai-integration "Add ChatGPT support"
 ```
 
-### Prototype Ideas
-```bash
-/prototype "Test Redis vs Memcached performance"
-/prototype "GraphQL API for users"
-```
+## Plugin Architecture
 
-### Integrate AI/ML
-```bash
-/ai-integration "Add ChatGPT to customer support"
-/ai-integration "Setup RAG system for documentation"
-```
-
-## Architecture
-
-Each plugin follows official Claude Code structure:
+Each plugin follows the official Claude Code structure:
 
 ```
 plugin-name/
 ├── .claude-plugin/
-│   └── plugin.json           # Plugin manifest
+│   └── plugin.json           # Required: Plugin manifest
 ├── commands/
 │   └── command-name.md       # Command implementation (markdown)
 ├── agents/
@@ -301,10 +303,26 @@ plugin-name/
 └── README.md                # Plugin documentation
 ```
 
+### Plugin Manifest Format
+
+Each `plugin.json` follows this structure:
+
+```json
+{
+  "name": "plugin-name",
+  "description": "Brief description of what the plugin does",
+  "version": "0.1.0",
+  "author": {
+    "name": "Author Name",
+    "email": "author@example.com"
+  }
+}
+```
+
 ## Statistics
 
 - **Total Plugins**: 13
-- **Total Subagents**: 78
+- **Total Agents**: 78
 - **Workflow Coverage**: ~95% of R&D activities
 - **Lines of Documentation**: 15,000+
 
@@ -353,6 +371,51 @@ plugin-name/
 ### AI/ML
 - 🤖 **AI Integration** - AI/ML workflows
 
+## Complete R&D Workflow Coverage
+
+```
+Understanding      → Audit ✅
+Researching        → Research ✅, Prototype ✅
+Planning           → Feature ✅
+Developing         → Feature ✅
+Improving          → Refactor ✅, Optimize ✅, Harden ✅
+Testing            → Review ✅
+Fixing             → Bugfix ✅
+Upgrading          → Migrate ✅
+Deploying          → Deploy ✅
+AI/ML Integration  → AI Integration ✅
+Documenting        → Document ✅
+```
+
+## Integration Between Plugins
+
+Plugins work together for complex workflows:
+
+### Clean Codebase
+```
+/audit → /refactor → /optimize → /harden → /review
+```
+
+### Feature Development
+```
+/research → /prototype → /feature → /review → /deploy
+```
+
+### Framework Upgrade
+```
+/migrate → /refactor → /review → /deploy
+```
+
+### Security Improvement
+```
+/audit → /harden → /review → /deploy
+```
+
+### AI/ML Integration
+```
+/research → /prototype → /ai-integration → /review → /deploy
+```
+
 ## Plugin Purpose Summary
 
 The marketplace provides plugins for the complete R&D lifecycle:
@@ -372,35 +435,6 @@ The marketplace provides plugins for the complete R&D lifecycle:
 - **QUICKSTART.md**: Quick start guide
 - **CONTRIBUTING.md**: Contribution guidelines
 - Each plugin has its own README with detailed usage
-
-## Integration Between Plugins
-
-### Common Workflows
-
-**Clean Codebase**:
-```
-/audit → /refactor → /optimize → /harden → /review
-```
-
-**Feature Development**:
-```
-/research → /prototype → /feature → /review → /deploy
-```
-
-**Framework Upgrade**:
-```
-/migrate → /refactor → /review → /deploy
-```
-
-**Security Improvement**:
-```
-/audit → /harden → /review → /deploy
-```
-
-**AI/ML Integration**:
-```
-/research → /prototype → /ai-integration → /review → /deploy
-```
 
 ## Contributing
 

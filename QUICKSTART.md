@@ -4,278 +4,359 @@ Get started with Claude Code Marketplace in 5 minutes!
 
 ## What is Claude Code Marketplace?
 
-A collection of professional development workflow plugins for Claude Code that implement intelligent processing loops for audit, research, review, feature development, and bug fixing.
+A collection of 13 professional workflow plugins for Claude Code that extend functionality through custom slash commands and specialized agents. Covers the complete R&D lifecycle from code audit to AI integration.
+
+## Prerequisites
+
+Install Claude Code if you haven't already:
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
 
 ## Installation
+
+### Quick Install (Recommended)
+
+```bash
+# Navigate to your project
+cd your-project
+
+# Start Claude Code
+claude
+
+# Install a plugin using the /plugin command
+/plugin install https://github.com/avovello/claude-code-marketplace.git#plugins/refactor
+```
+
+### Manual Install
 
 ```bash
 # Clone the marketplace
 git clone https://github.com/avovello/claude-code-marketplace.git
+
+# Copy specific plugins to your project
+cp -r claude-code-marketplace/plugins/audit .claude/plugins/
+cp -r claude-code-marketplace/plugins/refactor .claude/plugins/
+
+# Or copy all plugins
+cp -r claude-code-marketplace/plugins/* .claude/plugins/
 ```
 
-## Using Plugins
+## How to Use Plugins
 
-### Option 1: Copy Plugin to Your Project
+All plugins are invoked using **slash commands** within Claude Code:
 
-```bash
-# Copy the plugin you want
-cp -r claude-code-marketplace/plugins/feature .claude/workflows/
-
-# Use it in Claude Code
-# Just describe what you want: "Implement feature X"
-# Claude Code will use the feature workflow automatically
 ```
-
-### Option 2: Reference from Marketplace
-
-```bash
-# Create a symlink
-ln -s /path/to/claude-code-marketplace/plugins/feature .claude/workflows/feature
+/command-name [arguments]
 ```
 
 ## Quick Examples
 
-### 1. Audit a Codebase
+### 1. Audit Your Codebase
 
-```
-You: "Audit the authentication system and create documentation"
+```bash
+# Start Claude Code in your project
+claude
 
-Claude: [Uses Audit Plugin]
-1. Explores src/auth/ directory
-2. Maps authentication flow
-3. Identifies security patterns
-4. Creates ARCHITECTURE.md and COMPONENTS.md
-```
+# Run audit command
+/audit src/auth
 
-### 2. Add a Feature
-
-```
-You: "Add email validation to the registration form"
-
-Claude: [Uses Feature Plugin]
-1. ✅ Creates implementation plan
-2. ✅ Reviews plan
-3. ✅ Implements feature
-4. ✅ Runs tests → Fix bugs → Re-test (loop)
-5. ✅ Code review → Apply feedback → Re-review (loop)
-6. ✅ Updates documentation
-7. ✅ Creates deployment plan
+# Output: Generates ARCHITECTURE.md, TECHNICAL_DEBT.md, DEPENDENCIES.md, etc.
 ```
 
-### 3. Fix a Bug
+### 2. Refactor Technical Debt
 
-```
-You: "Fix the bug where login fails with special characters"
+```bash
+# After running audit, fix the technical debt it identified
+/refactor "reduce complexity in UserService"
 
-Claude: [Uses Bugfix Plugin]
-1. ✅ Reproduces bug
-2. ✅ Creates failing test
-3. ✅ Analyzes root cause
-4. ✅ Plans fix
-5. ✅ Implements fix → Tests → Re-fix if needed (loop)
-6. ✅ Runs regression tests
-7. ✅ Updates documentation
+# Or eliminate code duplication
+/refactor "eliminate duplicate validation logic"
 ```
 
-### 4. Research Technology
+### 3. Add a Feature
 
-```
-You: "Compare React, Vue, and Svelte for our dashboard project"
+```bash
+# Full feature development workflow
+/feature "Add OAuth2 authentication with Google"
 
-Claude: [Uses Research Plugin]
-1. Researches each framework
-2. Creates comparison matrix
-3. Evaluates for your use case
-4. Recommends best fit with reasoning
+# Workflow: Plan → Implement → Test → Review → Document
 ```
 
-### 5. Code Review
+### 4. Fix a Bug
 
+```bash
+# Systematic bug fixing with root cause analysis
+/bugfix "Login fails when email contains special characters"
+
+# Workflow: Reproduce → Analyze → Plan → Fix → Test → Verify
 ```
-You: "Review my changes focusing on security and performance"
 
-Claude: [Uses Review Plugin]
-1. Reviews code quality
-2. Security review
-3. Performance review
-4. Consolidates feedback
-5. You fix issues → Re-review (loop)
-6. Creates review report
+### 5. Review Code
+
+```bash
+# Multi-perspective code review
+/review
+
+# Or review specific files
+/review src/**/*.ts
+
+# Uses 19 specialized reviewers (architecture, security, performance, etc.)
+```
+
+### 6. Research Technologies
+
+```bash
+# Compare external technologies
+/research "Compare React vs Vue vs Svelte for dashboard app"
+
+# Output: Comparison matrix, recommendations, tradeoffs
+```
+
+### 7. Optimize Performance
+
+```bash
+# Data-driven performance optimization
+/optimize "reduce API response time"
+
+# Workflow: Profile → Identify Bottlenecks → Optimize → Benchmark → Validate
+```
+
+### 8. Migrate Frameworks
+
+```bash
+# Safe framework upgrades with breaking change handling
+/migrate "Upgrade React 17 to 18"
+
+# Workflow: Analyze Changes → Plan → Transform → Test → Cutover
+```
+
+### 9. Deploy with CI/CD
+
+```bash
+# Setup deployment automation
+/deploy "Setup GitHub Actions CI/CD pipeline"
+
+# Or deploy to environment
+/deploy production
+```
+
+### 10. Harden Security
+
+```bash
+# Systematic security hardening
+/harden src/auth
+
+# Or compliance check
+/harden "OWASP Top 10 compliance"
+```
+
+### 11. Generate Documentation
+
+```bash
+# API documentation
+/document src/api
+
+# Or onboarding guide
+/document "Create developer onboarding guide"
+```
+
+### 12. Prototype Ideas
+
+```bash
+# Quick experimentation
+/prototype "Test Redis vs Memcached performance"
+
+# Workflow: Plan → Implement POC → Test → Analyze → Decide (Go/No-Go)
+```
+
+### 13. Integrate AI/ML
+
+```bash
+# Add LLM capabilities
+/ai-integration "Add ChatGPT to customer support chat"
+
+# Or setup RAG system
+/ai-integration "Setup RAG system for documentation search"
 ```
 
 ## Available Plugins
 
-| Plugin | Purpose | Key Feature |
-|--------|---------|-------------|
-| 🔍 **Audit** | Audit internal codebases | Architecture mapping |
-| 📚 **Research** | Research external technologies | Comparative analysis |
-| 👁️ **Review** | Code review | Multi-perspective review |
-| ✨ **Feature** | Build features | Complete dev lifecycle |
-| 🐛 **Bugfix** | Fix bugs | Root cause analysis |
+| Plugin | Command | Purpose |
+|--------|---------|---------|
+| 🔍 **Audit** | `/audit` | Internal code analysis |
+| 📚 **Research** | `/research` | External technology research |
+| 👁️ **Review** | `/review` | Multi-perspective code review (19 reviewers) |
+| ✨ **Feature** | `/feature` | Complete feature development |
+| 🐛 **Bugfix** | `/bugfix` | Systematic bug fixing |
+| 🔧 **Refactor** | `/refactor` | Technical debt reduction |
+| 🚀 **Migrate** | `/migrate` | Framework/DB migrations |
+| 🚢 **Deploy** | `/deploy` | CI/CD and deployment |
+| ⚡ **Optimize** | `/optimize` | Performance optimization |
+| 🔐 **Harden** | `/harden` | Security hardening |
+| 📖 **Document** | `/document` | Documentation generation |
+| 🔬 **Prototype** | `/prototype` | Rapid experimentation |
+| 🤖 **AI Integration** | `/ai-integration` | AI/ML integration |
 
-## Processing Loops
+## Common Workflows
 
-All plugins use intelligent loops:
+### Clean Up Legacy Code
 
-### Testing Loop
-```
-Test → (Fail?) → Analyze → Fix → Re-test → (Repeat until pass)
+```bash
+# 1. Identify issues
+/audit
+
+# 2. Fix technical debt
+/refactor "address high-priority items from audit"
+
+# 3. Optimize performance
+/optimize "improve slow endpoints"
+
+# 4. Harden security
+/harden "fix security vulnerabilities"
+
+# 5. Final review
+/review
 ```
 
-### Review Loop
-```
-Review → (Issues?) → Fix → Re-review → (Repeat until approved)
+### Develop New Feature
+
+```bash
+# 1. Research options
+/research "Best authentication library for Node.js"
+
+# 2. Quick prototype
+/prototype "Test Passport.js integration"
+
+# 3. Full implementation
+/feature "Add authentication with Passport.js"
+
+# 4. Code review
+/review
+
+# 5. Deploy
+/deploy staging
 ```
 
-### Planning Loop
+### Framework Upgrade
+
+```bash
+# 1. Plan migration
+/migrate "Upgrade Django 3.2 to 4.2"
+
+# 2. Refactor updated code
+/refactor "modernize to Django 4.2 patterns"
+
+# 3. Review changes
+/review
+
+# 4. Deploy gradually
+/deploy "production with feature flags"
 ```
-Plan → Review → (Issues?) → Revise → Re-review
+
+### Security Hardening
+
+```bash
+# 1. Audit current state
+/audit src/
+
+# 2. Systematic hardening
+/harden "OWASP Top 10 compliance"
+
+# 3. Security-focused review
+/review
+
+# 4. Deploy updates
+/deploy production
+```
+
+### AI Integration Project
+
+```bash
+# 1. Research AI options
+/research "Compare OpenAI vs Anthropic vs local LLMs"
+
+# 2. Prototype solution
+/prototype "Test ChatGPT API integration"
+
+# 3. Implement AI features
+/ai-integration "Add ChatGPT-powered search"
+
+# 4. Review and optimize
+/review
+/optimize "reduce AI API latency"
+
+# 5. Deploy
+/deploy production
+```
+
+## Tips
+
+1. **Start Small**: Try one plugin at a time to understand the workflow
+2. **Use Tab Completion**: Type `/` and press Tab to see available commands
+3. **Combine Plugins**: Plugins work together for complex workflows
+4. **Check Output**: Most plugins generate markdown files with results
+5. **Iterate**: Use processing loops - plugins will test, fix, and re-test automatically
+
+## Plugin Outputs
+
+Most plugins generate markdown documentation:
+
+```
+audit-output/
+├── ARCHITECTURE.md
+├── TECHNICAL_DEBT.md
+├── DEPENDENCIES.md
+└── AUDIT_REPORT.md
+
+refactor-output/
+├── REFACTORING_PLAN.md
+├── IMPROVEMENTS.md
+└── COMMIT_MESSAGE.md
+
+deploy-output/
+├── DEPLOYMENT_PLAN.md
+├── ci-cd-config.yml
+└── infrastructure.tf
 ```
 
 ## Configuration
 
-Create `.claude/marketplace-config.yaml`:
+Customize plugin behavior in `.claude/settings.json`:
 
-```yaml
-# Simple configuration
-feature:
-  testing:
-    max_fix_iterations: 3
-  review:
-    max_iterations: 2
-
-bugfix:
-  fixing:
-    max_fix_iterations: 3
+```json
+{
+  "plugins": [
+    {
+      "source": "https://github.com/avovello/claude-code-marketplace.git",
+      "path": "plugins/refactor"
+    }
+  ]
+}
 ```
-
-See `examples/config.example.yaml` for full configuration options.
-
-## Common Workflows
-
-### Full Feature Development
-1. **Research** → Compare implementation approaches
-2. **Feature** → Implement with quality loops
-3. **Review** → Comprehensive review
-4. Deploy!
-
-### Legacy Code Modernization
-1. **Audit** → Understand existing code
-2. **Research** → Research modern alternatives
-3. **Feature** → Implement migration
-4. **Review** → Ensure quality
-
-### Bug Fix with Analysis
-1. **Bugfix** → Fix with root cause analysis
-2. **Audit** → Look for similar bugs
-3. **Review** → Ensure fix quality
-
-## Hooks (Advanced)
-
-Automate actions at key points:
-
-```yaml
-# .claude/hooks/pre-commit.yaml
-name: pre-commit
-actions:
-  - name: run_tests
-    command: npm test
-    blocking: true
-```
-
-See `hooks/*.example.yaml` for hook examples.
 
 ## Next Steps
 
-1. **Try a plugin**: Start with Audit or Research
-2. **Read examples**: Check `examples/USAGE_GUIDE.md`
-3. **Customize**: Copy `config.example.yaml` and customize
-4. **Create hooks**: Automate your workflow
-5. **Contribute**: Add your own plugins!
+1. **Install a Plugin**: Start with `/audit` to understand your codebase
+2. **Read Plugin READMEs**: Each plugin has detailed documentation
+3. **Try Workflows**: Combine plugins for complete workflows
+4. **Customize**: Adjust plugin behavior in settings
+5. **Contribute**: Share your own plugins!
 
 ## Documentation
 
-- 📖 **Full README**: `/README.md`
-- 🎯 **Usage Guide**: `/examples/USAGE_GUIDE.md`
-- 🏗️ **Approaches**: `/docs/approaches.md`
-- 🤝 **Contributing**: `/CONTRIBUTING.md`
+- **README.md**: Complete overview of all 13 plugins
+- **Plugin READMEs**: Detailed docs in each `plugins/*/README.md`
+- **Command Files**: See `plugins/*/commands/*.md` for workflows
+- **Agent Files**: See `plugins/*/agents/*.md` for agent specifications
 
 ## Support
 
-- **Issues**: https://github.com/avovello/claude-code-marketplace/issues
-- **Discussions**: Use GitHub Discussions
-- **Examples**: See `examples/` directory
+- **Repository**: https://github.com/avovello/claude-code-marketplace
+- **Issues**: Report problems on GitHub Issues
+- **Contributing**: See CONTRIBUTING.md
 
-## Key Concepts
+---
 
-### Subagents
-Specialized AI agents for specific tasks:
-- `tester`: Runs and analyzes tests
-- `bug-analyzer`: Identifies root causes
-- `documenter`: Creates documentation
-
-### Processing Loops
-Intelligent cycles that repeat until quality criteria met:
-- **Test Loop**: Test → Fix → Re-test
-- **Review Loop**: Review → Fix → Re-review
-
-### Workflows
-Orchestrated sequences of steps with loops:
-- Feature workflow: Plan → Implement → Test → Review → Document
-- Each phase can loop if needed
-
-## Tips
-
-1. **Let loops run**: They improve quality
-2. **Customize iterations**: Adjust `max_iterations` for your needs
-3. **Use hooks**: Automate repetitive tasks
-4. **Start simple**: Try basic features before complex ones
-
-## Example: Complete Feature Development
-
-```bash
-# In your project with Claude Code
-
-You: "Add user authentication with OAuth2. Make sure to:
-- Plan the implementation
-- Write comprehensive tests
-- Get code reviewed
-- Update documentation"
-
-Claude: [Uses Feature Plugin automatically]
-
-✅ Planning (with review loop)
-   → Created plan
-   → Plan reviewed and approved
-
-✅ Implementation
-   → Implemented OAuth2 integration
-   → Added auth middleware
-   → Created user model
-
-✅ Testing (with bug-fix loop)
-   → Test Run 1: 3 failures
-   → Analyzed and fixed bugs
-   → Test Run 2: All pass ✅
-
-✅ Code Review (with feedback loop)
-   → Review 1: Security concerns raised
-   → Applied fixes
-   → Review 2: Approved ✅
-
-✅ Documentation
-   → Updated README
-   → Added API documentation
-   → Updated CHANGELOG
-
-✅ Deployment Prep
-   → Created deployment checklist
-   → Documented environment variables
-   → Created rollback plan
-
-Complete! Ready to deploy.
-```
-
-That's it! You're ready to use Claude Code Marketplace. 🚀
-
-Start with a simple request and let the plugins handle the complex workflows!
+**Ready to go!** Start with `/audit` to analyze your codebase. 🚀
