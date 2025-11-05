@@ -19,8 +19,8 @@ Thank you for your interest in contributing! This document provides guidelines f
 1. **Fork the repository**
    ```bash
    # Fork on GitHub, then clone your fork
-   git clone https://github.com/YOUR_USERNAME/claude-code-marketplace.git
-   cd claude-code-marketplace
+   git clone https://github.com/YOUR_USERNAME/claude-code.git
+   cd claude-code
    ```
 
 2. **Create a branch**

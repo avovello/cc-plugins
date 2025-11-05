@@ -26,21 +26,21 @@ cd your-project
 claude
 
 # Install a plugin using the /plugin command
-/plugin install https://github.com/avovello/claude-code-marketplace.git#plugins/refactor
+/plugin install https://github.com/avovello/claude-code.git#plugins/refactor
 ```
 
 ### Manual Install
 
 ```bash
 # Clone the marketplace
-git clone https://github.com/avovello/claude-code-marketplace.git
+git clone https://github.com/avovello/claude-code.git
 
 # Copy specific plugins to your project
-cp -r claude-code-marketplace/plugins/audit .claude/plugins/
-cp -r claude-code-marketplace/plugins/refactor .claude/plugins/
+cp -r claude-code/plugins/audit .claude/plugins/
+cp -r claude-code/plugins/refactor .claude/plugins/
 
 # Or copy all plugins
-cp -r claude-code-marketplace/plugins/* .claude/plugins/
+cp -r claude-code/plugins/* .claude/plugins/
 ```
 
 ## How to Use Plugins
@@ -329,7 +329,7 @@ Customize plugin behavior in `.claude/settings.json`:
 {
   "plugins": [
     {
-      "source": "https://github.com/avovello/claude-code-marketplace.git",
+      "source": "https://github.com/avovello/claude-code.git",
       "path": "plugins/refactor"
     }
   ]
@@ -353,7 +353,7 @@ Customize plugin behavior in `.claude/settings.json`:
 
 ## Support
 
-- **Repository**: https://github.com/avovello/claude-code-marketplace
+- **Repository**: https://github.com/avovello/claude-code
 - **Issues**: Report problems on GitHub Issues
 - **Contributing**: See CONTRIBUTING.md
 
