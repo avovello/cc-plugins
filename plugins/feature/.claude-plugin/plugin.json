@@ -1,0 +1,9 @@
+{
+  "name": "feature",
+  "description": "Complete feature development lifecycle with planning, implementation, testing loops, code review loops, and documentation",
+  "version": "1.0.0",
+  "author": {
+    "name": "Claude Code Marketplace Contributors",
+    "email": "noreply@anthropic.com"
+  }
+}
