@@ -1,0 +1,9 @@
+{
+  "name": "optimize",
+  "description": "Performance optimization through systematic profiling, bottleneck identification, and speed improvements",
+  "version": "1.0.0",
+  "author": {
+    "name": "Claude Code Marketplace Contributors",
+    "email": "noreply@anthropic.com"
+  }
+}

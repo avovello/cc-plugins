@@ -1,0 +1,9 @@
+{
+  "name": "refactor",
+  "description": "Systematic technical debt reduction and code refactoring with continuous improvement cycles",
+  "version": "1.0.0",
+  "author": {
+    "name": "Claude Code Marketplace Contributors",
+    "email": "noreply@anthropic.com"
+  }
+}

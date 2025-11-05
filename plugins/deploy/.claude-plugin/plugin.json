@@ -1,0 +1,9 @@
+{
+  "name": "deploy",
+  "description": "CI/CD pipeline setup, deployment automation, monitoring configuration, and rollback strategies",
+  "version": "1.0.0",
+  "author": {
+    "name": "Claude Code Marketplace Contributors",
+    "email": "noreply@anthropic.com"
+  }
+}

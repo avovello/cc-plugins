@@ -1,0 +1,9 @@
+{
+  "name": "document",
+  "description": "Documentation maintenance through automated API documentation, architecture diagrams, and comprehensive developer guides",
+  "version": "1.0.0",
+  "author": {
+    "name": "Claude Code Marketplace Contributors",
+    "email": "noreply@anthropic.com"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "harden",
+  "description": "Security hardening through vulnerability scanning, configuration auditing, and comprehensive security improvements",
+  "version": "1.0.0",
+  "author": {
+    "name": "Claude Code Marketplace Contributors",
+    "email": "noreply@anthropic.com"
+  }
+}
