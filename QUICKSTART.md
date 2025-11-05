@@ -4,7 +4,7 @@ Get started with Claude Code Marketplace in 5 minutes!
 
 ## What is Claude Code Marketplace?
 
-A collection of professional development workflow plugins for Claude Code that implement intelligent processing loops for investigation, research, review, feature development, and bug fixing.
+A collection of professional development workflow plugins for Claude Code that implement intelligent processing loops for audit, research, review, feature development, and bug fixing.
 
 ## Installation
 
@@ -35,12 +35,12 @@ ln -s /path/to/claude-code-marketplace/plugins/feature .claude/workflows/feature
 
 ## Quick Examples
 
-### 1. Investigate a Codebase
+### 1. Audit a Codebase
 
 ```
-You: "Investigate the authentication system and create documentation"
+You: "Audit the authentication system and create documentation"
 
-Claude: [Uses Investigation Plugin]
+Claude: [Uses Audit Plugin]
 1. Explores src/auth/ directory
 2. Maps authentication flow
 3. Identifies security patterns
@@ -107,8 +107,8 @@ Claude: [Uses Review Plugin]
 
 | Plugin | Purpose | Key Feature |
 |--------|---------|-------------|
-| 🔍 **Investigation** | Understand codebases | Architecture mapping |
-| 📚 **Research** | Research technologies | Comparative analysis |
+| 🔍 **Audit** | Audit internal codebases | Architecture mapping |
+| 📚 **Research** | Research external technologies | Comparative analysis |
 | 👁️ **Review** | Code review | Multi-perspective review |
 | ✨ **Feature** | Build features | Complete dev lifecycle |
 | 🐛 **Bugfix** | Fix bugs | Root cause analysis |
@@ -160,14 +160,14 @@ See `examples/config.example.yaml` for full configuration options.
 4. Deploy!
 
 ### Legacy Code Modernization
-1. **Investigation** → Understand existing code
+1. **Audit** → Understand existing code
 2. **Research** → Research modern alternatives
 3. **Feature** → Implement migration
 4. **Review** → Ensure quality
 
 ### Bug Fix with Analysis
 1. **Bugfix** → Fix with root cause analysis
-2. **Investigation** → Look for similar bugs
+2. **Audit** → Look for similar bugs
 3. **Review** → Ensure fix quality
 
 ## Hooks (Advanced)
@@ -187,7 +187,7 @@ See `hooks/*.example.yaml` for hook examples.
 
 ## Next Steps
 
-1. **Try a plugin**: Start with Investigation or Research
+1. **Try a plugin**: Start with Audit or Research
 2. **Read examples**: Check `examples/USAGE_GUIDE.md`
 3. **Customize**: Copy `config.example.yaml` and customize
 4. **Create hooks**: Automate your workflow
