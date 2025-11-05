@@ -1,0 +1,176 @@
+# Post Review Hook Example
+# Copy this to your project's .claude/hooks/post-review.yaml
+
+name: post-review
+description: Actions to take after code review completes
+
+triggers:
+  - event: review_completed
+
+# Actions based on review outcome
+actions:
+  - name: celebrate_approval
+    condition: review.approved
+    type: notification
+    message: |
+      🎉 Code review approved!
+
+      All quality checks passed:
+      ✅ Code quality: {{review.code_quality.score}}/10
+      ✅ Security: No issues found
+      ✅ Performance: No concerns
+
+      Ready to merge!
+
+  - name: create_action_items
+    condition: "!review.approved"
+    type: todo
+    items:
+      - task: "Address {{review.issues.critical}} critical issues"
+        priority: high
+        files: "{{review.issues.critical_files}}"
+
+      - task: "Fix {{review.issues.high}} high-priority issues"
+        priority: high
+        files: "{{review.issues.high_files}}"
+
+      - task: "Consider {{review.issues.medium}} suggestions"
+        priority: medium
+
+  - name: categorize_review_feedback
+    condition: "!review.approved"
+    type: analysis
+    script: |
+      Categorize review feedback by type:
+      - Security issues (must fix)
+      - Performance issues (should fix)
+      - Code quality (nice to have)
+      - Style issues (auto-fixable)
+
+    outputs:
+      - feedback_by_category
+
+  - name: auto_fix_style
+    condition: feedback_by_category.style.length > 0
+    type: auto_fix
+    targets: "{{feedback_by_category.style}}"
+    verify: true  # Re-run review after fix
+
+  - name: create_review_summary
+    type: file
+    path: ./reviews/review-{{review.id}}.md
+    content: |
+      # Code Review Summary
+
+      **Date**: {{review.date}}
+      **Reviewer**: {{review.reviewer}}
+      **Status**: {{review.approved ? '✅ Approved' : '❌ Changes Requested'}}
+
+      ## Scores
+      - Code Quality: {{review.code_quality.score}}/10
+      - Security: {{review.security.score}}/10
+      - Performance: {{review.performance.score}}/10
+      - Architecture: {{review.architecture.score}}/10
+
+      ## Issues Found
+      {{#if review.issues.critical}}
+      ### 🔴 Critical ({{review.issues.critical}})
+      {{#each review.issues.critical_items}}
+      - **{{this.file}}:{{this.line}}** - {{this.description}}
+        - Recommendation: {{this.fix}}
+      {{/each}}
+      {{/if}}
+
+      {{#if review.issues.high}}
+      ### 🟡 High Priority ({{review.issues.high}})
+      {{#each review.issues.high_items}}
+      - **{{this.file}}:{{this.line}}** - {{this.description}}
+      {{/each}}
+      {{/if}}
+
+      {{#if review.issues.medium}}
+      ### 🔵 Medium ({{review.issues.medium}})
+      {{#each review.issues.medium_items}}
+      - {{this.description}}
+      {{/each}}
+      {{/if}}
+
+      ## Positive Highlights
+      {{#each review.positive_feedback}}
+      - ✨ {{this}}
+      {{/each}}
+
+      ## Next Steps
+      {{#if review.approved}}
+      - Ready to merge
+      - Consider deploying to staging
+      {{else}}
+      - Address critical and high-priority issues
+      - Re-request review when complete
+      {{/if}}
+
+  - name: update_pr_description
+    condition: github.pr_exists
+    type: github_update_pr
+    add_comment: |
+      ## 🔍 Code Review Complete
+
+      **Status**: {{review.approved ? '✅ Approved' : '❌ Changes Requested'}}
+
+      {{#if !review.approved}}
+      ### Issues to Address
+      - Critical: {{review.issues.critical}}
+      - High: {{review.issues.high}}
+      - Medium: {{review.issues.medium}}
+
+      See full review: [review-{{review.id}}.md](./reviews/review-{{review.id}}.md)
+      {{/if}}
+
+  - name: schedule_rereviews
+    condition: "!review.approved && review.iteration < 2"
+    type: schedule
+    action: re_review
+    when: changes_applied
+    config:
+      focus: previously_identified_issues
+      full_review: false  # Only review changed areas
+
+  - name: escalate_to_human
+    condition: |
+      !review.approved &&
+      review.iteration >= 2 &&
+      review.issues.critical > 0
+    type: notification
+    message: |
+      ⚠️ Review Escalation Needed
+
+      After {{review.iteration}} iterations, critical issues remain:
+
+      {{#each review.issues.critical_items}}
+      - {{this.description}}
+      {{/each}}
+
+      Consider:
+      1. Pair programming session
+      2. Architectural discussion
+      3. Alternative approach
+
+  - name: metrics_tracking
+    type: metrics
+    record:
+      - metric: review_duration
+        value: "{{review.duration_minutes}}"
+      - metric: issues_found
+        value: "{{review.issues.total}}"
+      - metric: review_iterations
+        value: "{{review.iteration}}"
+      - metric: approval_rate
+        value: "{{review.approved ? 1 : 0}}"
+
+# Configuration
+config:
+  auto_fix_style_issues: true
+  max_review_iterations: 2
+  create_review_summaries: true
+  update_github: true
+  track_metrics: true

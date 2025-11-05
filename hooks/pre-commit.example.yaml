@@ -1,0 +1,67 @@
+# Pre-Commit Hook Example
+# Copy this to your project's .claude/hooks/pre-commit.yaml
+
+name: pre-commit
+description: Automated checks before committing code
+
+# This hook runs before git commits
+triggers:
+  - event: pre_commit
+
+# Define quality gates
+gates:
+  - name: syntax_check
+    description: Check for syntax errors
+    command: npm run check-syntax
+    blocking: true
+    timeout: 30s
+
+  - name: linting
+    description: Run linter
+    command: npm run lint
+    blocking: false  # Warn but don't block
+    auto_fix: true   # Try to fix automatically
+
+  - name: formatting
+    description: Format code
+    command: npm run format
+    blocking: false
+    auto_fix: true
+
+  - name: unit_tests
+    description: Run fast unit tests
+    command: npm run test:unit
+    blocking: true
+    timeout: 60s
+
+# Actions to take based on results
+actions:
+  - name: block_if_tests_fail
+    condition: gates.unit_tests.failed
+    action: block
+    message: |
+      ❌ Pre-commit checks failed!
+
+      Tests are failing. Please fix before committing.
+
+      Failed tests:
+      {{gates.unit_tests.failures}}
+
+  - name: warn_on_lint_issues
+    condition: gates.linting.failed && !gates.linting.auto_fixed
+    action: warn
+    message: |
+      ⚠️ Linting issues detected
+
+      Run 'npm run lint:fix' to fix automatically.
+
+  - name: success_message
+    condition: all_gates_passed
+    action: notify
+    message: ✅ All pre-commit checks passed!
+
+# Configuration
+config:
+  allow_skip: false  # Can't skip with --no-verify
+  parallel: true     # Run gates in parallel
+  fail_fast: false   # Run all gates even if one fails

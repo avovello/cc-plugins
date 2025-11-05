@@ -1,0 +1,135 @@
+# On Test Failure Hook Example
+# Copy this to your project's .claude/hooks/on-test-failure.yaml
+
+name: on-test-failure
+description: Automated actions when tests fail
+
+# Trigger when tests fail
+triggers:
+  - event: test_failed
+  - event: test_completed
+    condition: test_results.failed > 0
+
+# Capture context for debugging
+capture:
+  - test_results      # Full test output
+  - recent_changes    # Git diff
+  - environment       # Env vars, versions
+  - logs              # Recent logs
+
+# Automated analysis and actions
+actions:
+  - name: categorize_failures
+    type: analysis
+    script: |
+      Categorize test failures:
+      - Syntax errors (quick fix)
+      - Assertion failures (logic errors)
+      - Timeouts (performance/async issues)
+      - Integration failures (external dependencies)
+
+    outputs:
+      - failure_categories
+
+  - name: check_flaky_tests
+    type: analysis
+    script: |
+      Check if these are known flaky tests by comparing
+      with historical test results.
+
+    outputs:
+      - flaky_test_detected
+      - flaky_tests
+
+  - name: notify_flaky
+    condition: flaky_test_detected
+    type: notification
+    message: |
+      ⚠️ Flaky test detected: {{flaky_tests}}
+
+      This test has intermittent failures. Consider:
+      1. Fixing race conditions
+      2. Adding proper waits
+      3. Improving test isolation
+
+  - name: suggest_fixes
+    type: analysis
+    uses: bug-analyzer  # Use bug-analyzer subagent
+    inputs:
+      test_results: "{{test_results}}"
+      recent_changes: "{{recent_changes}}"
+    outputs:
+      - suggested_fixes
+
+  - name: create_debug_report
+    type: file
+    path: ./test-failures/failure-{{timestamp}}.md
+    content: |
+      # Test Failure Report
+
+      **Time**: {{timestamp}}
+      **Failed Tests**: {{test_results.failed}}
+
+      ## Failed Tests
+      {{#each test_results.failures}}
+      ### {{this.name}}
+      - **File**: {{this.file}}
+      - **Error**: {{this.error}}
+      - **Stack**: {{this.stack}}
+      {{/each}}
+
+      ## Recent Changes
+      ```diff
+      {{recent_changes}}
+      ```
+
+      ## Suggested Fixes
+      {{suggested_fixes}}
+
+      ## Environment
+      - Node: {{environment.node_version}}
+      - OS: {{environment.os}}
+
+  - name: auto_retry
+    condition: failure_categories.timeouts > 0
+    type: action
+    action: retry_tests
+    config:
+      max_retries: 2
+      only_failed: true
+
+  - name: create_github_issue
+    condition: |
+      test_results.failed > 5 &&
+      !flaky_test_detected
+    type: github_issue
+    title: "🐛 Multiple test failures detected"
+    body: |
+      ## Test Failures
+
+      {{test_results.failed}} tests are failing.
+
+      See detailed report: [failure-{{timestamp}}.md](./test-failures/failure-{{timestamp}}.md)
+
+      Suggested fixes:
+      {{suggested_fixes}}
+    labels:
+      - bug
+      - tests
+
+  - name: block_commit
+    condition: test_results.failed > 0
+    type: block
+    message: |
+      ❌ Cannot proceed with {{test_results.failed}} failing tests.
+
+      Debug report created: ./test-failures/failure-{{timestamp}}.md
+
+      Suggested fixes:
+      {{suggested_fixes}}
+
+# Configuration
+config:
+  create_debug_reports: true
+  auto_retry_on_timeout: true
+  block_on_failure: true
