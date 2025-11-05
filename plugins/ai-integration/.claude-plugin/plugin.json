@@ -1,7 +1,7 @@
 {
   "name": "ai-integration",
   "description": "AI/ML workflows including LLM integration, vector databases, RAG implementation, and ML pipelines",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "author": {
     "name": "Claude Code Marketplace Contributors",
     "email": "noreply@anthropic.com"

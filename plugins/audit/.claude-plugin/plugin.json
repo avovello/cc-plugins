@@ -1,7 +1,7 @@
 {
   "name": "audit",
   "description": "Internal codebase audit for legacy code analysis, architecture documentation, technical debt assessment, and dependency mapping",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "author": {
     "name": "Claude Code Marketplace Contributors",
     "email": "noreply@anthropic.com"
