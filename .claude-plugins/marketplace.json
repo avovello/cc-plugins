@@ -1,0 +1,533 @@
+{
+  "name": "Claude Code Marketplace",
+  "version": "0.1.0",
+  "description": "A comprehensive collection of professional development workflow plugins for Claude Code with intelligent processing loops and specialized agents covering the complete R&D lifecycle",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avovello/claude-code.git"
+  },
+  "categories": [
+    {
+      "id": "analysis",
+      "name": "Analysis & Understanding",
+      "description": "Tools for analyzing codebases and researching technologies"
+    },
+    {
+      "id": "development",
+      "name": "Development & Implementation",
+      "description": "Tools for feature development and rapid prototyping"
+    },
+    {
+      "id": "improvement",
+      "name": "Improvement & Optimization",
+      "description": "Tools for refactoring, optimizing, and hardening code"
+    },
+    {
+      "id": "quality",
+      "name": "Quality & Testing",
+      "description": "Tools for code review and bug fixing"
+    },
+    {
+      "id": "operations",
+      "name": "Operations & Deployment",
+      "description": "Tools for CI/CD, deployment, and migrations"
+    },
+    {
+      "id": "knowledge",
+      "name": "Knowledge & Documentation",
+      "description": "Tools for documentation and knowledge management"
+    },
+    {
+      "id": "ai-ml",
+      "name": "AI/ML",
+      "description": "Tools for AI and machine learning integration"
+    }
+  ],
+  "plugins": [
+    {
+      "name": "audit",
+      "displayName": "Audit",
+      "description": "Internal codebase audit for legacy code analysis, architecture documentation, technical debt assessment, and dependency mapping",
+      "version": "0.1.0",
+      "category": "analysis",
+      "icon": "🔍",
+      "path": "plugins/audit",
+      "command": "/audit",
+      "agents": 5,
+      "agentList": [
+        "structure-mapper",
+        "dependency-analyzer",
+        "pattern-detector",
+        "tech-debt-assessor",
+        "documentation-generator"
+      ],
+      "author": {
+        "name": "Claude Code Marketplace Contributors",
+        "email": "noreply@anthropic.com"
+      },
+      "keywords": [
+        "audit",
+        "analysis",
+        "architecture",
+        "technical-debt",
+        "legacy-code"
+      ],
+      "useCases": [
+        "Legacy code analysis",
+        "Architecture documentation",
+        "Technical debt assessment",
+        "Dependency mapping"
+      ]
+    },
+    {
+      "name": "research",
+      "displayName": "Research",
+      "description": "Technology research, API exploration, and best practices discovery with comparative analysis and recommendations",
+      "version": "0.1.0",
+      "category": "analysis",
+      "icon": "📚",
+      "path": "plugins/research",
+      "command": "/research",
+      "agents": 5,
+      "agentList": [
+        "information-gatherer",
+        "feature-comparator",
+        "performance-evaluator",
+        "ecosystem-evaluator",
+        "recommendation-synthesizer"
+      ],
+      "author": {
+        "name": "Claude Code Marketplace Contributors",
+        "email": "noreply@anthropic.com"
+      },
+      "keywords": [
+        "research",
+        "technology-evaluation",
+        "comparison",
+        "best-practices"
+      ],
+      "useCases": [
+        "Technology evaluation",
+        "Framework comparison",
+        "Library selection",
+        "Best practices discovery"
+      ]
+    },
+    {
+      "name": "feature",
+      "displayName": "Feature",
+      "description": "Complete feature development lifecycle with planning, implementation, testing loops, code review loops, and documentation",
+      "version": "0.1.0",
+      "category": "development",
+      "icon": "✨",
+      "path": "plugins/feature",
+      "command": "/feature",
+      "agents": 8,
+      "agentList": [
+        "architecture-planner",
+        "implementation-planner",
+        "code-implementer",
+        "test-writer",
+        "test-runner",
+        "test-failure-analyzer",
+        "code-quality-reviewer",
+        "implementation-documenter"
+      ],
+      "author": {
+        "name": "Claude Code Marketplace Contributors",
+        "email": "noreply@anthropic.com"
+      },
+      "keywords": [
+        "feature",
+        "development",
+        "implementation",
+        "testing",
+        "documentation"
+      ],
+      "useCases": [
+        "Full feature development",
+        "Test-driven development",
+        "Feature planning",
+        "Implementation documentation"
+      ]
+    },
+    {
+      "name": "prototype",
+      "displayName": "Prototype",
+      "description": "Quick experimentation through rapid prototyping, A/B testing, and data-driven decision making",
+      "version": "0.1.0",
+      "category": "development",
+      "icon": "🔬",
+      "path": "plugins/prototype",
+      "command": "/prototype",
+      "agents": 6,
+      "agentList": [
+        "experiment-planner",
+        "quick-implementer",
+        "results-analyzer",
+        "decision-synthesizer",
+        "cleanup-agent",
+        "ab-test-setup"
+      ],
+      "author": {
+        "name": "Claude Code Marketplace Contributors",
+        "email": "noreply@anthropic.com"
+      },
+      "keywords": [
+        "prototype",
+        "experimentation",
+        "poc",
+        "ab-testing"
+      ],
+      "useCases": [
+        "Time-boxed experiments",
+        "POC development",
+        "A/B testing",
+        "Decision support"
+      ]
+    },
+    {
+      "name": "refactor",
+      "displayName": "Refactor",
+      "description": "Systematic technical debt reduction and code refactoring with continuous improvement cycles",
+      "version": "0.1.0",
+      "category": "improvement",
+      "icon": "🔧",
+      "path": "plugins/refactor",
+      "command": "/refactor",
+      "agents": 7,
+      "agentList": [
+        "debt-prioritizer",
+        "complexity-reducer",
+        "test-preserver",
+        "duplication-eliminator",
+        "code-modernizer",
+        "dependency-updater",
+        "refactor-validator"
+      ],
+      "author": {
+        "name": "Claude Code Marketplace Contributors",
+        "email": "noreply@anthropic.com"
+      },
+      "keywords": [
+        "refactor",
+        "technical-debt",
+        "code-quality",
+        "modernization"
+      ],
+      "useCases": [
+        "Complexity reduction",
+        "Duplication elimination",
+        "Code modernization",
+        "Dependency updates"
+      ]
+    },
+    {
+      "name": "optimize",
+      "displayName": "Optimize",
+      "description": "Performance optimization through systematic profiling, bottleneck identification, and speed improvements",
+      "version": "0.1.0",
+      "category": "improvement",
+      "icon": "⚡",
+      "path": "plugins/optimize",
+      "command": "/optimize",
+      "agents": 7,
+      "agentList": [
+        "performance-profiler",
+        "bottleneck-identifier",
+        "query-optimizer",
+        "cache-strategist",
+        "load-tester",
+        "code-optimizer",
+        "benchmark-validator"
+      ],
+      "author": {
+        "name": "Claude Code Marketplace Contributors",
+        "email": "noreply@anthropic.com"
+      },
+      "keywords": [
+        "optimization",
+        "performance",
+        "profiling",
+        "benchmarking"
+      ],
+      "useCases": [
+        "Performance profiling",
+        "Bottleneck identification",
+        "Query optimization",
+        "Caching strategies"
+      ]
+    },
+    {
+      "name": "harden",
+      "displayName": "Harden",
+      "description": "Security hardening through vulnerability scanning, configuration auditing, and comprehensive security improvements",
+      "version": "0.1.0",
+      "category": "improvement",
+      "icon": "🔐",
+      "path": "plugins/harden",
+      "command": "/harden",
+      "agents": 7,
+      "agentList": [
+        "vulnerability-scanner",
+        "security-config-auditor",
+        "auth-hardener",
+        "secrets-manager",
+        "security-header-configurator",
+        "penetration-tester",
+        "compliance-checker"
+      ],
+      "author": {
+        "name": "Claude Code Marketplace Contributors",
+        "email": "noreply@anthropic.com"
+      },
+      "keywords": [
+        "security",
+        "hardening",
+        "vulnerability",
+        "compliance"
+      ],
+      "useCases": [
+        "Vulnerability scanning",
+        "Security configuration",
+        "Authentication hardening",
+        "Compliance checking"
+      ]
+    },
+    {
+      "name": "review",
+      "displayName": "Review",
+      "description": "Multi-perspective code review with 19 specialized reviewers covering architecture, security, performance, backend, frontend, and DevOps",
+      "version": "0.1.0",
+      "category": "quality",
+      "icon": "👁️",
+      "path": "plugins/review",
+      "command": "/review",
+      "agents": 19,
+      "agentList": [
+        "architect-reviewer",
+        "authentication-reviewer",
+        "input-validation-reviewer",
+        "cryptography-reviewer",
+        "algorithms-reviewer",
+        "database-reviewer",
+        "resources-reviewer",
+        "php-reviewer",
+        "python-reviewer",
+        "nodejs-reviewer",
+        "go-reviewer",
+        "bash-reviewer",
+        "react-reviewer",
+        "vue-reviewer",
+        "html-reviewer",
+        "css-reviewer",
+        "docker-reviewer",
+        "kubernetes-reviewer",
+        "cicd-reviewer"
+      ],
+      "author": {
+        "name": "Claude Code Marketplace Contributors",
+        "email": "noreply@anthropic.com"
+      },
+      "keywords": [
+        "review",
+        "code-quality",
+        "security",
+        "performance",
+        "best-practices"
+      ],
+      "useCases": [
+        "Code quality review",
+        "Security review",
+        "Performance review",
+        "Best practices validation"
+      ]
+    },
+    {
+      "name": "bugfix",
+      "displayName": "Bugfix",
+      "description": "Systematic bug fixing with reproduction, root cause analysis, fix implementation, and comprehensive regression testing",
+      "version": "0.1.0",
+      "category": "quality",
+      "icon": "🐛",
+      "path": "plugins/bugfix",
+      "command": "/bugfix",
+      "agents": 7,
+      "agentList": [
+        "bug-reproducer",
+        "root-cause-analyst",
+        "impact-assessor",
+        "fix-planner",
+        "fix-implementer",
+        "fix-tester",
+        "regression-tester"
+      ],
+      "author": {
+        "name": "Claude Code Marketplace Contributors",
+        "email": "noreply@anthropic.com"
+      },
+      "keywords": [
+        "bugfix",
+        "debugging",
+        "root-cause",
+        "regression-testing"
+      ],
+      "useCases": [
+        "Bug reproduction",
+        "Root cause analysis",
+        "Fix validation",
+        "Regression testing"
+      ]
+    },
+    {
+      "name": "deploy",
+      "displayName": "Deploy",
+      "description": "CI/CD pipeline setup, deployment automation, monitoring configuration, and rollback strategies",
+      "version": "0.1.0",
+      "category": "operations",
+      "icon": "🚢",
+      "path": "plugins/deploy",
+      "command": "/deploy",
+      "agents": 7,
+      "agentList": [
+        "ci-cd-configurator",
+        "infrastructure-coder",
+        "monitoring-configurator",
+        "deployment-strategist",
+        "rollback-planner",
+        "feature-flag-implementer",
+        "deployment-validator"
+      ],
+      "author": {
+        "name": "Claude Code Marketplace Contributors",
+        "email": "noreply@anthropic.com"
+      },
+      "keywords": [
+        "deployment",
+        "ci-cd",
+        "infrastructure",
+        "monitoring"
+      ],
+      "useCases": [
+        "CI/CD pipeline setup",
+        "Infrastructure as code",
+        "Monitoring configuration",
+        "Deployment strategies"
+      ]
+    },
+    {
+      "name": "migrate",
+      "displayName": "Migrate",
+      "description": "Framework and database migrations with zero-downtime strategies and rollback planning",
+      "version": "0.1.0",
+      "category": "operations",
+      "icon": "🚀",
+      "path": "plugins/migrate",
+      "command": "/migrate",
+      "agents": 7,
+      "agentList": [
+        "compatibility-analyzer",
+        "migration-planner",
+        "code-transformer",
+        "dual-write-implementer",
+        "migration-tester",
+        "rollback-planner",
+        "documentation-updater"
+      ],
+      "author": {
+        "name": "Claude Code Marketplace Contributors",
+        "email": "noreply@anthropic.com"
+      },
+      "keywords": [
+        "migration",
+        "upgrade",
+        "framework",
+        "database"
+      ],
+      "useCases": [
+        "Framework upgrades",
+        "Database migrations",
+        "API versioning",
+        "Zero-downtime migrations"
+      ]
+    },
+    {
+      "name": "document",
+      "displayName": "Document",
+      "description": "Documentation maintenance through automated API documentation, architecture diagrams, and comprehensive developer guides",
+      "version": "0.1.0",
+      "category": "knowledge",
+      "icon": "📖",
+      "path": "plugins/document",
+      "command": "/document",
+      "agents": 7,
+      "agentList": [
+        "api-documenter",
+        "architecture-documenter",
+        "onboarding-guide-creator",
+        "runbook-writer",
+        "doc-consistency-checker",
+        "example-generator",
+        "diagram-creator"
+      ],
+      "author": {
+        "name": "Claude Code Marketplace Contributors",
+        "email": "noreply@anthropic.com"
+      },
+      "keywords": [
+        "documentation",
+        "api-docs",
+        "architecture",
+        "onboarding"
+      ],
+      "useCases": [
+        "API documentation",
+        "Architecture docs",
+        "Onboarding guides",
+        "Runbooks"
+      ]
+    },
+    {
+      "name": "ai-integration",
+      "displayName": "AI Integration",
+      "description": "AI/ML workflows including LLM integration, vector databases, RAG implementation, and ML pipelines",
+      "version": "0.1.0",
+      "category": "ai-ml",
+      "icon": "🤖",
+      "path": "plugins/ai-integration",
+      "command": "/ai-integration",
+      "agents": 7,
+      "agentList": [
+        "llm-integrator",
+        "vector-db-configurator",
+        "embedding-generator",
+        "rag-implementer",
+        "prompt-optimizer",
+        "ml-pipeline-builder",
+        "model-evaluator"
+      ],
+      "author": {
+        "name": "Claude Code Marketplace Contributors",
+        "email": "noreply@anthropic.com"
+      },
+      "keywords": [
+        "ai",
+        "ml",
+        "llm",
+        "rag",
+        "vector-database"
+      ],
+      "useCases": [
+        "LLM integration",
+        "Vector database setup",
+        "RAG implementation",
+        "ML pipeline development"
+      ]
+    }
+  ],
+  "stats": {
+    "totalPlugins": 13,
+    "totalAgents": 78,
+    "workflowCoverage": "95%"
+  }
+}
