@@ -1,0 +1,9 @@
+{
+  "name": "testing",
+  "description": "Comprehensive testing workflows with unit, integration, and acceptance (E2E) testing using Playwright + TypeScript",
+  "version": "0.1.0",
+  "author": {
+    "name": "Claude Code Marketplace Contributors",
+    "email": "noreply@anthropic.com"
+  }
+}
