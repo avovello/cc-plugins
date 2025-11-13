@@ -4,7 +4,7 @@ A comprehensive collection of professional development workflow plugins for Clau
 
 ## Overview
 
-The Claude Code Marketplace provides production-ready plugins that follow the official Claude Code plugin architecture. The marketplace offers **13 plugins with 78 specialized agents** covering 95% of software development workflows.
+The Claude Code Marketplace provides production-ready plugins that follow the official Claude Code plugin architecture. The marketplace offers **14 plugins with 90 specialized agents** covering 95% of software development workflows.
 
 ## What are Claude Code Plugins?
 
@@ -12,7 +12,7 @@ Claude Code plugins extend Claude Code capabilities through custom slash command
 
 ## Key Features
 
-- **78 Specialized Agents** across 13 plugins
+- **90 Specialized Agents** across 14 plugins
 - **Official Claude Code Format**: Markdown-based commands and agents
 - **Intelligent Processing Loops**: Automatic test-fix-retest and review-fix-rereview cycles
 - **Non-Overlapping Responsibilities**: Each agent has ONE clear job
@@ -177,6 +177,17 @@ Claude Code plugins extend Claude Code capabilities through custom slash command
 
 ---
 
+### 🧪 **Testing Plugin** (Quality Assurance)
+**Purpose**: Comprehensive testing workflows with unit, integration, and acceptance (E2E) testing
+
+**Agents (3)**: unit-tester, integration-tester, acceptance-tester
+
+**Slash Command**: `/test` or `/test unit` or `/test acceptance`
+
+**Covers**: Unit testing (Jest, pytest, PHPUnit), integration testing, E2E testing with Playwright + TypeScript
+
+---
+
 ## Installation
 
 ### Prerequisites
@@ -284,6 +295,11 @@ All plugins are invoked using **slash commands** within Claude Code:
 
 # AI Integration
 /ai-integration "Add ChatGPT support"
+
+# Testing
+/test
+/test unit
+/test acceptance
 ```
 
 ## Plugin Architecture
@@ -321,8 +337,8 @@ Each `plugin.json` follows this structure:
 
 ## Statistics
 
-- **Total Plugins**: 13
-- **Total Agents**: 78
+- **Total Plugins**: 14
+- **Total Agents**: 90
 - **Workflow Coverage**: ~95% of R&D activities
 - **Lines of Documentation**: 15,000+
 
@@ -341,6 +357,7 @@ Each `plugin.json` follows this structure:
 - **Document**: 7 agents
 - **Prototype**: 6 agents
 - **AI Integration**: 7 agents
+- **Testing**: 3 agents
 
 ## Plugin Categories
 
@@ -360,6 +377,7 @@ Each `plugin.json` follows this structure:
 ### Quality & Testing
 - 👁️ **Review** - Code review
 - 🐛 **Bugfix** - Bug fixing
+- 🧪 **Testing** - Comprehensive testing
 
 ### Operations & Deployment
 - 🚢 **Deploy** - CI/CD and deployment

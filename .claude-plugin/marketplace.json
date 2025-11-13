@@ -235,6 +235,24 @@
         "rag",
         "vector-database"
       ]
+    },
+    {
+      "name": "testing",
+      "source": "./plugins/testing",
+      "description": "Comprehensive testing workflows with unit, integration, and acceptance (E2E) testing using Playwright + TypeScript",
+      "version": "0.1.0",
+      "author": {
+        "name": "Claude Code Marketplace Contributors",
+        "email": "noreply@anthropic.com"
+      },
+      "category": "quality",
+      "keywords": [
+        "testing",
+        "unit-tests",
+        "integration-tests",
+        "e2e",
+        "playwright"
+      ]
     }
   ]
 }
