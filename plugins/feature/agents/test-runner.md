@@ -346,6 +346,29 @@ Before completing:
 - ✅ Performance metrics captured
 - ✅ Exit code properly handled
 
+## E2E Browser Testing
+
+For comprehensive end-to-end browser testing with Playwright, use the **QA plugin**:
+
+```bash
+# Run E2E tests with Playwright
+/e2e
+
+# Interactive browser testing
+/e2e --explore [url]
+
+# Generate E2E tests from recorded actions
+/write-tests --from-actions
+```
+
+**QA Plugin Capabilities**:
+- `browser-tester` agent: Interactive testing via Playwright MCP
+- Cross-browser testing (Chromium, Firefox, WebKit)
+- Screenshot/video capture on failures
+- Accessibility validation
+
+> **Note**: This agent handles unit, integration, and API tests. For full browser automation and E2E testing, delegate to the QA plugin's `/e2e` command.
+
 ## Best Practices
 
 1. **Run Tests Frequently** - Run tests after each change
@@ -358,3 +381,4 @@ Before completing:
 8. **Sequential When Needed** - Run integration tests sequentially
 9. **Watch Mode in Dev** - Use watch mode during development
 10. **Full Suite Before Commit** - Always run full suite before committing
+11. **E2E for UI Features** - Use `/e2e` for UI-heavy features
