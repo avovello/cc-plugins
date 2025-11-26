@@ -1,0 +1,9 @@
+{
+  "name": "qa",
+  "description": "Quality Assurance workflows with browser testing (Playwright MCP), test writing, and comprehensive test execution for unit, integration, and E2E testing",
+  "version": "0.2.0",
+  "author": {
+    "name": "Claude Code Marketplace Contributors",
+    "email": "noreply@anthropic.com"
+  }
+}

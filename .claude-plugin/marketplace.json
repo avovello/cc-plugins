@@ -237,21 +237,23 @@
       ]
     },
     {
-      "name": "testing",
-      "source": "./plugins/testing",
-      "description": "Comprehensive testing workflows with unit, integration, and acceptance (E2E) testing using Playwright + TypeScript",
-      "version": "0.1.0",
+      "name": "qa",
+      "source": "./plugins/qa",
+      "description": "Quality Assurance workflows with browser testing (Playwright MCP), test writing, and comprehensive test execution for unit, integration, and E2E testing",
+      "version": "0.2.0",
       "author": {
         "name": "Claude Code Marketplace Contributors",
         "email": "noreply@anthropic.com"
       },
       "category": "quality",
       "keywords": [
+        "qa",
         "testing",
+        "playwright",
         "unit-tests",
         "integration-tests",
         "e2e",
-        "playwright"
+        "browser-testing"
       ]
     }
   ]
