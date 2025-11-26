@@ -85,5 +85,12 @@ harden-output/
 └── SECURITY_CHECKLIST.md
 ```
 
+## Related Plugins
+
+- **QA Plugin**: Run regression tests after security fixes (`/qa`, `/e2e`, `/unit`, `/integration`)
+  - Ensure security hardening didn't break functionality
+  - E2E tests for auth flow changes
+  - Integration tests for API security changes
+
 **Priority**: P2 - HIGH
 **Why**: Security is critical for protecting user data and maintaining trust

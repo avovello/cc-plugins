@@ -257,6 +257,12 @@ refactor:
     track_coverage: true             # Track test coverage
 ```
 
+## Related Plugins
+
+- **QA Plugin**: After refactoring, run comprehensive tests (`/qa`, `/e2e`, `/unit`, `/integration`)
+- **After Audit**: `/audit` identifies debt → `/refactor` fixes it
+- **Before Feature**: Refactor first to create clean foundation
+
 ## Integration with Other Plugins
 
 - **After Audit**: `/audit` identifies debt → `/refactor` fixes it

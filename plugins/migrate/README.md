@@ -38,6 +38,13 @@ The Migrate plugin handles complex version upgrades that Refactor and Feature pl
 - **Incremental**: Module by module (complex)
 - **Dual-Write**: Write to both during transition (databases)
 
+## Related Plugins
+
+- **QA Plugin**: Critical for migration validation (`/qa`, `/e2e`, `/unit`, `/integration`)
+  - Run full test suite on both old and new versions
+  - E2E browser tests for UI framework migrations (React, Vue, Angular)
+  - Integration tests for database migrations
+
 ## Priority
 
 **P1 - HIGH** - Common operation for keeping tech stack modern

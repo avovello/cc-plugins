@@ -296,6 +296,11 @@ optimize:
     auto_revert_on_regression: true  # Revert if performance degrades
 ```
 
+## Related Plugins
+
+- **QA Plugin**: Verify correctness after optimization (`/qa`, `/unit`, `/integration`)
+- **After Audit**: `/audit` identifies slow operations → `/optimize` speeds them up
+
 ## Integration with Other Plugins
 
 - **After Audit**: `/audit` identifies slow operations → `/optimize` speeds them up
