@@ -63,7 +63,7 @@ Claude Code plugins extend Claude Code capabilities through custom slash command
 
 ---
 
-### ✨ **Feature Plugin** (Development)
+### ✨ **Feature-Development Plugin** (Development)
 **Purpose**: Systematic feature development with 7-phase workflow
 
 **Agents (6)**: code-explorer, code-architect, code-reviewer, test-writer, test-runner, implementation-documenter
@@ -349,7 +349,7 @@ Each `plugin.json` follows this structure:
 - **Audit**: 5 agents
 - **Research**: 5 agents
 - **Review**: 19 reviewers
-- **Feature**: 6 agents + 7 skills
+- **Feature-Development**: 6 agents + 7 skills
 - **Bugfix**: 7 agents
 - **Refactor**: 7 agents
 - **Migrate**: 7 agents

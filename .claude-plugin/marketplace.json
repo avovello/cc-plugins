@@ -47,8 +47,8 @@
       ]
     },
     {
-      "name": "feature",
-      "source": "./plugins/feature",
+      "name": "feature-development",
+      "source": "./plugins/feature-development",
       "description": "Systematic feature development with 7-phase workflow: discovery, exploration, clarifying questions, architecture design (SOLID, Clean Architecture, Design Patterns, DDD), implementation, QA-DEV-REVIEW loops, and summary",
       "version": "1.2.0",
       "author": {

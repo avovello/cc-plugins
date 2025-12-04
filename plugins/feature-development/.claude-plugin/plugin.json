@@ -1,5 +1,5 @@
 {
-  "name": "feature",
+  "name": "feature-development",
   "description": "Systematic feature development with 7-phase workflow: discovery, codebase exploration, clarifying questions, architecture design (SOLID, Clean Architecture, Design Patterns, DDD), implementation, QA-DEV-REVIEW loops, and summary",
   "version": "1.2.0",
   "author": {
