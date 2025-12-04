@@ -1,4 +1,4 @@
-# Avovello CC Plugins
+# CC Plugins
 
 A comprehensive collection of professional development workflow plugins for Claude Code with intelligent processing loops and specialized agents covering the complete R&D lifecycle.
 
