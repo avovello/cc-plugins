@@ -1,3 +1,7 @@
+---
+description: Performance optimization through systematic profiling, bottleneck identification, and speed improvements
+---
+
 # Optimize Command
 
 **Purpose**: Performance optimization through systematic profiling, bottleneck identification, and measurable speed improvements

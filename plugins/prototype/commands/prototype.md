@@ -1,3 +1,7 @@
+---
+description: Quick experimentation through rapid prototyping, A/B testing, and data-driven decision making
+---
+
 # Prototype Command
 
 **Purpose**: Quick experimentation through rapid prototyping, A/B testing, and data-driven decision making

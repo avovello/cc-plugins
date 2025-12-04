@@ -1,3 +1,7 @@
+---
+description: Run unit tests for isolated function and component testing
+---
+
 # Unit Command
 
 Runs unit tests for isolated function and component testing.

@@ -1,3 +1,7 @@
+---
+description: Internal codebase audit for architecture understanding, technical debt assessment, and dependency analysis
+---
+
 # Audit Command
 
 **Purpose**: Internal codebase audit for architecture understanding, technical debt assessment, and dependency analysis

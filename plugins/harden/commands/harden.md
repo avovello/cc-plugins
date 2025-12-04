@@ -1,3 +1,7 @@
+---
+description: Security hardening with vulnerability scanning, configuration auditing, and security improvements
+---
+
 # Harden Command
 
 **Purpose**: Security hardening through systematic vulnerability scanning, configuration auditing, and comprehensive security improvements

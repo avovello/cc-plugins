@@ -1,3 +1,7 @@
+---
+description: Documentation maintenance with automated API docs, architecture diagrams, and developer guides
+---
+
 # Document Command
 
 **Purpose**: Documentation maintenance through automated API documentation, architecture diagrams, and comprehensive developer guides

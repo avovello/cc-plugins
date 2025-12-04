@@ -1,3 +1,7 @@
+---
+description: Generate automated test code from requirements, source code, or recorded browser actions
+---
+
 # Write Tests Command
 
 Generates automated test code from requirements, source code, or recorded browser actions.

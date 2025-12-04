@@ -1,3 +1,7 @@
+---
+description: Framework upgrades, database migrations, and API version migrations with zero-downtime strategies
+---
+
 # Migrate Command
 
 **Purpose**: Systematic framework upgrades, database migrations, and API version migrations with zero-downtime strategies and comprehensive rollback planning

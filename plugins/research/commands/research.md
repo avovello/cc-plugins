@@ -1,3 +1,7 @@
+---
+description: Technology research, API exploration, and best practices discovery with comparative analysis
+---
+
 # Research Command
 
 **Purpose**: Technology research, API exploration, and best practices discovery with comparative analysis

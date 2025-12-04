@@ -1,3 +1,7 @@
+---
+description: Comprehensive quality assurance workflow including unit, integration, and E2E tests
+---
+
 # QA Command
 
 Runs comprehensive quality assurance workflow including unit, integration, and E2E tests.

@@ -1,3 +1,7 @@
+---
+description: Automate deployment workflows with CI/CD pipelines, monitoring, and rollback capabilities
+---
+
 # Deploy Command
 
 **Purpose**: Automate deployment workflows with CI/CD pipelines, monitoring, and rollback capabilities

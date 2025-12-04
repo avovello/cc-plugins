@@ -1,3 +1,7 @@
+---
+description: Systematic 7-phase feature development with architecture design (SOLID, Clean Architecture, Design Patterns, DDD) and QA-DEV-REVIEW loops
+---
+
 # Feature Development Command
 
 **Purpose**: Systematic feature development with deep codebase understanding, clarifying questions, multiple architecture options, and automated QA-DEV-REVIEW loops.

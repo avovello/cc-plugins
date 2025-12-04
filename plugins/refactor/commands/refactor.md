@@ -1,3 +1,7 @@
+---
+description: Systematic technical debt reduction and code refactoring to improve maintainability and reduce complexity
+---
+
 # Refactor Command
 
 **Purpose**: Systematic technical debt reduction and code refactoring to improve maintainability, reduce complexity, and modernize code

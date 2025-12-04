@@ -1,3 +1,7 @@
+---
+description: Multi-perspective code review with 19 specialized reviewers covering architecture, security, and performance
+---
+
 # Code Review Command
 
 **Purpose**: Multi-perspective code review with 19 specialized reviewers

@@ -1,3 +1,7 @@
+---
+description: Run end-to-end tests using Playwright for browser automation
+---
+
 # E2E Command
 
 Runs end-to-end tests using Playwright for browser automation.

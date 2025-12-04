@@ -1,3 +1,7 @@
+---
+description: AI/ML workflows including LLM integration, vector databases, RAG implementation, and ML pipelines
+---
+
 # AI Integration Command
 
 **Purpose**: AI/ML workflows including LLM integration, vector databases, RAG implementation, and ML pipelines

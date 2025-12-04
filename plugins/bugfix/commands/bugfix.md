@@ -1,3 +1,7 @@
+---
+description: Systematic bug fixing with reproduction, root cause analysis, fix implementation, and regression testing
+---
+
 # Bugfix Command
 
 **Purpose**: Systematic bug fixing with reproduction, root cause analysis, fix implementation, and regression testing

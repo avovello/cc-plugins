@@ -1,3 +1,7 @@
+---
+description: Run integration tests for API, database, and service testing
+---
+
 # Integration Command
 
 Runs integration tests for API, database, and service testing.
