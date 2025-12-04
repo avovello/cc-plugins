@@ -1,10 +1,10 @@
-# Claude Code Marketplace
+# Avovello CC Plugins
 
 A comprehensive collection of professional development workflow plugins for Claude Code with intelligent processing loops and specialized agents covering the complete R&D lifecycle.
 
 ## Overview
 
-The Claude Code Marketplace provides production-ready plugins that follow the official Claude Code plugin architecture. The marketplace offers **14 plugins with 90 specialized agents** covering 95% of software development workflows.
+Avovello CC Plugins provides production-ready plugins that follow the official Claude Code plugin architecture. The collection offers **14 plugins with 90 specialized agents** covering 95% of software development workflows.
 
 ## What are Claude Code Plugins?
 
@@ -64,13 +64,15 @@ Claude Code plugins extend Claude Code capabilities through custom slash command
 ---
 
 ### ✨ **Feature Plugin** (Development)
-**Purpose**: Complete feature development lifecycle
+**Purpose**: Systematic feature development with 7-phase workflow
 
-**Agents (8)**: architecture-planner, implementation-planner, code-implementer, test-writer, test-runner, test-failure-analyzer, code-quality-reviewer, implementation-documenter
+**Agents (6)**: code-explorer, code-architect, code-reviewer, test-writer, test-runner, implementation-documenter
+
+**Architecture Skills**: solid-principles, clean-architecture, design-patterns, domain-driven-design
 
 **Slash Command**: `/feature "Add OAuth2 authentication"`
 
-**Covers**: Full feature development from planning to documentation
+**Covers**: Discovery → Codebase exploration → Clarifying questions → Architecture design (SOLID, Clean Architecture, Design Patterns, DDD) → Implementation → QA-DEV-REVIEW loops → Summary
 
 ---
 
@@ -347,7 +349,7 @@ Each `plugin.json` follows this structure:
 - **Audit**: 5 agents
 - **Research**: 5 agents
 - **Review**: 19 reviewers
-- **Feature**: 8 agents
+- **Feature**: 6 agents + 7 skills
 - **Bugfix**: 7 agents
 - **Refactor**: 7 agents
 - **Migrate**: 7 agents
@@ -460,7 +462,7 @@ Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Version
 
-0.1.0
+0.2.0
 
 ## License
 

@@ -1,5 +1,5 @@
 {
-  "name": "claude-code-marketplace",
+  "name": "avovello-cc-plugins",
   "owner": {
     "name": "Claude Code Marketplace Contributors",
     "email": "noreply@anthropic.com"
@@ -7,9 +7,9 @@
   "metadata": {
     "description": "A comprehensive collection of professional development workflow plugins for Claude Code with intelligent processing loops and specialized agents covering the complete R&D lifecycle",
     "homepage": "https://github.com/avovello/claude-code",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "plugins": [
     {
       "name": "audit",
@@ -49,8 +49,8 @@
     {
       "name": "feature",
       "source": "./plugins/feature",
-      "description": "Complete feature development lifecycle with planning, implementation, testing loops, code review loops, and documentation",
-      "version": "0.1.0",
+      "description": "Systematic feature development with 7-phase workflow: discovery, exploration, clarifying questions, architecture design (SOLID, Clean Architecture, Design Patterns, DDD), implementation, QA-DEV-REVIEW loops, and summary",
+      "version": "1.2.0",
       "author": {
         "name": "Claude Code Marketplace Contributors",
         "email": "noreply@anthropic.com"

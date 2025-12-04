@@ -1,19 +1,15 @@
 {
   "name": "feature",
-  "description": "Systematic feature development with 7-phase workflow: discovery, codebase exploration, clarifying questions, architecture design, implementation, QA-DEV-REVIEW loops, and summary",
-  "version": "1.1.0",
+  "description": "Systematic feature development with 7-phase workflow: discovery, codebase exploration, clarifying questions, architecture design (SOLID, Clean Architecture, Design Patterns, DDD), implementation, QA-DEV-REVIEW loops, and summary",
+  "version": "1.2.0",
   "author": {
     "name": "Claude Code Marketplace Contributors",
     "email": "noreply@anthropic.com"
   },
   "commands": [
     {
-      "name": "feature-dev",
-      "description": "Guided 7-phase feature development workflow with parallel exploration, clarifying questions, and QA-DEV-REVIEW loops"
-    },
-    {
       "name": "feature",
-      "description": "Alias for /feature-dev - complete feature development lifecycle"
+      "description": "Guided 7-phase feature development workflow with architecture skills, parallel exploration, and QA-DEV-REVIEW loops"
     }
   ],
   "agents": [
@@ -23,7 +19,7 @@
     },
     {
       "name": "code-architect",
-      "description": "Architecture design - generates implementation blueprints with decisive recommendations"
+      "description": "Architecture design applying SOLID, Clean Architecture, Design Patterns, and DDD principles"
     },
     {
       "name": "code-reviewer",
@@ -43,6 +39,22 @@
     }
   ],
   "skills": [
+    {
+      "name": "solid-principles",
+      "description": "SOLID principles for maintainable design - SRP, OCP, LSP, ISP, DIP"
+    },
+    {
+      "name": "clean-architecture",
+      "description": "Layered architecture with Dependency Rule - Entities, Use Cases, Adapters, Frameworks"
+    },
+    {
+      "name": "design-patterns",
+      "description": "Creational, Structural, Behavioral patterns - Factory, Adapter, Strategy, Observer, etc."
+    },
+    {
+      "name": "domain-driven-design",
+      "description": "DDD principles - Ubiquitous Language, Bounded Contexts, Aggregates, Domain Events"
+    },
     {
       "name": "testing-loop",
       "description": "Automated test-fix-retest loop (max 3 iterations)"
