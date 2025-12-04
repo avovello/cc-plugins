@@ -1,9 +1,59 @@
 {
   "name": "feature",
-  "description": "Complete feature development lifecycle with planning, implementation, testing loops, code review loops, and documentation",
-  "version": "0.1.0",
+  "description": "Systematic feature development with 7-phase workflow: discovery, codebase exploration, clarifying questions, architecture design, implementation, QA-DEV-REVIEW loops, and summary",
+  "version": "1.1.0",
   "author": {
     "name": "Claude Code Marketplace Contributors",
     "email": "noreply@anthropic.com"
-  }
+  },
+  "commands": [
+    {
+      "name": "feature-dev",
+      "description": "Guided 7-phase feature development workflow with parallel exploration, clarifying questions, and QA-DEV-REVIEW loops"
+    },
+    {
+      "name": "feature",
+      "description": "Alias for /feature-dev - complete feature development lifecycle"
+    }
+  ],
+  "agents": [
+    {
+      "name": "code-explorer",
+      "description": "Deep codebase analysis - traces execution paths, maps architecture, documents patterns"
+    },
+    {
+      "name": "code-architect",
+      "description": "Architecture design - generates implementation blueprints with decisive recommendations"
+    },
+    {
+      "name": "code-reviewer",
+      "description": "Precision code review - confidence-based filtering (80+), automated review-fix-rereview loop"
+    },
+    {
+      "name": "test-writer",
+      "description": "Writes comprehensive test suites - unit, integration, and API tests with 80%+ coverage"
+    },
+    {
+      "name": "test-runner",
+      "description": "Executes test suites, generates coverage reports, implements test-fix-retest loop"
+    },
+    {
+      "name": "implementation-documenter",
+      "description": "Documents completed features - API docs, configuration guides, changelog entries"
+    }
+  ],
+  "skills": [
+    {
+      "name": "testing-loop",
+      "description": "Automated test-fix-retest loop (max 3 iterations)"
+    },
+    {
+      "name": "review-loop",
+      "description": "Automated review-fix-rereview loop (max 2 iterations)"
+    },
+    {
+      "name": "clarifying-questions",
+      "description": "Structured approach to identifying and presenting ambiguities"
+    }
+  ]
 }
