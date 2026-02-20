@@ -1,3 +1,8 @@
+---
+name: clarifying-questions
+description: Structured approach to resolving ambiguities before implementation
+---
+
 # Clarifying Questions Skill
 
 ## Purpose

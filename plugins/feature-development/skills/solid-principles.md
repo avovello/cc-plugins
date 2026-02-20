@@ -1,3 +1,8 @@
+---
+name: solid-principles
+description: SOLID design principles for component interfaces and dependency management
+---
+
 # SOLID Principles Skill
 
 ## Purpose

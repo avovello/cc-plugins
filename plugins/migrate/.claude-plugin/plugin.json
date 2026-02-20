@@ -1,9 +1,0 @@
-{
-  "name": "migrate",
-  "description": "Framework and database migrations with zero-downtime strategies and rollback planning",
-  "version": "0.1.0",
-  "author": {
-    "name": "Claude Code Marketplace Contributors",
-    "email": "noreply@anthropic.com"
-  }
-}

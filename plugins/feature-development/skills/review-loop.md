@@ -1,3 +1,8 @@
+---
+name: review-loop
+description: Review-fix-rereview loop for automated code quality improvement
+---
+
 # Review Loop Skill
 
 ## Purpose

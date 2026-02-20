@@ -1,3 +1,8 @@
+---
+name: testing-loop
+description: Test-fix-retest loop for ensuring test suite passes
+---
+
 # Testing Loop Skill
 
 ## Purpose

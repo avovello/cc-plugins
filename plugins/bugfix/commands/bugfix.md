@@ -1,37 +1,49 @@
 ---
-description: Systematic bug fixing with reproduction, root cause analysis, fix implementation, and regression testing
+description: Systematic bug fixing with root cause analysis and fix implementation
 ---
 
 # Bugfix Command
 
-**Purpose**: Systematic bug fixing with reproduction, root cause analysis, fix implementation, and regression testing
-
-## Workflow
-
-1. **Bug Reproduction**: Reproduce the bug reliably
-2. **Root Cause Analysis**: Identify the exact cause
-3. **Impact Assessment**: Assess severity and affected areas
-4. **Fix Planning**: Plan the fix approach
-5. **Fix Implementation**: Implement the fix
-6. **Testing Loop**: Test → (if fail) → Re-analyze → Re-fix → Re-test (max 3 iterations)
-7. **Regression Testing**: Run full test suite
-
-## Specialized Agents (7)
-- bug-reproducer: Reproduces bugs and creates failing tests
-- root-cause-analyst: Identifies root causes
-- impact-assessor: Assesses impact and severity
-- fix-planner: Plans fix approach
-- fix-implementer: Implements fixes
-- fix-tester: Tests fixes
-- regression-tester: Runs regression tests
+Investigate a bug report, identify the root cause, and implement a fix.
 
 ## Usage
+
 ```bash
 /bugfix "Login fails with special characters in password"
 ```
 
-## Processing Loop
-Fix → Test → (if fail) → Re-analyze → Re-fix → Re-test (max 3 iterations)
+## Workflow
 
-## Version
-1.0.0
+### Step 1: Root Cause Analysis
+
+```
+Task(subagent_type="bugfix:root-cause-analyst", prompt="Investigate: [bug description]")
+```
+
+The root-cause-analyst will:
+- Reproduce the bug (create failing test if possible)
+- Trace execution path to root cause
+- Assess impact scope
+- Plan the fix approach
+
+### Step 2: Fix Implementation
+
+```
+Task(subagent_type="bugfix:fix-implementer", prompt="Fix based on analysis: [root cause analysis results]")
+```
+
+The fix-implementer will:
+- Apply code changes per the fix plan
+- Update affected tests
+- Verify lint/type checks pass
+
+### Step 3: Verify
+
+Run the failing test or reproduction steps to confirm the fix works. If the fix doesn't resolve the issue, return to Step 2 with updated analysis (max 3 iterations).
+
+## Agents
+
+| Agent | Purpose |
+|-------|---------|
+| `bugfix:root-cause-analyst` | Reproduce, trace, assess, plan |
+| `bugfix:fix-implementer` | Apply code changes |

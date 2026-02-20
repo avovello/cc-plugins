@@ -1,3 +1,8 @@
+---
+name: unit-testing
+description: Unit testing patterns for Jest, Vitest, pytest, PHPUnit
+---
+
 # Unit Testing Skill
 
 Unit testing capability for isolated function and component testing.

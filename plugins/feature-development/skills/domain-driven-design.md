@@ -1,3 +1,8 @@
+---
+name: domain-driven-design
+description: DDD strategic and tactical patterns for complex domain modeling
+---
+
 # Domain-Driven Design (DDD) Skill
 
 ## Purpose

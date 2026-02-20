@@ -1,3 +1,8 @@
+---
+name: e2e-testing
+description: E2E testing with Playwright browser automation
+---
+
 # E2E Testing Skill
 
 End-to-end testing capability using Playwright MCP for browser automation.

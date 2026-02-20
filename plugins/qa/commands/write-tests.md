@@ -1,10 +1,10 @@
 ---
-description: Generate automated test code from requirements, source code, or recorded browser actions
+description: Generate automated test code from source code, requirements, or recorded browser actions
 ---
 
 # Write Tests Command
 
-Generates automated test code from requirements, source code, or recorded browser actions.
+Generate test code by analyzing source code. Creates unit, integration, or E2E tests with fixtures, mocks, and assertions.
 
 ## Usage
 
@@ -13,24 +13,14 @@ Generates automated test code from requirements, source code, or recorded browse
 /write-tests --unit [file]         # Generate unit tests
 /write-tests --integration [api]   # Generate integration tests
 /write-tests --e2e [flow]          # Generate E2E tests
-/write-tests --from-actions        # Convert recorded actions to tests
+/write-tests --from-actions        # Convert recorded browser actions to tests
 ```
 
-## What It Does
+## Agent Orchestration
 
-The `/write-tests` command generates test code:
-
-1. **Analyze Target** - Read source code or requirements
-2. **Identify Test Cases** - Determine what to test
-3. **Generate Tests** - Create test files
-4. **Add Edge Cases** - Include error scenarios
-5. **Create Fixtures** - Generate test data
-
-## Agents Used
-
-| Agent | Purpose |
-|-------|---------|
-| `test-writer` | Generate test code |
+```
+Task(subagent_type="qa:test-writer", prompt="Generate [unit/integration/e2e] tests for [target]")
+```
 
 ## Test Generation Modes
 
@@ -40,11 +30,7 @@ The `/write-tests` command generates test code:
 /write-tests --unit src/services/user.ts
 ```
 
-Generates:
-- Function tests
-- Class method tests
-- Mock configurations
-- Edge case coverage
+Generates: function tests, class method tests, mock configurations, edge case coverage.
 
 ### Integration Tests
 
@@ -52,11 +38,7 @@ Generates:
 /write-tests --integration /api/users
 ```
 
-Generates:
-- API endpoint tests
-- Request/response validation
-- Error handling tests
-- Database setup/teardown
+Generates: API endpoint tests, request/response validation, error handling, database setup/teardown.
 
 ### E2E Tests
 
@@ -64,11 +46,7 @@ Generates:
 /write-tests --e2e login
 ```
 
-Generates:
-- Playwright test specs
-- Page Object Models
-- User flow tests
-- Visual validation
+Generates: Playwright test specs, Page Object Models, user flow tests.
 
 ### From Recorded Actions
 
@@ -84,30 +62,15 @@ Converts browser-tester recorded actions into Playwright tests.
 # Test Generation Report
 
 ## Generated Files
-
 ### 1. tests/unit/services/user.test.ts
 - Tests: 8
 - Coverage: UserService class
-- Includes: create, update, delete, find operations
-
-### 2. tests/e2e/auth/login.spec.ts
-- Tests: 4
-- Scenarios: Valid login, invalid credentials, validation
-- Page Objects: LoginPage
-
-### 3. tests/factories/userFactory.ts
-- Utilities: createUser, createUsers, createAdmin
 
 ## Test Cases Generated
 - [x] Happy path scenarios
 - [x] Error handling
 - [x] Edge cases
 - [x] Input validation
-
-## Next Steps
-1. Run tests with `/unit` or `/e2e`
-2. Add additional scenarios if needed
-3. Verify coverage targets met
 ```
 
 ## Options
@@ -120,50 +83,3 @@ Converts browser-tester recorded actions into Playwright tests.
 | `--from-actions` | From recorded browser actions |
 | `--coverage` | Focus on coverage gaps |
 | `--edge-cases` | Include edge cases |
-
-## Examples
-
-```bash
-# Generate unit tests for a service
-/write-tests --unit src/services/auth.ts
-
-# Generate integration tests for API
-/write-tests --integration /api/products
-
-# Generate E2E tests for checkout flow
-/write-tests --e2e checkout
-
-# Convert recorded actions to tests
-/write-tests --from-actions
-
-# Generate tests for coverage gaps
-/write-tests --coverage src/controllers/
-```
-
-## Workflow Integration
-
-### Manual Testing → Automated Tests
-
-```bash
-# 1. Explore with browser-tester
-/e2e --explore https://app.example.com/login
-
-# 2. Record actions during exploration
-# (browser-tester documents actions)
-
-# 3. Generate tests from recorded actions
-/write-tests --from-actions
-
-# 4. Run generated tests
-/e2e
-```
-
-### Coverage-Driven Test Generation
-
-```bash
-# 1. Run tests with coverage
-/unit --coverage
-
-# 2. Generate tests for uncovered code
-/write-tests --coverage src/services/
-```

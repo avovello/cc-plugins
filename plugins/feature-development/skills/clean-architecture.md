@@ -1,3 +1,8 @@
+---
+name: clean-architecture
+description: Clean Architecture for layered systems independent of frameworks and databases
+---
+
 # Clean Architecture Skill
 
 ## Purpose

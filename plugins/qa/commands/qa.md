@@ -1,38 +1,19 @@
 ---
-description: Comprehensive quality assurance workflow including unit, integration, and E2E tests
+description: Run the full test suite: unit, integration, and E2E tests in sequence
 ---
 
 # QA Command
 
-Runs comprehensive quality assurance workflow including unit, integration, and E2E tests.
+Run the full test suite in order: unit → integration → E2E. Stops on failure by default.
 
 ## Usage
 
 ```bash
-/qa                    # Run full QA suite
-/qa [target]           # Run QA on specific area
+/qa                    # Run full test suite
 /qa --coverage         # Run with coverage reports
 /qa --quick            # Run unit tests only (fast)
+/qa --no-bail          # Run all tests even on failure
 ```
-
-## What It Does
-
-The `/qa` command orchestrates a complete quality assurance workflow:
-
-### 1. Unit Tests (Fast)
-- Run isolated function/component tests
-- Generate coverage report
-- **Stop on failure** - Critical tests must pass
-
-### 2. Integration Tests (Medium)
-- Run API and database tests
-- Verify component interactions
-- **Stop on failure** - Integration issues block deployment
-
-### 3. E2E Tests (Comprehensive)
-- Run Playwright browser tests
-- Test complete user workflows
-- Capture screenshots/videos on failure
 
 ## Execution Order
 
@@ -41,15 +22,15 @@ Unit Tests → Integration Tests → E2E Tests
    (~10s)        (~1-2min)        (~3-5min)
 ```
 
-Tests run sequentially - if unit tests fail, integration and E2E tests are skipped.
+If unit tests fail, later phases are skipped (unless `--no-bail`).
 
-## Agents Used
+## Agent Orchestration
 
-| Phase | Agent | Purpose |
-|-------|-------|---------|
-| Unit | `test-runner` | Execute unit test suite |
-| Integration | `test-runner` | Execute integration tests |
-| E2E | `test-runner` | Execute Playwright tests |
+```
+Task(subagent_type="qa:test-runner", prompt="Run unit tests")
+Task(subagent_type="qa:test-runner", prompt="Run integration tests")
+Task(subagent_type="qa:test-runner", prompt="Run E2E Playwright tests")
+```
 
 ## Output
 
@@ -62,10 +43,7 @@ Tests run sequentially - if unit tests fail, integration and E2E tests are skipp
 - E2E Tests: 24 passed, 0 failed (2m 15s)
 - Coverage: 87.3%
 
-## Status: PASSED
-
-## Details
-[Detailed results from each phase]
+## Status: PASSED / FAILED
 ```
 
 ## Options
@@ -77,25 +55,3 @@ Tests run sequentially - if unit tests fail, integration and E2E tests are skipp
 | `--verbose` | Show detailed output |
 | `--bail` | Stop on first failure (default) |
 | `--no-bail` | Run all tests even on failure |
-
-## Requirements
-
-- Test frameworks configured (Jest/Vitest, pytest, Playwright)
-- Test files in standard locations
-- Dependencies installed
-
-## Examples
-
-```bash
-# Full QA suite
-/qa
-
-# Quick validation (unit tests only)
-/qa --quick
-
-# With coverage
-/qa --coverage
-
-# Test specific module
-/qa auth
-```

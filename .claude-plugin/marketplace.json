@@ -5,256 +5,59 @@
     "email": "noreply@anthropic.com"
   },
   "metadata": {
-    "description": "A comprehensive collection of professional development workflow plugins for Claude Code with intelligent processing loops and specialized agents covering the complete R&D lifecycle",
+    "description": "Core development workflow plugins for Claude Code with properly registered agents, Task tool orchestration, and architecture skills",
     "homepage": "https://github.com/avovello/claude-code",
-    "version": "0.2.0"
+    "version": "2.0.0"
   },
-  "version": "0.2.0",
+  "version": "2.0.0",
   "plugins": [
-    {
-      "name": "audit",
-      "source": "./plugins/audit",
-      "description": "Internal codebase audit for legacy code analysis, architecture documentation, technical debt assessment, and dependency mapping",
-      "version": "0.1.0",
-      "author": {
-        "name": "Claude Code Marketplace Contributors",
-        "email": "noreply@anthropic.com"
-      },
-      "category": "analysis",
-      "keywords": [
-        "audit",
-        "analysis",
-        "architecture",
-        "technical-debt",
-        "legacy-code"
-      ]
-    },
-    {
-      "name": "research",
-      "source": "./plugins/research",
-      "description": "Technology research, API exploration, and best practices discovery with comparative analysis and recommendations",
-      "version": "0.1.0",
-      "author": {
-        "name": "Claude Code Marketplace Contributors",
-        "email": "noreply@anthropic.com"
-      },
-      "category": "analysis",
-      "keywords": [
-        "research",
-        "technology-evaluation",
-        "comparison",
-        "best-practices"
-      ]
-    },
     {
       "name": "feature-development",
       "source": "./plugins/feature-development",
-      "description": "Systematic feature development with 7-phase workflow: discovery, exploration, clarifying questions, architecture design (SOLID, Clean Architecture, Design Patterns, DDD), implementation, QA-DEV-REVIEW loops, and summary",
-      "version": "1.2.0",
+      "description": "Systematic feature development with 7-phase workflow: discovery, codebase exploration, clarifying questions, architecture design (SOLID, Clean Architecture, Design Patterns, DDD), implementation, QA-DEV-REVIEW loops, and summary",
+      "version": "2.0.0",
       "author": {
         "name": "Claude Code Marketplace Contributors",
         "email": "noreply@anthropic.com"
       },
       "category": "development",
-      "keywords": [
-        "feature",
-        "development",
-        "implementation",
-        "testing",
-        "documentation"
-      ]
-    },
-    {
-      "name": "prototype",
-      "source": "./plugins/prototype",
-      "description": "Quick experimentation through rapid prototyping, A/B testing, and data-driven decision making",
-      "version": "0.1.0",
-      "author": {
-        "name": "Claude Code Marketplace Contributors",
-        "email": "noreply@anthropic.com"
-      },
-      "category": "development",
-      "keywords": [
-        "prototype",
-        "experimentation",
-        "poc",
-        "ab-testing"
-      ]
-    },
-    {
-      "name": "refactor",
-      "source": "./plugins/refactor",
-      "description": "Systematic technical debt reduction and code refactoring with continuous improvement cycles",
-      "version": "0.1.0",
-      "author": {
-        "name": "Claude Code Marketplace Contributors",
-        "email": "noreply@anthropic.com"
-      },
-      "category": "improvement",
-      "keywords": [
-        "refactor",
-        "technical-debt",
-        "code-quality",
-        "modernization"
-      ]
-    },
-    {
-      "name": "optimize",
-      "source": "./plugins/optimize",
-      "description": "Performance optimization through systematic profiling, bottleneck identification, and speed improvements",
-      "version": "0.1.0",
-      "author": {
-        "name": "Claude Code Marketplace Contributors",
-        "email": "noreply@anthropic.com"
-      },
-      "category": "improvement",
-      "keywords": [
-        "optimization",
-        "performance",
-        "profiling",
-        "benchmarking"
-      ]
-    },
-    {
-      "name": "harden",
-      "source": "./plugins/harden",
-      "description": "Security hardening through vulnerability scanning, configuration auditing, and comprehensive security improvements",
-      "version": "0.1.0",
-      "author": {
-        "name": "Claude Code Marketplace Contributors",
-        "email": "noreply@anthropic.com"
-      },
-      "category": "improvement",
-      "keywords": [
-        "security",
-        "hardening",
-        "vulnerability",
-        "compliance"
-      ]
+      "keywords": ["feature", "development", "architecture", "exploration"]
     },
     {
       "name": "review",
       "source": "./plugins/review",
-      "description": "Multi-perspective code review with 19 specialized reviewers covering architecture, security, performance, backend, frontend, and DevOps",
-      "version": "0.1.0",
+      "description": "Comprehensive code review covering architecture, security, performance, and language-specific concerns with confidence-based filtering",
+      "version": "2.0.0",
       "author": {
         "name": "Claude Code Marketplace Contributors",
         "email": "noreply@anthropic.com"
       },
       "category": "quality",
-      "keywords": [
-        "review",
-        "code-quality",
-        "security",
-        "performance",
-        "best-practices"
-      ]
+      "keywords": ["code-review", "security", "performance", "quality"]
     },
     {
       "name": "bugfix",
       "source": "./plugins/bugfix",
-      "description": "Systematic bug fixing with reproduction, root cause analysis, fix implementation, and comprehensive regression testing",
-      "version": "0.1.0",
+      "description": "Systematic bug fixing with root cause analysis, fix implementation, and test verification",
+      "version": "2.0.0",
       "author": {
         "name": "Claude Code Marketplace Contributors",
         "email": "noreply@anthropic.com"
       },
       "category": "quality",
-      "keywords": [
-        "bugfix",
-        "debugging",
-        "root-cause",
-        "regression-testing"
-      ]
-    },
-    {
-      "name": "deploy",
-      "source": "./plugins/deploy",
-      "description": "CI/CD pipeline setup, deployment automation, monitoring configuration, and rollback strategies",
-      "version": "0.1.0",
-      "author": {
-        "name": "Claude Code Marketplace Contributors",
-        "email": "noreply@anthropic.com"
-      },
-      "category": "operations",
-      "keywords": [
-        "deployment",
-        "ci-cd",
-        "infrastructure",
-        "monitoring"
-      ]
-    },
-    {
-      "name": "migrate",
-      "source": "./plugins/migrate",
-      "description": "Framework and database migrations with zero-downtime strategies and rollback planning",
-      "version": "0.1.0",
-      "author": {
-        "name": "Claude Code Marketplace Contributors",
-        "email": "noreply@anthropic.com"
-      },
-      "category": "operations",
-      "keywords": [
-        "migration",
-        "upgrade",
-        "framework",
-        "database"
-      ]
-    },
-    {
-      "name": "document",
-      "source": "./plugins/document",
-      "description": "Documentation maintenance through automated API documentation, architecture diagrams, and comprehensive developer guides",
-      "version": "0.1.0",
-      "author": {
-        "name": "Claude Code Marketplace Contributors",
-        "email": "noreply@anthropic.com"
-      },
-      "category": "knowledge",
-      "keywords": [
-        "documentation",
-        "api-docs",
-        "architecture",
-        "onboarding"
-      ]
-    },
-    {
-      "name": "ai-integration",
-      "source": "./plugins/ai-integration",
-      "description": "AI/ML workflows including LLM integration, vector databases, RAG implementation, and ML pipelines",
-      "version": "0.1.0",
-      "author": {
-        "name": "Claude Code Marketplace Contributors",
-        "email": "noreply@anthropic.com"
-      },
-      "category": "ai-ml",
-      "keywords": [
-        "ai",
-        "ml",
-        "llm",
-        "rag",
-        "vector-database"
-      ]
+      "keywords": ["bugfix", "debugging", "root-cause", "fix"]
     },
     {
       "name": "qa",
       "source": "./plugins/qa",
-      "description": "Quality Assurance workflows with browser testing (Playwright MCP), test writing, and comprehensive test execution for unit, integration, and E2E testing",
-      "version": "0.2.0",
+      "description": "Quality Assurance workflows with test writing, test execution, and browser testing via Playwright MCP for unit, integration, and E2E testing",
+      "version": "2.0.0",
       "author": {
         "name": "Claude Code Marketplace Contributors",
         "email": "noreply@anthropic.com"
       },
       "category": "quality",
-      "keywords": [
-        "qa",
-        "testing",
-        "playwright",
-        "unit-tests",
-        "integration-tests",
-        "e2e",
-        "browser-testing"
-      ]
+      "keywords": ["testing", "unit-tests", "e2e", "playwright", "quality-assurance"]
     }
   ]
 }

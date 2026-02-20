@@ -1,3 +1,8 @@
+---
+name: design-patterns
+description: Common design patterns for solving recurring software design problems
+---
+
 # Design Patterns Skill
 
 ## Purpose

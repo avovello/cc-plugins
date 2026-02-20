@@ -4,7 +4,7 @@ description: Run unit tests for isolated function and component testing
 
 # Unit Command
 
-Runs unit tests for isolated function and component testing.
+Run unit tests. Detects the framework (Jest, Vitest, pytest, PHPUnit) and executes.
 
 ## Usage
 
@@ -16,20 +16,11 @@ Runs unit tests for isolated function and component testing.
 /unit --watch              # Run in watch mode
 ```
 
-## What It Does
+## Agent Orchestration
 
-The `/unit` command executes unit tests:
-
-1. **Detect Framework** - Jest, Vitest, pytest, PHPUnit
-2. **Run Tests** - Execute unit test suite
-3. **Generate Coverage** - Code coverage report (if requested)
-4. **Report Results** - Summary with failures
-
-## Agents Used
-
-| Agent | Purpose |
-|-------|---------|
-| `test-runner` | Execute unit test suite |
+```
+Task(subagent_type="qa:test-runner", prompt="Run unit tests [options]")
+```
 
 ## Framework Commands
 
@@ -51,13 +42,6 @@ The `/unit` command executes unit tests:
 - Failed: 1 (1%)
 - Duration: 12s
 
-## Coverage
-| Category | Statements | Branches | Functions |
-|----------|------------|----------|-----------|
-| Services | 92.1% | 85.3% | 88.9% |
-| Utils | 98.2% | 95.0% | 100% |
-| Total | 87.3% | 82.4% | 88.2% |
-
 ## Failed Tests
 1. user.test.ts:45 - UserService.createUser
    Expected: "user@example.com"
@@ -73,34 +57,3 @@ The `/unit` command executes unit tests:
 | `--verbose` | Detailed output |
 | `--bail` | Stop on first failure |
 | `--update` | Update snapshots |
-
-## Examples
-
-```bash
-# Run all unit tests
-/unit
-
-# Run with coverage
-/unit --coverage
-
-# Run specific file
-/unit tests/unit/services/user.test.ts
-
-# Run tests matching pattern
-/unit user
-
-# Watch mode for development
-/unit --watch
-
-# Run only failed tests
-/unit --failed
-```
-
-## Coverage Targets
-
-| Metric | Target | Description |
-|--------|--------|-------------|
-| Statements | 80%+ | Lines of code executed |
-| Branches | 75%+ | Conditional paths tested |
-| Functions | 80%+ | Functions called |
-| Lines | 80%+ | Actual lines covered |

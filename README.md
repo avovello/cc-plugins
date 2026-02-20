@@ -1,473 +1,142 @@
 # CC Plugins
 
-A comprehensive collection of professional development workflow plugins for Claude Code with intelligent processing loops and specialized agents covering the complete R&D lifecycle.
+Core development workflow plugins for Claude Code with properly registered agents, Task tool orchestration, and architecture skills.
 
 ## Overview
 
-Avovello CC Plugins provides production-ready plugins that follow the official Claude Code plugin architecture. The collection offers **14 plugins with 90 specialized agents** covering 95% of software development workflows.
+CC Plugins provides **4 plugins with 7 specialized agents** covering the essential software development workflows: feature development, code review, bug fixing, and quality assurance.
 
-## What are Claude Code Plugins?
+All agents use YAML frontmatter for proper Claude Code registration and are callable via `Task(subagent_type="plugin:agent")`. Codebase exploration uses Claude Code's built-in `Explore` agent.
 
-Claude Code plugins extend Claude Code capabilities through custom slash commands, specialized agents, hooks, and workflows. They enable consistent tooling across projects and teams. Each plugin is self-contained with its own commands and agents.
+## Plugins
 
-## Key Features
+### Feature Development
 
-- **90 Specialized Agents** across 14 plugins
-- **Official Claude Code Format**: Markdown-based commands and agents
-- **Intelligent Processing Loops**: Automatic test-fix-retest and review-fix-rereview cycles
-- **Non-Overlapping Responsibilities**: Each agent has ONE clear job
-- **Parallel Execution**: Agents run simultaneously for speed
-- **Self-Contained Plugins**: No shared dependencies between plugins
-- **Complete R&D Coverage**: From understanding code to deploying AI systems
+**Command**: `/feature "Add OAuth2 authentication"`
 
-## Complete Plugin Suite
+7-phase workflow: Discovery → Exploration → Clarifying Questions → Architecture Design → Implementation → QA-DEV-REVIEW Loops → Summary
 
-### 🔍 **Audit Plugin** (Analysis)
-**Purpose**: Internal codebase audit for legacy code analysis and architecture documentation
-
-**Agents (5)**: structure-mapper, dependency-analyzer, pattern-detector, tech-debt-assessor, documentation-generator
-
-**Slash Command**: `/audit` or `/audit src/auth`
-
-**Covers**: Architecture mapping, technical debt identification, dependency analysis
-
-**Key Distinction**: Analyzes YOUR code (internal), Research analyzes EXTERNAL options
+| Component | Type | Purpose |
+|-----------|------|---------|
+| `code-architect` | Agent | Architecture design with SOLID, Clean Architecture, Design Patterns, DDD |
+| `solid-principles` | Skill | SOLID design principles |
+| `clean-architecture` | Skill | Layered architecture independent of frameworks |
+| `design-patterns` | Skill | Common design patterns |
+| `domain-driven-design` | Skill | DDD strategic and tactical patterns |
+| `clarifying-questions` | Skill | Structured ambiguity resolution |
+| `review-loop` | Skill | Review-fix-rereview automation |
+| `testing-loop` | Skill | Test-fix-retest automation |
 
 ---
 
-### 📚 **Research Plugin** (Planning)
-**Purpose**: External technology research and comparative analysis
+### Review
 
-**Agents (5)**: information-gatherer, feature-comparator, performance-evaluator, ecosystem-evaluator, recommendation-synthesizer
+**Command**: `/review`
 
-**Slash Command**: `/research "Compare React vs Vue vs Svelte"`
+Single comprehensive reviewer that detects what's relevant from the diff and covers architecture, security, performance, and language-specific concerns. Reports only issues with confidence >= 80.
 
-**Covers**: Technology evaluation, framework comparison, library selection
-
----
-
-### 👁️ **Review Plugin** (Quality Assurance)
-**Purpose**: Multi-perspective code review with 19 specialized reviewers
-
-**Reviewers (19)**:
-- Architecture (1): architect-reviewer
-- Security (3): authentication, input-validation, cryptography
-- Performance (3): algorithms, database, resources
-- Backend (5): PHP, Python, Node.js, Go, Bash
-- Frontend (4): React, Vue, HTML, CSS
-- DevOps (3): Docker, Kubernetes, CI/CD
-
-**Slash Command**: `/review` or `/review src/**/*.php`
-
-**Covers**: Code quality, security, performance, best practices
+| Component | Type | Purpose |
+|-----------|------|---------|
+| `code-reviewer` | Agent | Multi-perspective code review with confidence scoring |
 
 ---
 
-### ✨ **Feature-Development Plugin** (Development)
-**Purpose**: Systematic feature development with 7-phase workflow
+### Bugfix
 
-**Agents (6)**: code-explorer, code-architect, code-reviewer, test-writer, test-runner, implementation-documenter
+**Command**: `/bugfix "Login fails with special characters"`
 
-**Architecture Skills**: solid-principles, clean-architecture, design-patterns, domain-driven-design
+Systematic bug fixing: Reproduce → Trace → Root Cause → Impact → Fix Plan → Implement → Verify
 
-**Slash Command**: `/feature "Add OAuth2 authentication"`
-
-**Covers**: Discovery → Codebase exploration → Clarifying questions → Architecture design (SOLID, Clean Architecture, Design Patterns, DDD) → Implementation → QA-DEV-REVIEW loops → Summary
-
----
-
-### 🐛 **Bugfix Plugin** (Maintenance)
-**Purpose**: Systematic bug fixing with root cause analysis
-
-**Agents (7)**: bug-reproducer, root-cause-analyst, impact-assessor, fix-planner, fix-implementer, fix-tester, regression-tester
-
-**Slash Command**: `/bugfix "Login fails with special characters"`
-
-**Covers**: Bug reproduction, root cause analysis, fix validation
+| Component | Type | Purpose |
+|-----------|------|---------|
+| `root-cause-analyst` | Agent | Reproduce, trace, assess impact, plan fix |
+| `fix-implementer` | Agent | Apply code changes per fix plan |
 
 ---
 
-### 🔧 **Refactor Plugin** (Improvement)
-**Purpose**: Systematic technical debt reduction and code refactoring
+### QA (Quality Assurance)
 
-**Agents (7)**: debt-prioritizer, complexity-reducer, test-preserver, duplication-eliminator, code-modernizer, dependency-updater, refactor-validator
+**Commands**: `/qa`, `/unit`, `/integration`, `/e2e`, `/write-tests`
 
-**Slash Command**: `/refactor "reduce complexity in src/auth/validateUser.js"`
+Test writing, execution, and browser testing for unit, integration, and E2E workflows.
 
-**Covers**: Complexity reduction, duplication elimination, code modernization, dependency updates
-
-**Why Critical**: Teams spend 10-30% of time on refactoring. Audit identifies debt, Refactor fixes it.
-
----
-
-### 🚀 **Migrate Plugin** (Evolution)
-**Purpose**: Safe framework and database migrations with breaking change handling
-
-**Agents (7)**: compatibility-analyzer, migration-planner, code-transformer, dual-write-implementer, migration-tester, rollback-planner, documentation-updater
-
-**Slash Command**: `/migrate "Upgrade React 17 to 18"` or `/migrate "PostgreSQL 12 to 15"`
-
-**Covers**: Framework upgrades, database migrations, API versioning
-
----
-
-### 🚢 **Deploy Plugin** (Operations)
-**Purpose**: CI/CD pipeline setup and deployment automation
-
-**Agents (7)**: ci-cd-configurator, infrastructure-coder, monitoring-configurator, deployment-strategist, rollback-planner, feature-flag-implementer, deployment-validator
-
-**Slash Command**: `/deploy "Setup GitHub Actions CI/CD"` or `/deploy production`
-
-**Covers**: CI/CD pipelines, infrastructure as code, monitoring, deployment strategies
-
----
-
-### ⚡ **Optimize Plugin** (Performance)
-**Purpose**: Data-driven performance optimization
-
-**Agents (7)**: performance-profiler, bottleneck-identifier, query-optimizer, cache-strategist, load-tester, code-optimizer, benchmark-validator
-
-**Slash Command**: `/optimize "reduce API response time"` or `/optimize src/api/search`
-
-**Covers**: Performance profiling, bottleneck identification, query optimization, caching
-
-**Typical Results**: 50-95% performance improvements
-
----
-
-### 🔐 **Harden Plugin** (Security)
-**Purpose**: Systematic security hardening and compliance
-
-**Agents (7)**: vulnerability-scanner, security-config-auditor, auth-hardener, secrets-manager, security-header-configurator, penetration-tester, compliance-checker
-
-**Slash Command**: `/harden src/auth` or `/harden "OWASP Top 10 compliance"`
-
-**Covers**: Vulnerability scanning, security configuration, authentication hardening, compliance
-
----
-
-### 📖 **Document Plugin** (Knowledge)
-**Purpose**: Automated documentation generation and maintenance
-
-**Agents (7)**: api-documenter, architecture-documenter, onboarding-guide-creator, runbook-writer, doc-consistency-checker, example-generator, diagram-creator
-
-**Slash Command**: `/document src/api` or `/document "Create onboarding guide"`
-
-**Covers**: API documentation, architecture docs, onboarding, runbooks, diagrams
-
----
-
-### 🔬 **Prototype Plugin** (Experimentation)
-**Purpose**: Rapid experimentation and proof-of-concept development
-
-**Agents (6)**: experiment-planner, quick-implementer, results-analyzer, decision-synthesizer, cleanup-agent, ab-test-setup
-
-**Slash Command**: `/prototype "Test Redis vs Memcached"` or `/prototype "GraphQL API for users"`
-
-**Covers**: Time-boxed experiments, POC development, A/B testing, decision support
-
----
-
-### 🤖 **AI Integration Plugin** (AI/ML)
-**Purpose**: AI/ML integration including LLMs, vector databases, and RAG systems
-
-**Agents (7)**: llm-integrator, vector-db-configurator, embedding-generator, rag-implementer, prompt-optimizer, ml-pipeline-builder, model-evaluator
-
-**Slash Command**: `/ai-integration "Add ChatGPT to customer support"` or `/ai-integration "Setup RAG system"`
-
-**Covers**: LLM APIs (OpenAI, Anthropic), vector databases (Pinecone, Weaviate), embeddings, RAG, prompt engineering
-
----
-
-### 🧪 **Testing Plugin** (Quality Assurance)
-**Purpose**: Comprehensive testing workflows with unit, integration, and acceptance (E2E) testing
-
-**Agents (3)**: unit-tester, integration-tester, acceptance-tester
-
-**Slash Command**: `/test` or `/test unit` or `/test acceptance`
-
-**Covers**: Unit testing (Jest, pytest, PHPUnit), integration testing, E2E testing with Playwright + TypeScript
+| Component | Type | Purpose |
+|-----------|------|---------|
+| `test-writer` | Agent | Generate test code with fixtures and mocks |
+| `test-runner` | Agent | Execute test suites, report results |
+| `browser-tester` | Agent | Interactive browser testing via Playwright MCP |
+| `unit-testing` | Skill | Unit testing patterns |
+| `integration-testing` | Skill | Integration testing patterns |
+| `e2e-testing` | Skill | E2E testing with Playwright |
 
 ---
 
 ## Installation
 
-### Prerequisites
-
-First, ensure Claude Code is installed:
+### Using the Plugin Command (Recommended)
 
 ```bash
-# Install Claude Code globally
-npm install -g @anthropic-ai/claude-code
-```
-
-### Method 1: Using the Plugin Command (Recommended)
-
-```bash
-# Navigate to your project
 cd your-project
-
-# Start Claude Code
 claude
 
-# Install a specific plugin using the /plugin command
-/plugin install https://github.com/avovello/claude-code.git#plugins/refactor
+# Install a specific plugin
+/plugin install https://github.com/avovello/claude-code.git#plugins/feature-development
 ```
 
-### Method 2: Manual Installation
+### Manual Installation
 
 ```bash
-# Clone the marketplace
 git clone https://github.com/avovello/claude-code.git
-
-# Copy a specific plugin to your project
-cp -r claude-code/plugins/refactor .claude/plugins/
-
-# Or copy all plugins
-cp -r claude-code/plugins/* .claude/plugins/
-```
-
-### Method 3: Configuration File
-
-Add to your `.claude/settings.json`:
-
-```json
-{
-  "plugins": [
-    {
-      "source": "https://github.com/avovello/claude-code.git",
-      "path": "plugins/refactor"
-    }
-  ]
-}
-```
-
-## Usage
-
-All plugins are invoked using **slash commands** within Claude Code:
-
-### Basic Command Structure
-
-```
-/command-name [arguments]
-```
-
-### Examples
-
-```bash
-# Audit commands
-/audit
-/audit src/auth
-
-# Research commands
-/research "Compare React vs Vue"
-
-# Review commands
-/review
-/review src/**/*.js
-
-# Feature development
-/feature "Add OAuth2 authentication"
-
-# Bug fixing
-/bugfix "Login fails with special characters"
-
-# Refactoring
-/refactor "reduce complexity in UserService"
-/refactor "eliminate duplication"
-
-# Migrations
-/migrate "Upgrade React 17 to 18"
-
-# Deployment
-/deploy "Setup GitHub Actions"
-/deploy production
-
-# Performance optimization
-/optimize "reduce API latency"
-
-# Security hardening
-/harden "OWASP compliance"
-
-# Documentation
-/document src/api
-
-# Prototyping
-/prototype "Test GraphQL implementation"
-
-# AI Integration
-/ai-integration "Add ChatGPT support"
-
-# Testing
-/test
-/test unit
-/test acceptance
+cp -r claude-code/plugins/feature-development .claude/plugins/
 ```
 
 ## Plugin Architecture
 
-Each plugin follows the official Claude Code structure:
-
 ```
 plugin-name/
 ├── .claude-plugin/
-│   └── plugin.json           # Required: Plugin manifest
+│   └── plugin.json           # Plugin manifest
 ├── commands/
-│   └── command-name.md       # Command implementation (markdown)
+│   └── command-name.md       # Slash command (frontmatter + markdown)
 ├── agents/
-│   ├── agent-1.md           # Specialized agent (markdown)
-│   ├── agent-2.md
-│   └── agent-n.md
-└── README.md                # Plugin documentation
+│   └── agent-name.md         # Agent (YAML frontmatter + task instructions)
+└── skills/
+    └── skill-name.md         # Skill (YAML frontmatter + reference content)
 ```
 
-### Plugin Manifest Format
+### Agent Frontmatter Format
 
-Each `plugin.json` follows this structure:
-
-```json
-{
-  "name": "plugin-name",
-  "description": "Brief description of what the plugin does",
-  "version": "0.1.0",
-  "author": {
-    "name": "Author Name",
-    "email": "author@example.com"
-  }
-}
+```yaml
+---
+name: agent-name
+description: What this agent does and when to use it
+tools: Read, Glob, Grep, Bash
+model: sonnet
+maxTurns: 12
+---
 ```
 
-## Statistics
+## Task Tool Orchestration
 
-- **Total Plugins**: 14
-- **Total Agents**: 90
-- **Workflow Coverage**: ~95% of R&D activities
-- **Lines of Documentation**: 15,000+
-
-### Plugin Breakdown
-
-- **Audit**: 5 agents
-- **Research**: 5 agents
-- **Review**: 19 reviewers
-- **Feature-Development**: 6 agents + 7 skills
-- **Bugfix**: 7 agents
-- **Refactor**: 7 agents
-- **Migrate**: 7 agents
-- **Deploy**: 7 agents
-- **Optimize**: 7 agents
-- **Harden**: 7 agents
-- **Document**: 7 agents
-- **Prototype**: 6 agents
-- **AI Integration**: 7 agents
-- **Testing**: 3 agents
-
-## Plugin Categories
-
-### Analysis & Understanding
-- 🔍 **Audit** - Internal code analysis
-- 📚 **Research** - External technology research
-
-### Development & Implementation
-- ✨ **Feature** - Feature development
-- 🔬 **Prototype** - Rapid experimentation
-
-### Improvement & Optimization
-- 🔧 **Refactor** - Code refactoring
-- ⚡ **Optimize** - Performance optimization
-- 🔐 **Harden** - Security hardening
-
-### Quality & Testing
-- 👁️ **Review** - Code review
-- 🐛 **Bugfix** - Bug fixing
-- 🧪 **Testing** - Comprehensive testing
-
-### Operations & Deployment
-- 🚢 **Deploy** - CI/CD and deployment
-- 🚀 **Migrate** - Framework/DB migrations
-
-### Knowledge & Documentation
-- 📖 **Document** - Documentation
-
-### AI/ML
-- 🤖 **AI Integration** - AI/ML workflows
-
-## Complete R&D Workflow Coverage
+Agents are invoked via the Task tool:
 
 ```
-Understanding      → Audit ✅
-Researching        → Research ✅, Prototype ✅
-Planning           → Feature ✅
-Developing         → Feature ✅
-Improving          → Refactor ✅, Optimize ✅, Harden ✅
-Testing            → Review ✅
-Fixing             → Bugfix ✅
-Upgrading          → Migrate ✅
-Deploying          → Deploy ✅
-AI/ML Integration  → AI Integration ✅
-Documenting        → Document ✅
+Task(subagent_type="feature-development:code-architect", prompt="Design architecture for [feature]")
+Task(subagent_type="review:code-reviewer", prompt="Review changes in [files]")
+Task(subagent_type="bugfix:root-cause-analyst", prompt="Investigate: [bug report]")
+Task(subagent_type="qa:test-runner", prompt="Run test suite")
 ```
 
-## Integration Between Plugins
+For codebase exploration, use Claude Code's built-in Explore agent:
 
-Plugins work together for complex workflows:
-
-### Clean Codebase
 ```
-/audit → /refactor → /optimize → /harden → /review
+Task(subagent_type="Explore", prompt="Trace how [feature] works end-to-end")
 ```
-
-### Feature Development
-```
-/research → /prototype → /feature → /review → /deploy
-```
-
-### Framework Upgrade
-```
-/migrate → /refactor → /review → /deploy
-```
-
-### Security Improvement
-```
-/audit → /harden → /review → /deploy
-```
-
-### AI/ML Integration
-```
-/research → /prototype → /ai-integration → /review → /deploy
-```
-
-## Plugin Purpose Summary
-
-The marketplace provides plugins for the complete R&D lifecycle:
-
-1. **Refactor**: Teams spend 10-30% of time refactoring. Audit identifies technical debt, Refactor systematically fixes it.
-2. **Migrate**: Framework and database upgrades with breaking change handling.
-3. **Deploy**: Automated CI/CD pipelines and deployment strategies.
-4. **Optimize**: Data-driven performance optimization distinct from bug fixing.
-5. **Harden**: Holistic security improvement beyond finding individual issues.
-6. **Document**: Ongoing documentation maintenance, not just initial generation.
-7. **Prototype**: Rapid experimentation reduces development waste by 40-60%.
-8. **AI Integration**: Integration of LLMs, vector databases, and RAG systems.
-
-## Documentation
-
-- **README.md**: This file (main overview)
-- **QUICKSTART.md**: Quick start guide
-- **CONTRIBUTING.md**: Contribution guidelines
-- Each plugin has its own README with detailed usage
-
-## Contributing
-
-Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Version
 
-0.2.0
+2.0.0
 
 ## License
 
 MIT License - see [LICENSE](LICENSE)
-
----
-
-**Built following official Claude Code plugin architecture**

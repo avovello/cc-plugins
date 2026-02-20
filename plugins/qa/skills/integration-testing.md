@@ -1,3 +1,8 @@
+---
+name: integration-testing
+description: Integration testing for API, database, and service interactions
+---
+
 # Integration Testing Skill
 
 Integration testing capability for testing component interactions, APIs, and databases.
