@@ -7,9 +7,9 @@
   "metadata": {
     "description": "Core development workflow plugins for Claude Code with properly registered agents, Task tool orchestration, and architecture skills",
     "homepage": "https://github.com/avovello/claude-code",
-    "version": "2.0.0"
+    "version": "2.1.0"
   },
-  "version": "2.0.0",
+  "version": "2.1.0",
   "plugins": [
     {
       "name": "feature-development",
@@ -26,8 +26,8 @@
     {
       "name": "review",
       "source": "./plugins/review",
-      "description": "Comprehensive code review covering architecture, security, performance, and language-specific concerns with confidence-based filtering",
-      "version": "2.0.0",
+      "description": "Code review with focused investigation and parallel specialized reviewers for security, architecture, performance, and bug detection",
+      "version": "2.1.0",
       "author": {
         "name": "Claude Code Marketplace Contributors",
         "email": "noreply@anthropic.com"

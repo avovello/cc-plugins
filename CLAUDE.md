@@ -22,6 +22,18 @@ plugin-name/
 └── README.md
 ```
 
+## Files That Must Stay In Sync
+
+When changing a plugin, update ALL of these:
+
+1. `plugins/<name>/.claude-plugin/plugin.json` — plugin manifest (version, description)
+2. `plugins/<name>/README.md` — plugin docs
+3. `.claude-plugin/marketplace.json` — root marketplace registry (version, description for the plugin entry AND the top-level version)
+4. `README.md` — root project docs (agent counts, plugin descriptions)
+5. `QUICKSTART.md` — user-facing quick start guide
+
+Missing any of these causes version/description drift. The marketplace.json is especially easy to forget.
+
 ## Agent Conventions
 
 ### Frontmatter (required fields)
