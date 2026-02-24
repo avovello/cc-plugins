@@ -1,12 +1,12 @@
 # CC Plugins
 
-Core development workflow plugins for Claude Code with properly registered agents, Task tool orchestration, and architecture skills.
+Core development workflow plugins for Claude Code with specialized agents, Task tool orchestration, and architecture skills.
 
 ## Overview
 
-CC Plugins provides **4 plugins with 7 specialized agents** covering the essential software development workflows: feature development, code review, bug fixing, and quality assurance.
+CC Plugins provides **4 plugins with 13 specialized agents** covering the essential software development workflows: feature development, code review, bug fixing, and quality assurance.
 
-All agents use YAML frontmatter for proper Claude Code registration and are callable via `Task(subagent_type="plugin:agent")`. Codebase exploration uses Claude Code's built-in `Explore` agent.
+All agents use YAML frontmatter for proper Claude Code registration and are callable via `Task(subagent_type="plugin:agent")`.
 
 ## Plugins
 
@@ -31,13 +31,19 @@ All agents use YAML frontmatter for proper Claude Code registration and are call
 
 ### Review
 
-**Command**: `/review`
+**Command**: `/review`, `/review --commit <sha>`, `/review --pr <number>`
 
-Single comprehensive reviewer that detects what's relevant from the diff and covers architecture, security, performance, and language-specific concerns. Reports only issues with confidence >= 80.
+Two-phase review: investigate first (broad tools), then 4 specialized reviewers analyze in parallel (narrow tools). Reports only issues with confidence >= 80.
 
 | Component | Type | Purpose |
 |-----------|------|---------|
-| `code-reviewer` | Agent | Multi-perspective code review with confidence scoring |
+| `diff-investigator` | Agent | Investigate uncommitted changes |
+| `commit-investigator` | Agent | Investigate a specific commit |
+| `pr-investigator` | Agent | Investigate a pull request |
+| `security-reviewer` | Agent | Injection, auth, secrets, input validation, crypto |
+| `architecture-reviewer` | Agent | Dependencies, layers, coupling, boundaries |
+| `performance-reviewer` | Agent | N+1 queries, indexes, O(n²), resource leaks |
+| `bug-reviewer` | Agent | Logic errors, type issues, error handling, data integrity |
 
 ---
 
@@ -80,14 +86,14 @@ cd your-project
 claude
 
 # Install a specific plugin
-/plugin install https://github.com/avovello/claude-code.git#plugins/feature-development
+/plugin install https://github.com/avovello/cc-plugins.git#plugins/review
 ```
 
 ### Manual Installation
 
 ```bash
-git clone https://github.com/avovello/claude-code.git
-cp -r claude-code/plugins/feature-development .claude/plugins/
+git clone https://github.com/avovello/cc-plugins.git
+cp -r cc-plugins/plugins/review .claude/plugins/
 ```
 
 ## Plugin Architecture
@@ -97,9 +103,9 @@ plugin-name/
 ├── .claude-plugin/
 │   └── plugin.json           # Plugin manifest
 ├── commands/
-│   └── command-name.md       # Slash command (frontmatter + markdown)
+│   └── command-name.md       # Slash command (frontmatter + orchestration)
 ├── agents/
-│   └── agent-name.md         # Agent (YAML frontmatter + task instructions)
+│   └── agent-name.md         # Agent (YAML frontmatter + system prompt)
 └── skills/
     └── skill-name.md         # Skill (YAML frontmatter + reference content)
 ```
@@ -112,7 +118,8 @@ name: agent-name
 description: What this agent does and when to use it
 tools: Read, Glob, Grep, Bash
 model: sonnet
-maxTurns: 12
+maxTurns: 6
+color: blue
 ---
 ```
 
@@ -122,20 +129,15 @@ Agents are invoked via the Task tool:
 
 ```
 Task(subagent_type="feature-development:code-architect", prompt="Design architecture for [feature]")
-Task(subagent_type="review:code-reviewer", prompt="Review changes in [files]")
+Task(subagent_type="review:diff-investigator", prompt="Investigate uncommitted changes")
+Task(subagent_type="review:security-reviewer", prompt="Review for security issues: [report]")
 Task(subagent_type="bugfix:root-cause-analyst", prompt="Investigate: [bug report]")
 Task(subagent_type="qa:test-runner", prompt="Run test suite")
 ```
 
-For codebase exploration, use Claude Code's built-in Explore agent:
-
-```
-Task(subagent_type="Explore", prompt="Trace how [feature] works end-to-end")
-```
-
 ## Version
 
-2.0.0
+2.1.0
 
 ## License
 

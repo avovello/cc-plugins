@@ -1,149 +1,94 @@
-# Review Plugin 👁️
+# Review Plugin
 
-Multi-perspective code review with 19 specialized reviewers covering architecture, security, performance, backend, frontend, and DevOps.
+Two-phase code review: investigate first, then review in parallel.
 
 ## Overview
 
-The Review plugin provides comprehensive code review through 19 specialized reviewers that examine code from different perspectives. Each reviewer has precise, non-overlapping responsibilities.
+The Review plugin splits code review into two phases:
+
+1. **Investigation** — One investigator agent maps out changes, traces dependencies, and produces a structured report
+2. **Review** — Four specialized reviewers analyze the report in parallel, each focused on a single domain
 
 ## Installation
 
 ```bash
-/plugin install review
+/plugin install https://github.com/avovello/cc-plugins.git#plugins/review
 ```
 
 ## Usage
 
 ```bash
-# Review current changes
-/review
-
-# Review specific files
-/review src/auth/*.php
-
-# Review PR
-/review --pr=123
+/review                        # Review uncommitted changes (default)
+/review --commit abc123        # Review a specific commit
+/review --commit HEAD~3..HEAD  # Review a commit range
+/review --pr 123               # Review a pull request
 ```
 
-## Specialized Reviewers (19)
+## Architecture
 
-### Architecture (1)
-- **architect-reviewer**: System architecture, service boundaries, Clean Architecture
+### Phase 1: Investigation (1 agent)
 
-### Security (3)
-- **security-authentication-reviewer**: Auth, OAuth, JWT, session management
-- **security-input-reviewer**: SQL injection, XSS, command injection, input validation
-- **security-crypto-reviewer**: Encryption, hashing, secrets management
+| Agent | Tools | Input Source |
+|-------|-------|-------------|
+| `diff-investigator` | Bash, Read, Glob, Grep | `git diff` (uncommitted changes) |
+| `commit-investigator` | Bash, Read, Glob, Grep | `git show` (specific commit) |
+| `pr-investigator` | Bash, Read, Glob, Grep | `gh pr diff` (pull request) |
 
-### Performance (3)
-- **performance-algorithm-reviewer**: Algorithm complexity, loops, recursion
-- **performance-database-reviewer**: N+1 queries, indexes, query optimization
-- **performance-resource-reviewer**: Memory leaks, connection pooling, resource cleanup
+One investigator launches based on the review mode. All three produce the same structured **Investigation Report** containing:
+- Changed files with categories and diffs
+- Dependency map (callers, callees, interfaces)
+- Context tags (security-sensitive, DB-related, API boundary)
 
-### Backend (5)
-- **backend-php-reviewer**: PHP, PSR, Laravel, SOLID/KISS/DRY
-- **backend-python-reviewer**: Python, PEP, Django, SOLID/KISS/DRY
-- **backend-nodejs-reviewer**: Node.js, async/await, TypeScript, SOLID/KISS/DRY
-- **backend-go-reviewer**: Go idioms, error handling, SOLID/KISS/DRY
-- **backend-bash-reviewer**: Shellcheck, POSIX, quoting, SOLID/KISS/DRY
+### Phase 2: Parallel Review (4 agents)
 
-### Frontend (4)
-- **frontend-react-reviewer**: React hooks, components, SOLID/KISS/DRY
-- **frontend-vue-reviewer**: Vue Composition API, reactivity, SOLID/KISS/DRY
-- **frontend-html-reviewer**: Semantic HTML, accessibility, ARIA
-- **frontend-css-reviewer**: BEM, specificity, responsive design
+| Agent | Tools | Focus |
+|-------|-------|-------|
+| `security-reviewer` | Read, Grep | Injection, auth, secrets, input validation, crypto |
+| `architecture-reviewer` | Read, Glob, Grep | Dependencies, layers, coupling, boundaries, patterns |
+| `performance-reviewer` | Read, Grep | N+1 queries, indexes, O(n²), resource leaks, caching |
+| `bug-reviewer` | Read, Grep | Logic errors, type issues, error handling, data integrity |
 
-### DevOps (3)
-- **devops-docker-reviewer**: Dockerfile, multi-stage builds, security
-- **devops-kubernetes-reviewer**: K8s manifests, Helm, resources
-- **devops-cicd-reviewer**: GitHub Actions, GitLab CI, pipelines
+All 4 launch in parallel. Each receives the Investigation Report and performs targeted analysis in its domain. Each only reports issues with **confidence >= 80**.
 
-## Workflow
+### Phase 3: Validation & Report
 
-1. **Analyze Files**: Determine which reviewers are needed
-2. **Launch Reviewers**: Run 2-19 reviewers in parallel (based on file types)
-3. **Consolidate**: Merge results, remove duplicates
-4. **Quality Gates**: Check critical (0), high (≤2), medium (≤10)
-5. **Fix Loop**: Up to 2 iterations to address issues
-6. **Report**: Generate comprehensive review report
+Issues from Phase 2 are validated by lightweight agents to filter false positives. The final report groups findings by severity.
+
+## Tool Restrictions
+
+Agents have the minimum tools needed for their job:
+
+- **Investigators** get `Bash` for git commands + `Read, Glob, Grep` for exploration
+- **Architecture reviewer** gets `Read, Glob, Grep` — needs Glob to verify project structure
+- **Security, Performance, Bug reviewers** get `Read, Grep` — focused on pattern matching in specific files
+- **No agent has Write or Edit** — review is read-only
 
 ## Quality Gates
 
-- **Critical issues**: 0 allowed → BLOCKED
-- **High issues**: ≤ 2 allowed → NEEDS WORK
-- **Medium issues**: ≤ 10 allowed → APPROVED
+| Severity | Threshold | Result |
+|----------|-----------|--------|
+| Critical | > 0 | BLOCKED |
+| High | > 2 | NEEDS WORK |
+| Medium | > 10 | NEEDS WORK |
+| All within thresholds | — | APPROVED |
 
 ## Output
 
 ```
-review-reports/review-[timestamp].md
+# Code Review Report
+
+**Status**: APPROVED / NEEDS WORK / BLOCKED
+
+## Summary
+- Files Reviewed: X
+- Issues Found: Y (Critical: 0, High: Z, Medium: W)
+
+## Issues by Severity
+[Grouped findings with file:line, confidence, fix suggestions]
 ```
 
-Contains:
-- Summary statistics
-- Issues by severity
-- Review by category
-- Recommendations
-- Approval status
-
-## Responsibility Separation
-
-### Architect Reviewer
-- ✅ System architecture, service boundaries, dependency flow
-- ❌ NOT code-level SOLID (that's language reviewers)
-
-### Security Reviewers
-- ✅ Vulnerabilities in their domain (auth, input, crypto)
-- ❌ NOT overlapping (each has specific focus)
-
-### Language Reviewers
-- ✅ SOLID/KISS/DRY at implementation level
-- ❌ NOT system architecture (that's architect)
-- ❌ NOT security (that's security reviewers)
-
-## Examples
-
-### Example 1: PHP Backend Change
-
-**Files changed**: `src/UserController.php`, `src/UserService.php`
-
-**Reviewers launched**:
-- architect-reviewer (always)
-- security-input-reviewer (handles user input)
-- backend-php-reviewer (PHP files)
-
-### Example 2: React Frontend Change
-
-**Files changed**: `src/components/UserProfile.jsx`
-
-**Reviewers launched**:
-- architect-reviewer (always)
-- security-input-reviewer (renders user data)
-- frontend-react-reviewer (React files)
-
-### Example 3: Full Stack Change
-
-**Files changed**: PHP backend, React frontend, Dockerfile
-
-**Reviewers launched**: (9 reviewers)
-- architect-reviewer
-- security-input-reviewer
-- backend-php-reviewer
-- frontend-react-reviewer
-- devops-docker-reviewer
-- performance-algorithm-reviewer
-- performance-database-reviewer
-- frontend-html-reviewer
-- frontend-css-reviewer
+Only issues with confidence >= 80 are reported.
 
 ## Version
 
-1.0.0
-
-## Notes
-
-- Minimum 2 reviewers always run (architect + security-input)
-- Maximum 19 reviewers if all file types present
-- Average 5-8 reviewers for typical changes
-- All reviewers run in parallel
-- Review takes 2-5 minutes
+2.1.0
