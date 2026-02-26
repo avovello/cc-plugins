@@ -1,10 +1,10 @@
 {
   "name": "bugfix",
-  "description": "Systematic bug fixing with root cause analysis, fix implementation, and test verification",
-  "version": "2.0.0",
+  "description": "Systematic bug fixing with reproduction, root cause analysis, and team-based fix+review loops",
+  "version": "2.1.0",
   "author": {
     "name": "Claude Code Marketplace Contributors",
     "email": "noreply@anthropic.com"
   },
-  "keywords": ["bugfix", "debugging", "root-cause", "fix"]
+  "keywords": ["bugfix", "debugging", "root-cause", "reproduction", "agent-teams"]
 }

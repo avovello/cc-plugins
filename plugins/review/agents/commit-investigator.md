@@ -2,7 +2,7 @@
 name: commit-investigator
 description: Investigates a specific git commit to produce a structured investigation report for review agents. Use as Phase 1 when reviewing an existing commit.
 tools: Bash, Read, Glob, Grep
-model: sonnet
+model: opus
 color: cyan
 maxTurns: 10
 ---

@@ -2,7 +2,7 @@
 name: architecture-reviewer
 description: Reviews code changes for architecture violations. Receives an investigation report and analyzes dependency flow, layer violations, coupling, and service boundaries. Use after an investigator has produced a report.
 tools: Read, Glob, Grep
-model: sonnet
+model: opus
 maxTurns: 6
 color: blue
 ---

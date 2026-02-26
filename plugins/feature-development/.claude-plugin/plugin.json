@@ -1,10 +1,10 @@
 {
   "name": "feature-development",
-  "description": "Systematic feature development with 7-phase workflow: discovery, codebase exploration, clarifying questions, architecture design (SOLID, Clean Architecture, Design Patterns, DDD), implementation, QA-DEV-REVIEW loops, and summary",
-  "version": "2.0.0",
+  "description": "Systematic feature development with codebase exploration, architecture design, and team-based implementation loops (SOLID, Clean Architecture, Design Patterns, DDD)",
+  "version": "2.1.0",
   "author": {
     "name": "Claude Code Marketplace Contributors",
     "email": "noreply@anthropic.com"
   },
-  "keywords": ["feature", "development", "architecture", "exploration"]
+  "keywords": ["feature", "development", "architecture", "agent-teams", "do-loop"]
 }

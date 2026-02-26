@@ -2,7 +2,7 @@
 name: pr-investigator
 description: Investigates a pull request to produce a structured investigation report for review agents. Use as Phase 1 when reviewing a PR.
 tools: Bash, Read, Glob, Grep
-model: sonnet
+model: opus
 color: cyan
 maxTurns: 10
 ---

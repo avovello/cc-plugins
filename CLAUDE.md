@@ -1,13 +1,16 @@
 # CC Plugins
 
-4 plugins, 13 agents, 8 commands, 10 skills for Claude Code development workflows.
+5 plugins, 13 agents, 8 commands, 12 skills for Claude Code development workflows.
+
+> Agent teams (experimental) require `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
 
 ## Project Structure
 
 ```
 plugins/
-├── bugfix/               # 2 agents: root-cause-analyst, fix-implementer
-├── feature-development/  # 1 agent: code-architect + 7 skills
+├── shared/               # 0 agents, 1 skill: do-loop (team iteration protocol)
+├── bugfix/               # 2 agents: reproducer, root-cause-analyst + 1 skill + team do-loops
+├── feature-development/  # 1 agent: code-architect + 7 skills + team do-loops
 ├── qa/                   # 3 agents: test-writer, test-runner, browser-tester + 3 skills
 └── review/               # 7 agents: 3 investigators + 4 reviewers
 ```
@@ -43,7 +46,7 @@ Missing any of these causes version/description drift. The marketplace.json is e
 name: lowercase-with-hyphens    # 3-50 chars, alphanumeric start/end
 description: When and why to use this agent
 tools: Read, Glob, Grep         # Minimum needed — least privilege
-model: sonnet                   # sonnet for most, haiku for lightweight validation
+model: opus                     # opus for most, haiku for lightweight validation
 maxTurns: 6                     # Keep low — agents should be focused
 color: blue                     # Distinct per agent role
 ---
@@ -80,6 +83,20 @@ Commands orchestrate agents in phases:
 3. **Phase 3**: Validation and consolidation
 
 Pass results between phases via agent prompts using `Task(subagent_type="plugin:agent")`.
+
+## Do-Loop Pattern (Agent Teams)
+
+Bugfix and feature-development use agent teams for iterative work. The `shared:do-loop` skill defines the protocol:
+
+```
+command → spawn doer+critic teammates → iterate (max 3 rounds) → next loop
+```
+
+- Doer does the work, critic reviews
+- Structured feedback: `file:line — issue — fix`
+- Max 3 rounds, then escalate to user
+- Commands chain multiple loops sequentially (architecture → implementation → tests)
+- Subagents still used for non-iterative work (investigation, exploration)
 
 ## Review Plugin Architecture
 

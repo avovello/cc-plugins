@@ -10,6 +10,12 @@ Quality Assurance workflows with browser testing (Playwright MCP), test writing,
 - **Coverage Tracking** - Code coverage reports
 - **Cross-Browser** - Chromium, Firefox, WebKit support
 
+## Installation
+
+```bash
+/plugin install https://github.com/avovello/cc-plugins.git#plugins/qa
+```
+
 ## Quick Start
 
 ```bash

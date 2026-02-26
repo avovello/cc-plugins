@@ -2,7 +2,7 @@
 name: performance-reviewer
 description: Reviews code changes for performance issues. Receives an investigation report and analyzes for N+1 queries, missing indexes, algorithmic complexity, resource leaks, and unbounded operations. Use after an investigator has produced a report.
 tools: Read, Grep
-model: sonnet
+model: opus
 maxTurns: 6
 color: yellow
 ---

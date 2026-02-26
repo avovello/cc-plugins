@@ -2,7 +2,7 @@
 name: code-architect
 description: Designs feature architectures by analyzing existing patterns and applying SOLID, Clean Architecture, and DDD principles. Produces implementation blueprints with specific files to create/modify. Use when you need architecture design for a new feature.
 tools: Read, Glob, Grep, Bash
-model: sonnet
+model: opus
 maxTurns: 12
 skills: solid-principles, clean-architecture, design-patterns, domain-driven-design
 ---

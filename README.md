@@ -4,28 +4,40 @@ Core development workflow plugins for Claude Code with specialized agents, Task 
 
 ## Overview
 
-CC Plugins provides **4 plugins with 13 specialized agents** covering the essential software development workflows: feature development, code review, bug fixing, and quality assurance.
+CC Plugins provides **5 plugins with 13 specialized agents and 12 skills** covering the essential software development workflows: feature development, code review, bug fixing, and quality assurance.
+
+Bugfix and feature-development plugins use **Claude Code Agent Teams** for iterative do-loops (doer+critic pairs). Requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
 
 All agents use YAML frontmatter for proper Claude Code registration and are callable via `Task(subagent_type="plugin:agent")`.
 
 ## Plugins
 
+### Shared (Infrastructure)
+
+Reusable agent team infrastructure. Dependency for bugfix and feature-development.
+
+| Component | Type | Purpose |
+|-----------|------|---------|
+| `do-loop` | Skill | Iteration protocol for doer+critic agent team loops |
+
+---
+
 ### Feature Development
 
 **Command**: `/feature "Add OAuth2 authentication"`
 
-7-phase workflow: Discovery → Exploration → Clarifying Questions → Architecture Design → Implementation → QA-DEV-REVIEW Loops → Summary
+Discovery → Exploration → Questions → Architecture Loop → Implementation Loop → Test Loop → Summary
 
 | Component | Type | Purpose |
 |-----------|------|---------|
-| `code-architect` | Agent | Architecture design with SOLID, Clean Architecture, Design Patterns, DDD |
+| `code-architect` | Agent | Architecture design reference (SOLID, Clean Arch, Patterns, DDD) |
 | `solid-principles` | Skill | SOLID design principles |
 | `clean-architecture` | Skill | Layered architecture independent of frameworks |
 | `design-patterns` | Skill | Common design patterns |
 | `domain-driven-design` | Skill | DDD strategic and tactical patterns |
 | `clarifying-questions` | Skill | Structured ambiguity resolution |
-| `review-loop` | Skill | Review-fix-rereview automation |
-| `testing-loop` | Skill | Test-fix-retest automation |
+| `review-loop` | Skill | Code review guidelines for reviewer teammate |
+| `testing-loop` | Skill | Test writing guidelines for test-writer teammate |
 
 ---
 
@@ -51,12 +63,13 @@ Two-phase review: investigate first (broad tools), then 4 specialized reviewers 
 
 **Command**: `/bugfix "Login fails with special characters"`
 
-Systematic bug fixing: Reproduce → Trace → Root Cause → Impact → Fix Plan → Implement → Verify
+Investigate (subagents) → Fix+Review (team loop) → Test+Review (team loop) → Verify
 
 | Component | Type | Purpose |
 |-----------|------|---------|
-| `root-cause-analyst` | Agent | Reproduce, trace, assess impact, plan fix |
-| `fix-implementer` | Agent | Apply code changes per fix plan |
+| `reproducer` | Agent | Reproduce bugs, create failing tests |
+| `root-cause-analyst` | Agent | Trace execution, identify root cause, propose fix |
+| `regression-test` | Skill | Writing effective regression tests |
 
 ---
 
@@ -117,7 +130,7 @@ plugin-name/
 name: agent-name
 description: What this agent does and when to use it
 tools: Read, Glob, Grep, Bash
-model: sonnet
+model: opus
 maxTurns: 6
 color: blue
 ---
@@ -131,13 +144,14 @@ Agents are invoked via the Task tool:
 Task(subagent_type="feature-development:code-architect", prompt="Design architecture for [feature]")
 Task(subagent_type="review:diff-investigator", prompt="Investigate uncommitted changes")
 Task(subagent_type="review:security-reviewer", prompt="Review for security issues: [report]")
-Task(subagent_type="bugfix:root-cause-analyst", prompt="Investigate: [bug report]")
+Task(subagent_type="bugfix:reproducer", prompt="Reproduce this bug: [description]")
+Task(subagent_type="bugfix:root-cause-analyst", prompt="Analyze root cause: [reproduction report]")
 Task(subagent_type="qa:test-runner", prompt="Run test suite")
 ```
 
 ## Version
 
-2.1.0
+2.2.0
 
 ## License
 

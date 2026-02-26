@@ -2,7 +2,7 @@
 name: diff-investigator
 description: Investigates uncommitted code changes (staged and unstaged) to produce a structured investigation report for review agents. Use as Phase 1 when reviewing local changes before commit.
 tools: Bash, Read, Glob, Grep
-model: sonnet
+model: opus
 color: cyan
 maxTurns: 10
 ---

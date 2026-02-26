@@ -1,223 +1,79 @@
-# Feature Plugin
+# Feature Development Plugin
 
-Systematic feature development with a 7-phase workflow: discovery, codebase exploration, clarifying questions, architecture design (applying SOLID, Clean Architecture, Design Patterns, DDD), implementation, QA-DEV-REVIEW loops, and summary.
+Systematic feature development with codebase exploration, architecture design, and team-based implementation loops.
+
+> **Requires**: `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`
 
 ## Installation
 
 ```bash
-/plugin install feature
+/plugin install https://github.com/avovello/cc-plugins.git#plugins/feature-development
 ```
 
-## Command
+## Usage
 
 ```bash
 /feature "Add real-time notifications with WebSockets"
-
-# With E2E browser testing (for UI features)
-/feature "Add shopping cart UI" --e2e
 ```
 
-## The 7-Phase Workflow
+## Agents (1)
+
+| Agent | Purpose | Tools |
+|-------|---------|-------|
+| `code-architect` | Architecture design reference — applies SOLID, Clean Architecture, Design Patterns, DDD | Read, Glob, Grep, Bash |
+
+The `code-architect` agent's role is now filled by the architect teammate in the Phase 4 do-loop. The agent file serves as role context.
+
+## Skills (7 local + 1 from shared plugin)
+
+| Skill | Used In | Purpose |
+|-------|---------|---------|
+| `clarifying-questions` | Phase 3 | Structured ambiguity resolution |
+| `solid-principles` | Phase 4 | SRP, OCP, LSP, ISP, DIP |
+| `clean-architecture` | Phase 4 | Layered structure with Dependency Rule |
+| `design-patterns` | Phase 4 | Creational, Structural, Behavioral patterns |
+| `domain-driven-design` | Phase 4 | Bounded Contexts, Aggregates, Domain Events |
+| `review-loop` | Phase 5 | Code review guidelines and quality criteria |
+| `testing-loop` | Phase 6 | Test writing guidelines and coverage strategy |
+| `do-loop` (shared) | Phase 4, 5, 6 | Iteration protocol for doer+critic agent team loops |
+
+## Workflow
 
 ```
-Phase 1: Discovery
-    │   Clarify requirements, understand the problem
-    ▼
-Phase 2: Codebase Exploration
-    │   Launch parallel code-explorer agents
-    │   Map architecture, find patterns, trace flows
-    ▼
-Phase 3: Clarifying Questions  ◄── CRITICAL
-    │   Present ALL ambiguities
-    │   PAUSE until questions answered
-    ▼
-Phase 4: Architecture Design  ◄── PRINCIPLES APPLIED
-    │   code-architect applies architecture skills:
-    │   • SOLID principles
-    │   • Clean Architecture layers
-    │   • Design Patterns
-    │   • Domain-Driven Design
-    │   PAUSE for user approval
-    ▼
-Phase 5: Implementation
-    │   Build following approved architecture
-    │   Follow codebase conventions
-    ▼
-Phase 6: Quality Review (QA-DEV-REVIEW Loop)
-    │   ┌─────────────────────────────┐
-    │   │ Testing Loop (max 3 iter)   │
-    │   │ Test → Analyze → Fix → Loop │
-    │   └─────────────────────────────┘
-    │   ┌─────────────────────────────┐
-    │   │ Review Loop (max 2 iter)    │
-    │   │ Review → Fix → Loop         │
-    │   └─────────────────────────────┘
-    │   (Optional: E2E testing via QA plugin)
-    ▼
-Phase 7: Summary
-        Document accomplishments, decisions, next steps
+Discovery → Exploration → Questions → Arch Loop → Implement Loop → Test Loop → Summary
 ```
 
-## Specialized Agents (6)
+### Phases 1-3: Understanding (no teams)
 
-| Agent | Purpose | Key Features |
-|-------|---------|--------------|
-| **code-explorer** | Deep codebase analysis | Traces execution paths, maps architecture, documents patterns |
-| **code-architect** | Architecture design | Applies SOLID, Clean Architecture, Design Patterns, DDD |
-| **code-reviewer** | Precision code review | Confidence-based filtering (80+), automated fix loops |
-| **test-writer** | Test creation | Unit, integration, API tests with 80%+ coverage |
-| **test-runner** | Test execution | Runs tests, implements test-fix-retest loop |
-| **implementation-documenter** | Documentation | API docs, config guides, changelog entries |
+1. **Discovery** — gather requirements, confirm with user
+2. **Exploration** — parallel Explore subagents scan the codebase
+3. **Questions** — resolve ALL ambiguities (hard stop until answered)
 
-## Architecture Skills
+### Phases 4-6: Three sequential do-loops (agent teams)
 
-The `code-architect` agent uses these skills for robust design:
+4. **Architecture loop** — architect + arch-reviewer iterate on blueprint design (max 3 rounds). User confirms blueprint before proceeding.
+5. **Implementation loop** — implementer + code-reviewer iterate on code (max 3 rounds). Blueprint is source of truth.
+6. **Test loop** — test-writer + test-reviewer iterate on tests (1-2 rounds). Target 80%+ coverage.
 
-| Skill | Purpose |
-|-------|---------|
-| **solid-principles** | Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion |
-| **clean-architecture** | Layered structure - Entities → Use Cases → Adapters → Frameworks |
-| **design-patterns** | Factory, Strategy, Observer, Adapter, Decorator, Command, etc. |
-| **domain-driven-design** | Ubiquitous Language, Bounded Contexts, Aggregates, Domain Events |
+### Phase 7: Summary
 
-### Architecture Output
+Summarize components built, key decisions, files changed, next steps.
 
-When `code-architect` designs a feature, it produces:
+## Design Decisions
 
-```markdown
-## Architecture Principles Applied
+- **3 sequential do-loops, not 1 big team**: Each loop has a focused scope and a clean handoff. Architecture must be approved before implementation starts.
+- **Architect teammate, not code-architect subagent**: Agent teams allow the arch-reviewer to challenge the architect in real-time, not review a finished artifact.
+- **testing-loop and review-loop skills are now wired**: Previously orphaned skills now provide domain context for code-reviewer and test-writer teammates.
+- **Depends on shared plugin**: Uses the `do-loop` skill for team iteration protocol.
 
-### SOLID Compliance
-| Principle | Application |
-|-----------|-------------|
-| SRP | Each component has one reason to change |
-| OCP | Extension points for new functionality |
-| LSP | All implementations are substitutable |
-| ISP | Small, focused interfaces |
-| DIP | Depend on abstractions |
+## Dependencies
 
-### Clean Architecture Layers
-| Layer | Components |
-|-------|------------|
-| Entities | Domain objects, value objects |
-| Use Cases | Application services |
-| Adapters | Controllers, gateways |
-| Frameworks | External dependencies |
-
-### Design Patterns Used
-| Pattern | Purpose |
-|---------|---------|
-| Factory | Object creation |
-| Strategy | Algorithm selection |
-```
-
-## Process Skills
-
-| Skill | Purpose |
-|-------|---------|
-| **testing-loop** | Automated test-fix-retest (max 3 iterations) |
-| **review-loop** | Automated review-fix-rereview (max 2 iterations) |
-| **clarifying-questions** | Structured ambiguity identification |
-
-## Key Principles
-
-1. **Understand Before Building**: Deep codebase exploration before design
-2. **Ask Questions Early**: Resolve ALL ambiguities before implementation
-3. **Apply Architecture Principles**: SOLID, Clean Architecture, Patterns, DDD
-4. **Decisive Architecture**: One recommended approach with clear rationale
-5. **Confidence Filtering**: Only report issues with 80+ confidence score
-6. **Automated Loops**: Test and review until quality gates pass
-
-## QA-DEV-REVIEW Loop
-
-### Testing Loop
-```
-test-writer → test-runner → Failures?
-                               │
-                        ┌──────┴──────┐
-                       Yes            No
-                        │              │
-                   Analyze &        Done ✅
-                   Fix (code-reviewer)
-                        │
-                   Re-run tests
-                        │
-              (max 3 iterations)
-```
-
-### Review Loop
-```
-code-reviewer → Issues (80+ confidence)?
-                        │
-                 ┌──────┴──────┐
-                Yes            No
-                 │              │
-            Apply Fixes      Done ✅
-                 │
-            Re-review
-                 │
-        (max 2 iterations)
-```
-
-## E2E Browser Testing
-
-For UI-heavy features, use the `--e2e` flag to include browser testing via the **QA plugin**:
-
-| QA Plugin Command | Purpose |
-|-------------------|---------|
-| `/e2e` | Run Playwright browser tests |
-| `/write-tests --e2e` | Generate E2E test code |
-| `browser-tester` agent | Interactive testing via Playwright MCP |
+- **shared plugin**: provides `do-loop` skill
 
 ## Related Plugins
 
-- **QA Plugin**: Standalone testing workflows (`/qa`, `/e2e`, `/unit`, `/integration`, `/write-tests`)
-
-## Directory Structure
-
-```
-plugins/feature/
-├── .claude-plugin/
-│   └── plugin.json
-├── commands/
-│   └── feature.md              # 7-phase workflow
-├── agents/
-│   ├── code-explorer.md
-│   ├── code-architect.md       # Uses architecture skills
-│   ├── code-reviewer.md
-│   ├── test-writer.md
-│   ├── test-runner.md
-│   └── implementation-documenter.md
-├── skills/
-│   ├── solid-principles.md     # SOLID principles
-│   ├── clean-architecture.md   # Clean Architecture
-│   ├── design-patterns.md      # Design Patterns
-│   ├── domain-driven-design.md # DDD
-│   ├── testing-loop.md
-│   ├── review-loop.md
-│   └── clarifying-questions.md
-└── README.md
-```
+- **QA Plugin**: `qa:test-writer` for additional test scenarios, `qa:test-runner` for execution
+- **Shared Plugin**: `do-loop` iteration protocol
 
 ## Version
-
-1.2.0
-
-## Changelog
-
-### v1.2.0
-- Renamed `/feature-dev` to `/feature`
-- Added architecture skills: solid-principles, clean-architecture, design-patterns, domain-driven-design
-- Updated code-architect to apply architecture principles in Phase 4
-- code-architect now uses 4-phase methodology with principles application
-
-### v1.1.0
-- Cleaned up redundant agents (removed 5, kept 6)
-- Consolidated architecture-planner + implementation-planner → code-architect
-- Consolidated code-quality-reviewer + test-failure-analyzer → code-reviewer + skills
-
-### v1.0.0
-- Added 7-phase Anthropic-style workflow
-- Added 3 new agents: code-explorer, code-architect, code-reviewer
-- Added skills directory with testing-loop, review-loop, clarifying-questions
-- Preserved QA-DEV-REVIEW loop for quality assurance
+2.1.0

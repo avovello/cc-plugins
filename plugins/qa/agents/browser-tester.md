@@ -2,7 +2,7 @@
 name: browser-tester
 description: Performs interactive browser testing using Playwright MCP tools. Navigates web apps, interacts with elements, captures screenshots, and validates user workflows. Use for visual validation and browser-based testing.
 tools: Read, Bash
-model: sonnet
+model: opus
 maxTurns: 12
 ---
 

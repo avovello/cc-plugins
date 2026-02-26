@@ -2,7 +2,7 @@
 name: bug-reviewer
 description: Reviews code changes for logic errors, bugs, and incorrect behavior. Receives an investigation report and analyzes for definite bugs, type errors, missing error handling, and incorrect logic. Use after an investigator has produced a report.
 tools: Read, Grep
-model: sonnet
+model: opus
 maxTurns: 6
 color: magenta
 ---

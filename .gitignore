@@ -1,1 +1,7 @@
 .idea
+**/*.md
+!CLAUDE.md
+!README.md
+!QUICKSTART.md
+!plugins/**/*.md
+!docs/**/*.md

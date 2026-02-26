@@ -2,7 +2,7 @@
 name: security-reviewer
 description: Reviews code changes for security vulnerabilities. Receives an investigation report and performs targeted analysis for injection, auth flaws, secrets exposure, and input validation issues. Use after an investigator has produced a report.
 tools: Read, Grep
-model: sonnet
+model: opus
 maxTurns: 6
 color: red
 ---

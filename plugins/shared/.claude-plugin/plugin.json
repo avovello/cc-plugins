@@ -1,0 +1,10 @@
+{
+  "name": "shared",
+  "description": "Reusable agent team infrastructure — do-loop iteration protocol for doer+critic teammate pairs",
+  "version": "1.0.0",
+  "author": {
+    "name": "Claude Code Marketplace Contributors",
+    "email": "noreply@anthropic.com"
+  },
+  "keywords": ["agent-teams", "do-loop", "shared", "infrastructure"]
+}

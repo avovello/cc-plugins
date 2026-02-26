@@ -2,7 +2,7 @@
 name: test-writer
 description: Generates test code including unit, integration, and E2E tests with fixtures, mocks, and assertions. Use when tests need to be created for new or existing code.
 tools: Read, Write, Edit, Glob, Grep
-model: sonnet
+model: opus
 maxTurns: 12
 ---
 

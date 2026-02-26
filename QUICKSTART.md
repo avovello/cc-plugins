@@ -4,7 +4,7 @@ Get started with CC Plugins in 5 minutes.
 
 ## What is CC Plugins?
 
-A collection of 4 workflow plugins for Claude Code that extend functionality through custom slash commands and 13 specialized agents. Covers feature development, code review, bug fixing, and quality assurance.
+A collection of 5 workflow plugins for Claude Code that extend functionality through custom slash commands, 13 specialized agents, and 12 skills. Covers feature development, code review, bug fixing, and quality assurance.
 
 ## Prerequisites
 
@@ -12,6 +12,12 @@ Install Claude Code:
 
 ```bash
 npm install -g @anthropic-ai/claude-code
+```
+
+For bugfix and feature-development plugins (agent teams):
+
+```bash
+export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 ```
 
 ## Installation
@@ -25,7 +31,8 @@ cd your-project
 # Start Claude Code
 claude
 
-# Install a plugin
+# Install plugins
+/plugin install https://github.com/avovello/cc-plugins.git#plugins/shared
 /plugin install https://github.com/avovello/cc-plugins.git#plugins/review
 /plugin install https://github.com/avovello/cc-plugins.git#plugins/bugfix
 /plugin install https://github.com/avovello/cc-plugins.git#plugins/qa
@@ -73,7 +80,7 @@ Launches an investigator to map changes, then 4 specialized reviewers (security,
 /bugfix "Login fails when email contains special characters"
 ```
 
-Workflow: Reproduce → Trace → Root Cause → Impact Assessment → Fix Plan → Implement → Verify
+Workflow: Investigate (subagents) → Fix+Review (team loop) → Test+Review (team loop) → Verify
 
 ### 3. Add a Feature
 
@@ -81,7 +88,7 @@ Workflow: Reproduce → Trace → Root Cause → Impact Assessment → Fix Plan 
 /feature "Add OAuth2 authentication with Google"
 ```
 
-Workflow: Discovery → Exploration → Clarifying Questions → Architecture Design → Implementation → QA-DEV-REVIEW Loops → Summary
+Workflow: Discovery → Exploration → Questions → Architecture Loop → Implementation Loop → Test Loop → Summary
 
 ### 4. Run Tests
 
@@ -97,9 +104,10 @@ Workflow: Discovery → Exploration → Clarifying Questions → Architecture De
 
 | Plugin | Command | Agents | Purpose |
 |--------|---------|--------|---------|
+| **Shared** | — | 0 | Do-loop skill for agent team iteration protocol |
 | **Review** | `/review` | 7 | Two-phase code review: investigate then review in parallel |
-| **Bugfix** | `/bugfix` | 2 | Root cause analysis + fix implementation |
-| **Feature** | `/feature` | 1 | Architecture-driven feature development |
+| **Bugfix** | `/bugfix` | 2 | Investigation (subagents) + fix+review (team loops) |
+| **Feature** | `/feature` | 1 | 3 team do-loops: architecture, implementation, tests |
 | **QA** | `/qa`, `/unit`, `/e2e` | 3 | Test writing, execution, browser testing |
 
 ## Common Workflows

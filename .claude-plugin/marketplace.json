@@ -5,23 +5,35 @@
     "email": "noreply@anthropic.com"
   },
   "metadata": {
-    "description": "Core development workflow plugins for Claude Code with properly registered agents, Task tool orchestration, and architecture skills",
+    "description": "Core development workflow plugins for Claude Code with agent teams, specialized agents, and architecture skills",
     "homepage": "https://github.com/avovello/claude-code",
-    "version": "2.1.0"
+    "version": "2.2.0"
   },
-  "version": "2.1.0",
+  "version": "2.2.0",
   "plugins": [
+    {
+      "name": "shared",
+      "source": "./plugins/shared",
+      "description": "Reusable agent team infrastructure — do-loop iteration protocol for doer+critic teammate pairs",
+      "version": "1.0.0",
+      "author": {
+        "name": "Claude Code Marketplace Contributors",
+        "email": "noreply@anthropic.com"
+      },
+      "category": "infrastructure",
+      "keywords": ["agent-teams", "do-loop", "shared", "infrastructure"]
+    },
     {
       "name": "feature-development",
       "source": "./plugins/feature-development",
-      "description": "Systematic feature development with 7-phase workflow: discovery, codebase exploration, clarifying questions, architecture design (SOLID, Clean Architecture, Design Patterns, DDD), implementation, QA-DEV-REVIEW loops, and summary",
-      "version": "2.0.0",
+      "description": "Systematic feature development with codebase exploration, architecture design, and team-based implementation loops (SOLID, Clean Architecture, Design Patterns, DDD)",
+      "version": "2.1.0",
       "author": {
         "name": "Claude Code Marketplace Contributors",
         "email": "noreply@anthropic.com"
       },
       "category": "development",
-      "keywords": ["feature", "development", "architecture", "exploration"]
+      "keywords": ["feature", "development", "architecture", "agent-teams", "do-loop"]
     },
     {
       "name": "review",
@@ -38,14 +50,14 @@
     {
       "name": "bugfix",
       "source": "./plugins/bugfix",
-      "description": "Systematic bug fixing with root cause analysis, fix implementation, and test verification",
-      "version": "2.0.0",
+      "description": "Systematic bug fixing with reproduction, root cause analysis, and team-based fix+review loops",
+      "version": "2.1.0",
       "author": {
         "name": "Claude Code Marketplace Contributors",
         "email": "noreply@anthropic.com"
       },
       "category": "quality",
-      "keywords": ["bugfix", "debugging", "root-cause", "fix"]
+      "keywords": ["bugfix", "debugging", "root-cause", "reproduction", "agent-teams"]
     },
     {
       "name": "qa",
