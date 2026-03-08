@@ -1,10 +1,10 @@
 {
   "name": "qa",
-  "description": "Quality Assurance workflows with test writing, test execution, and browser testing via Playwright MCP for unit, integration, and E2E testing",
-  "version": "2.0.0",
+  "description": "Quality assurance orchestrator with dynamic skill discovery, prompt-based routing, and do-loop agent teams for test writing, execution, and browser testing",
+  "version": "3.0.0",
   "author": {
     "name": "Claude Code Marketplace Contributors",
     "email": "noreply@anthropic.com"
   },
-  "keywords": ["testing", "unit-tests", "e2e", "playwright", "quality-assurance"]
+  "keywords": ["testing", "qa", "agent-teams", "do-loop", "skill-discovery"]
 }
