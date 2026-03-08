@@ -7,9 +7,9 @@
   "metadata": {
     "description": "Core development workflow plugins for Claude Code with agent teams, specialized agents, and architecture skills",
     "homepage": "https://github.com/avovello/claude-code",
-    "version": "2.2.0"
+    "version": "2.3.0"
   },
-  "version": "2.2.0",
+  "version": "2.3.0",
   "plugins": [
     {
       "name": "shared",
@@ -62,14 +62,14 @@
     {
       "name": "qa",
       "source": "./plugins/qa",
-      "description": "Quality Assurance workflows with test writing, test execution, and browser testing via Playwright MCP for unit, integration, and E2E testing",
-      "version": "2.0.0",
+      "description": "Quality assurance orchestrator with dynamic skill discovery, prompt-based routing, and do-loop agent teams for test writing, execution, and browser testing",
+      "version": "3.0.0",
       "author": {
         "name": "Claude Code Marketplace Contributors",
         "email": "noreply@anthropic.com"
       },
       "category": "quality",
-      "keywords": ["testing", "unit-tests", "e2e", "playwright", "quality-assurance"]
+      "keywords": ["testing", "qa", "agent-teams", "do-loop", "skill-discovery"]
     }
   ]
 }
