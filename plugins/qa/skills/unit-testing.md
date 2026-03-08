@@ -1,119 +1,45 @@
 ---
 name: unit-testing
-description: Unit testing patterns for Jest, Vitest, pytest, PHPUnit
+description: Unit testing for isolated function and component testing. Use when running, writing, or reviewing unit tests, testing individual functions or class methods, mocking dependencies, or measuring code coverage with Jest, Vitest, pytest, or PHPUnit.
 ---
 
-# Unit Testing Skill
+# Unit Testing
 
-Unit testing capability for isolated function and component testing.
+Guide for teammates working with unit tests — writing, running, or reviewing.
 
-## When to Use
+## Framework Detection
 
-- Testing individual functions
-- Testing class methods
-- Testing pure logic
-- Testing with mocked dependencies
-- Fast feedback during development
+Check for configuration to determine the framework:
 
-## Capabilities
+| File present | Framework | Run command |
+|-------------|-----------|-------------|
+| `jest.config.*` or `"jest"` in package.json | Jest | `npm test -- tests/unit/` |
+| `vitest.config.*` | Vitest | `npx vitest run tests/unit/` |
+| `pytest.ini` or `[tool.pytest]` in pyproject.toml | pytest | `pytest tests/unit/` |
+| `phpunit.xml` | PHPUnit | `./vendor/bin/phpunit tests/Unit/` |
 
-### Framework Support
+Add `--coverage` flag when coverage is requested.
 
-| Language | Framework | Config File |
-|----------|-----------|-------------|
-| JavaScript/TypeScript | Jest | jest.config.* |
-| JavaScript/TypeScript | Vitest | vitest.config.* |
-| Python | pytest | pytest.ini, pyproject.toml |
-| PHP | PHPUnit | phpunit.xml |
+## Writing Tests
 
-### Test Execution
+Follow Arrange-Act-Assert. One assertion focus per test.
 
-```bash
-# JavaScript/TypeScript (Jest)
-npm test -- tests/unit/
-npm test -- --coverage
+- Name tests descriptively: `should [expected behavior] when [condition]`
+- Mock at boundaries — mock external deps, not internal implementation
+- Use factories for test data — don't hardcode
+- Test behavior, not implementation — tests shouldn't break on refactor
 
-# JavaScript/TypeScript (Vitest)
-npx vitest run tests/unit/
-npx vitest run --coverage
+Match existing test conventions in the codebase (naming, directory structure, imports).
 
-# Python (pytest)
-pytest tests/unit/
-pytest --cov=src
+## Reviewing Tests
 
-# PHP (PHPUnit)
-./vendor/bin/phpunit tests/Unit/
-```
-
-## Workflow
-
-1. **Analyze** - Read source code to understand behavior
-2. **Generate** - Use `test-writer` to create unit tests
-3. **Execute** - Use `test-runner` to run tests
-4. **Coverage** - Review coverage reports
-
-## Test Structure
-
-### Arrange-Act-Assert
-
-```typescript
-describe('Calculator', () => {
-  it('should add two numbers', () => {
-    // Arrange
-    const a = 2, b = 3;
-
-    // Act
-    const result = add(a, b);
-
-    // Assert
-    expect(result).toBe(5);
-  });
-});
-```
-
-### Mocking Dependencies
-
-```typescript
-// Mock external dependency
-const mockRepository = {
-  findById: jest.fn().mockResolvedValue({ id: 1, name: 'Test' })
-};
-
-const service = new UserService(mockRepository);
-```
-
-## Quick Reference
-
-### Common Assertions
-
-```javascript
-// Jest/Vitest
-expect(value).toBe(expected)
-expect(value).toEqual(expected)
-expect(fn).toThrow(Error)
-expect(array).toContain(item)
-expect(mock).toHaveBeenCalledWith(args)
-```
-
-```python
-# pytest
-assert value == expected
-assert item in collection
-with pytest.raises(ValueError):
-    function()
-```
+Check for:
+- Coverage of happy path, error cases, boundary conditions
+- Proper mocking strategy (no over-mocking)
+- Descriptive test names
+- Arrange-Act-Assert structure
+- No hardcoded test data
 
 ## Coverage Targets
 
-| Type | Target |
-|------|--------|
-| Statements | 80%+ |
-| Branches | 75%+ |
-| Functions | 80%+ |
-| Lines | 80%+ |
-
-## Integration with QA Plugin
-
-- **Agent**: `test-writer` - Generate unit tests
-- **Agent**: `test-runner` - Execute tests with coverage
-- **Command**: `/unit` - Run unit test workflow
+Statements 80%+, Branches 75%+, Functions 80%+, Lines 80%+.
