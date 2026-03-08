@@ -72,7 +72,7 @@ Summarize components built, key decisions, files changed, next steps.
 
 ## Related Plugins
 
-- **QA Plugin**: `qa:test-writer` for additional test scenarios, `qa:test-runner` for execution
+- **QA Plugin**: `/qa` command for additional test scenarios beyond the feature scope
 - **Shared Plugin**: `do-loop` iteration protocol
 
 ## Version
