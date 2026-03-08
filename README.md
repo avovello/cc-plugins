@@ -4,7 +4,7 @@ Core development workflow plugins for Claude Code with specialized agents, Task 
 
 ## Overview
 
-CC Plugins provides **5 plugins with 13 specialized agents and 12 skills** covering the essential software development workflows: feature development, code review, bug fixing, and quality assurance.
+CC Plugins provides **5 plugins with 10 specialized agents and 12 skills** covering the essential software development workflows: feature development, code review, bug fixing, and quality assurance.
 
 Bugfix and feature-development plugins use **Claude Code Agent Teams** for iterative do-loops (doer+critic pairs). Requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
 
@@ -75,18 +75,15 @@ Investigate (subagents) → Fix+Review (team loop) → Test+Review (team loop) �
 
 ### QA (Quality Assurance)
 
-**Commands**: `/qa`, `/unit`, `/integration`, `/e2e`, `/write-tests`
+**Command**: `/qa <prompt>`
 
-Test writing, execution, and browser testing for unit, integration, and E2E workflows.
+Single orchestrator with dynamic skill discovery, prompt-based routing, and do-loop agent teams. Routes to run, write, explore, or convert workflows based on your prompt. Bare `/qa` runs all tests.
 
 | Component | Type | Purpose |
 |-----------|------|---------|
-| `test-writer` | Agent | Generate test code with fixtures and mocks |
-| `test-runner` | Agent | Execute test suites, report results |
-| `browser-tester` | Agent | Interactive browser testing via Playwright MCP |
-| `unit-testing` | Skill | Unit testing patterns |
+| `unit-testing` | Skill | Unit testing patterns and framework detection |
 | `integration-testing` | Skill | Integration testing patterns |
-| `e2e-testing` | Skill | E2E testing with Playwright |
+| `e2e-testing` | Skill | E2E and browser testing with Playwright |
 
 ---
 
@@ -146,12 +143,11 @@ Task(subagent_type="review:diff-investigator", prompt="Investigate uncommitted c
 Task(subagent_type="review:security-reviewer", prompt="Review for security issues: [report]")
 Task(subagent_type="bugfix:reproducer", prompt="Reproduce this bug: [description]")
 Task(subagent_type="bugfix:root-cause-analyst", prompt="Analyze root cause: [reproduction report]")
-Task(subagent_type="qa:test-runner", prompt="Run test suite")
 ```
 
 ## Version
 
-2.2.0
+2.3.0
 
 ## License
 
