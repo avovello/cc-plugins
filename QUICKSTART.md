@@ -4,7 +4,7 @@ Get started with CC Plugins in 5 minutes.
 
 ## What is CC Plugins?
 
-A collection of 5 workflow plugins for Claude Code that extend functionality through custom slash commands, 13 specialized agents, and 12 skills. Covers feature development, code review, bug fixing, and quality assurance.
+A collection of 5 workflow plugins for Claude Code that extend functionality through 4 custom slash commands, 10 specialized agents, and 12 skills. Covers feature development, code review, bug fixing, and quality assurance.
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ Install Claude Code:
 npm install -g @anthropic-ai/claude-code
 ```
 
-For bugfix and feature-development plugins (agent teams):
+For bugfix, feature-development, and QA plugins (agent teams):
 
 ```bash
 export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
@@ -93,11 +93,10 @@ Workflow: Discovery → Exploration → Questions → Architecture Loop → Impl
 ### 4. Run Tests
 
 ```bash
-/qa              # Run all tests
-/unit            # Unit tests only
-/integration     # Integration tests only
-/e2e             # End-to-end browser tests
-/write-tests     # Generate test code
+/qa                                    # Run all tests
+/qa run unit tests                     # Run unit tests
+/qa write tests for src/services/auth  # Write tests with review
+/qa test login flow in browser         # Browser testing
 ```
 
 ## Available Plugins
@@ -108,7 +107,7 @@ Workflow: Discovery → Exploration → Questions → Architecture Loop → Impl
 | **Review** | `/review` | 7 | Two-phase code review: investigate then review in parallel |
 | **Bugfix** | `/bugfix` | 2 | Investigation (subagents) + fix+review (team loops) |
 | **Feature** | `/feature` | 1 | 3 team do-loops: architecture, implementation, tests |
-| **QA** | `/qa`, `/unit`, `/e2e` | 3 | Test writing, execution, browser testing |
+| **QA** | `/qa` | 0 | Test writing, execution, browser testing (do-loop agent teams) |
 
 ## Common Workflows
 
