@@ -57,16 +57,8 @@ test_patched_login
 2. Place the regression test near related tests
 3. If no test file exists, create one following the project's test file conventions
 
-## When to Delegate
+## Who Writes and Runs the Tests
 
-For complex test scenarios (mocking, fixtures, integration setup), use `qa:test-writer`:
+In the bugfix workflow, regression tests are written and reviewed by the test-writer and test-reviewer teammates during the Phase 3 test do-loop. No external delegation is needed.
 
-```
-Task(subagent_type="qa:test-writer", prompt="Write regression tests for [bug description] in [module]. The fix was [description]. Cover: [scenarios]")
-```
-
-Use `qa:test-runner` to execute:
-
-```
-Task(subagent_type="qa:test-runner", prompt="Run tests in [test file]")
-```
+For additional test scenarios beyond the bugfix scope, use the QA plugin's `/qa` command.

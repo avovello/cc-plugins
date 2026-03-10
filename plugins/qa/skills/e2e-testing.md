@@ -1,83 +1,70 @@
 ---
 name: e2e-testing
-description: E2E testing with Playwright browser automation
+description: End-to-end testing and interactive browser testing with Playwright. Use when running, writing, or reviewing E2E tests, testing user workflows in a browser, exploring web apps interactively, recording browser actions, cross-browser testing, visual validation, or converting recorded actions to automated tests.
 ---
 
-# E2E Testing Skill
+# E2E Testing
 
-End-to-end testing capability using Playwright MCP for browser automation.
+Guide for teammates working with end-to-end tests and browser testing — writing, running, exploring, or reviewing.
 
-## When to Use
-
-- Testing complete user workflows
-- Validating UI interactions
-- Cross-browser testing
-- Visual regression testing
-- Accessibility validation
-
-## Capabilities
-
-### Interactive Browser Testing
-
-Use **Playwright MCP** tools for real browser interaction:
-
-```
-mcp__playwright__browser_navigate    - Go to URL
-mcp__playwright__browser_click       - Click elements
-mcp__playwright__browser_fill        - Fill form fields
-mcp__playwright__browser_screenshot  - Capture screenshots
-mcp__playwright__browser_evaluate    - Run JavaScript
-mcp__playwright__browser_snapshot    - Accessibility tree
-```
-
-### Automated Test Execution
-
-Run Playwright test suites:
+## Running Tests
 
 ```bash
-# Run all E2E tests
-npx playwright test
-
-# Run specific test
-npx playwright test tests/e2e/login.spec.ts
-
-# Run in headed mode
-npx playwright test --headed
-
-# Run specific browser
-npx playwright test --project=chromium
+npx playwright test                           # Run all E2E tests
+npx playwright test tests/e2e/login.spec.ts   # Run specific test
+npx playwright test --headed                  # With visible browser
+npx playwright test --project=chromium        # Specific browser
 ```
 
-## Workflow
+## Writing Tests
 
-1. **Explore** - Use `browser-tester` agent to manually test flows
-2. **Record** - Document actions during exploration
-3. **Generate** - Use `test-writer` agent to create test code
-4. **Execute** - Use `test-runner` agent to run tests
+- Use Page Object Model for selectors
+- Test complete user workflows end-to-end
+- Wait for network idle before assertions
+- Capture screenshots at key assertion points
 
-## Quick Reference
+### Selector Priority
 
-### Navigate and Interact
+1. `[data-testid="..."]` — most stable
+2. Role-based: `getByRole('button', { name: '...' })`
+3. Text-based: `getByText('...')`
+4. CSS selectors — last resort
+
+## Interactive Browser Exploration
+
+When exploring a web app interactively, use built-in browser tools:
+
+1. Navigate to target URL
+2. Take accessibility snapshot to understand page structure
+3. Interact with elements (fill forms, click buttons)
+4. Validate outcomes (check content, URLs, element state)
+5. Capture screenshots at key states
+6. Check console for JavaScript errors
+
+### Recording Actions
+
+Document all actions in structured format for conversion to automated tests:
 
 ```
-Navigate: mcp__playwright__browser_navigate → URL
-Click: mcp__playwright__browser_click → selector
-Fill: mcp__playwright__browser_fill → selector, value
-Screenshot: mcp__playwright__browser_screenshot → name
+## Recorded Actions: [Test Name]
+1. navigate: /page
+2. fill: input[name="field"] = "value"
+3. click: button[type="submit"]
+4. wait: .success-message
+5. assert: URL contains "/expected"
+6. screenshot: descriptive-name
 ```
 
-### Common Selectors
+## Responsive Testing
 
-```
-By role: button, link, textbox, checkbox
-By text: text=Submit, text=Login
-By test ID: [data-testid="submit-btn"]
-By CSS: .class-name, #id-name
-```
+Test at multiple viewport sizes: Mobile (375x667), Tablet (768x1024), Desktop (1920x1080).
 
-## Integration with QA Plugin
+## Reviewing Tests
 
-- **Agent**: `browser-tester` - Interactive testing
-- **Agent**: `test-writer` - Generate Playwright tests
-- **Agent**: `test-runner` - Execute test suites
-- **Command**: `/e2e` - Run E2E test workflow
+Check for:
+- Complete user workflow coverage (not just click tests)
+- Stable selectors (data-testid preferred)
+- Proper waits (no arbitrary sleep)
+- Screenshot evidence at key states
+- Console error checking
+- Responsive viewport coverage

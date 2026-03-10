@@ -56,7 +56,7 @@ Investigate (subagents) → Fix+Review (team loop) → Test+Review (team loop) �
 
 ## Related Plugins
 
-- **QA Plugin**: `qa:test-writer` for complex test scenarios, `qa:test-runner` for execution
+- **QA Plugin**: `/qa` command for additional test scenarios beyond the bugfix scope
 - **Shared Plugin**: `do-loop` iteration protocol
 
 ## Version
