@@ -4,7 +4,7 @@ Core development workflow plugins for Claude Code with specialized agents, Task 
 
 ## Overview
 
-CC Plugins provides **5 plugins with 10 specialized agents and 12 skills** covering the essential software development workflows: feature development, code review, bug fixing, and quality assurance.
+CC Plugins provides **6 plugins with 10 specialized agents, 8 commands, and 19 skills** covering software development workflows and certification exam preparation.
 
 Bugfix and feature-development plugins use **Claude Code Agent Teams** for iterative do-loops (doer+critic pairs). Requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
 
@@ -87,6 +87,24 @@ Single orchestrator with dynamic skill discovery, prompt-based routing, and do-l
 
 ---
 
+### Certification
+
+**Commands**: `/training`, `/quiz`, `/analysis`, `/update`
+
+Claude Certified Architect – Foundations exam preparation. Interactive training by domain, mock exam simulation with weighted scoring, performance analysis with adaptive study recommendations, and content freshness checks.
+
+| Component | Type | Purpose |
+|-----------|------|---------|
+| `domain-1-agentic-architecture` | Skill | Training curriculum for Domain 1 (27%) |
+| `domain-2-tool-design-mcp` | Skill | Training curriculum for Domain 2 (18%) |
+| `domain-3-claude-code-config` | Skill | Training curriculum for Domain 3 (20%) |
+| `domain-4-prompt-engineering` | Skill | Training curriculum for Domain 4 (20%) |
+| `domain-5-context-management` | Skill | Training curriculum for Domain 5 (15%) |
+| `scoring` | Skill | Scoring formula and question selection algorithm |
+| `study-path` | Skill | Adaptive study recommendation engine |
+
+---
+
 ## Installation
 
 ### Using the Plugin Command (Recommended)
@@ -147,7 +165,7 @@ Task(subagent_type="bugfix:root-cause-analyst", prompt="Analyze root cause: [rep
 
 ## Version
 
-2.3.0
+2.4.0
 
 ## License
 

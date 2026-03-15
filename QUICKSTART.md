@@ -4,7 +4,7 @@ Get started with CC Plugins in 5 minutes.
 
 ## What is CC Plugins?
 
-A collection of 5 workflow plugins for Claude Code that extend functionality through 4 custom slash commands, 10 specialized agents, and 12 skills. Covers feature development, code review, bug fixing, and quality assurance.
+A collection of 6 plugins for Claude Code with 8 slash commands, 10 specialized agents, and 19 skills. Covers feature development, code review, bug fixing, quality assurance, and certification exam preparation.
 
 ## Prerequisites
 
@@ -37,6 +37,7 @@ claude
 /plugin install https://github.com/avovello/cc-plugins.git#plugins/bugfix
 /plugin install https://github.com/avovello/cc-plugins.git#plugins/qa
 /plugin install https://github.com/avovello/cc-plugins.git#plugins/feature-development
+/plugin install https://github.com/avovello/cc-plugins.git#plugins/certification
 ```
 
 ### Manual Install
@@ -108,6 +109,7 @@ Workflow: Discovery → Exploration → Questions → Architecture Loop → Impl
 | **Bugfix** | `/bugfix` | 2 | Investigation (subagents) + fix+review (team loops) |
 | **Feature** | `/feature` | 1 | 3 team do-loops: architecture, implementation, tests |
 | **QA** | `/qa` | 0 | Test writing, execution, browser testing (do-loop agent teams) |
+| **Certification** | `/training`, `/quiz`, `/analysis`, `/update` | 0 | Exam prep: training, mock exams, performance analysis |
 
 ## Common Workflows
 
@@ -148,6 +150,19 @@ Workflow: Discovery → Exploration → Questions → Architecture Loop → Impl
 # 3. Run tests
 /qa
 ```
+
+### 5. Prepare for Certification
+
+```bash
+/training              # Study recommended domain (or start with Domain 1)
+/training 1            # Study Domain 1: Agentic Architecture
+/quiz                  # Take a full mock exam (30 questions)
+/quiz --domain 2       # Focus quiz on Domain 2
+/analysis              # Review performance and get study recommendations
+/update                # Check for documentation changes
+```
+
+Workflow: Train domains → Take mock exams → Analyze gaps → Focus weak areas → Repeat
 
 ## Tips
 
