@@ -1,6 +1,6 @@
 ---
 description: Interactive study of Claude Certified Architect – Foundations exam domains. Teaches concepts, tests understanding with mini-quizzes, and adapts to weak areas.
-allowed-tools: Read, Glob, Grep, Bash
+allowed-tools: Read, Glob, Grep, Bash, AskUserQuestion
 ---
 
 # Training Command
@@ -33,6 +33,14 @@ If no argument is provided:
 
 Tell the user which domain or task statement you will cover and explain why you chose it.
 
+### Step 1b: Load Documentation Links
+
+Read the documentation reference map to get relevant links for every task statement:
+
+`${CLAUDE_PLUGIN_ROOT}/resources/doc-links.md`
+
+You MUST include these links throughout the session — in topic explanations, answer explanations, and the session summary.
+
 ### Step 2: Load Domain Skill
 
 Read the matching domain skill to get authoritative content for teaching:
@@ -47,7 +55,7 @@ Read the matching domain skill to get authoritative content for teaching:
 
 Work through each task statement in the domain (or the single targeted one). For each:
 
-1. **Explain** the key concepts using the skill content. Ground explanations in concrete, exam-relevant scenarios. Focus on WHY things work the way they do, not just WHAT they are.
+1. **Explain** the key concepts using the skill content. Ground explanations in concrete, exam-relevant scenarios. Focus on WHY things work the way they do, not just WHAT they are. **Include relevant documentation links** from the doc-links reference for the task statement being taught, so the user can dive deeper into the source material.
 
 2. **Surface misconceptions** — call out the common wrong assumptions and explain why they fail. Exam distractors are built from exactly these misunderstandings, so addressing them head-on is critical.
 
@@ -59,11 +67,11 @@ Work through each task statement in the domain (or the single targeted one). For
      - Domain 4: `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/4-prompt-engineering-and-structured-output.md`
      - Domain 5: `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/5-context-management-and-reliability.md`
    - Find questions tagged to this task statement
-   - Present the question and **wait for the user's answer**
-   - If correct: confirm briefly and highlight the key insight
-   - If wrong: explain thoroughly — why their choice was wrong, why the correct answer is right, and tie it back to the concept just taught
+   - **Use the `AskUserQuestion` tool** to present each question with options A–D. This is required for all quiz questions and check-in prompts.
+   - If correct: confirm briefly, highlight the key insight, and **link to the relevant documentation** that explains the concept
+   - If wrong: explain thoroughly — why their choice was wrong, why the correct answer is right, tie it back to the concept just taught, and **include documentation links** so the user can read the authoritative source
 
-4. **Check-in** — after each task statement, ask whether the user wants to:
+4. **Check-in** — after each task statement, **use `AskUserQuestion`** to ask whether the user wants to:
    - Continue to the next task statement
    - Go deeper on this one (present Medium or Hard questions)
    - Switch to a different domain

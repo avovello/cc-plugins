@@ -7,9 +7,9 @@
   "metadata": {
     "description": "Core development workflow plugins for Claude Code with agent teams, specialized agents, and architecture skills",
     "homepage": "https://github.com/avovello/claude-code",
-    "version": "2.5.0"
+    "version": "2.5.1"
   },
-  "version": "2.5.0",
+  "version": "2.5.1",
   "plugins": [
     {
       "name": "shared",
@@ -75,7 +75,7 @@
       "name": "certification",
       "source": "./plugins/certification",
       "description": "Claude Certified Architect – Foundations exam preparation with interactive training, mock exam simulation, and performance analysis",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "author": {
         "name": "Claude Code Marketplace Contributors",
         "email": "noreply@anthropic.com"
