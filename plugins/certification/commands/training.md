@@ -28,7 +28,7 @@ If the user provides a domain number (1–5), use it directly. If they provide a
 If no argument is provided:
 
 1. Check whether `~/.claude/certification/results.jsonl` exists
-2. If it does: load the study-path skill (`plugins/certification/skills/study-path.md`), compute weak areas, and recommend the highest-priority domain
+2. If it does: load the study-path skill (`${CLAUDE_PLUGIN_ROOT}/skills/study-path.md`), compute weak areas, and recommend the highest-priority domain
 3. If it does not: default to Domain 1
 
 Tell the user which domain or task statement you will cover and explain why you chose it.
@@ -37,11 +37,11 @@ Tell the user which domain or task statement you will cover and explain why you 
 
 Read the matching domain skill to get authoritative content for teaching:
 
-- Domain 1: `plugins/certification/skills/domain-1-agentic-architecture.md`
-- Domain 2: `plugins/certification/skills/domain-2-tool-design-mcp.md`
-- Domain 3: `plugins/certification/skills/domain-3-claude-code-config.md`
-- Domain 4: `plugins/certification/skills/domain-4-prompt-engineering.md`
-- Domain 5: `plugins/certification/skills/domain-5-context-management.md`
+- Domain 1: `${CLAUDE_PLUGIN_ROOT}/skills/domain-1-agentic-architecture.md`
+- Domain 2: `${CLAUDE_PLUGIN_ROOT}/skills/domain-2-tool-design-mcp.md`
+- Domain 3: `${CLAUDE_PLUGIN_ROOT}/skills/domain-3-claude-code-config.md`
+- Domain 4: `${CLAUDE_PLUGIN_ROOT}/skills/domain-4-prompt-engineering.md`
+- Domain 5: `${CLAUDE_PLUGIN_ROOT}/skills/domain-5-context-management.md`
 
 ### Step 3: Teach Task Statements
 
@@ -53,11 +53,11 @@ Work through each task statement in the domain (or the single targeted one). For
 
 3. **Mini-quiz** — pull 1–2 Easy questions from the question bank that match this task statement.
    - Read the appropriate question bank file:
-     - Domain 1: `plugins/certification/resources/question-bank/1-agentic-architecture-and-orchestration.md`
-     - Domain 2: `plugins/certification/resources/question-bank/2 Tool Design & MCP Integration.md`
-     - Domain 3: `plugins/certification/resources/question-bank/3 Claude Code Configuration & Workflows.md`
-     - Domain 4: `plugins/certification/resources/question-bank/4 Prompt Engineering & Structured Output.md`
-     - Domain 5: `plugins/certification/resources/question-bank/5 Context Management & Reliability.md`
+     - Domain 1: `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/1-agentic-architecture-and-orchestration.md`
+     - Domain 2: `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/2-tool-design-and-mcp-integration.md`
+     - Domain 3: `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/3-claude-code-configuration-and-workflows.md`
+     - Domain 4: `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/4-prompt-engineering-and-structured-output.md`
+     - Domain 5: `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/5-context-management-and-reliability.md`
    - Find questions tagged to this task statement
    - Present the question and **wait for the user's answer**
    - If correct: confirm briefly and highlight the key insight

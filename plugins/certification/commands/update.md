@@ -35,16 +35,16 @@ When the user passes `--docs`, fetch only sources 1-5. When the user passes `--e
 
 Read the exam guide reference:
 
-- `plugins/certification/resources/exam-guide-reference.md`
+- `${CLAUDE_PLUGIN_ROOT}/resources/exam-guide-reference.md`
 
 Read all question bank files:
 
-- Use Glob to find `plugins/certification/resources/question-bank/*.md` (exclude `review-findings.md`)
+- Use Glob to find `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/*.md` (exclude `review-findings.md`)
 - Read each file to build a complete picture of current coverage
 
 Also read the existing review findings:
 
-- `plugins/certification/resources/question-bank/review-findings.md`
+- `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/review-findings.md`
 
 ### Step 3: Compare and Analyze
 

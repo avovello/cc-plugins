@@ -9,7 +9,7 @@ This skill governs how question bank files are modified. Every change to a quest
 
 ## Question Bank Location
 
-All files live under `plugins/certification/resources/question-bank/`:
+All files live under `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/`:
 
 | Domain | File |
 |--------|------|

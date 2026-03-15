@@ -17,8 +17,8 @@ Reads your quiz and training history, computes performance metrics, and generate
 
 ### Step 1: Load Data
 
-Read the study-path skill: `plugins/certification/skills/study-path.md`
-Read the scoring skill: `plugins/certification/skills/scoring.md`
+Read the study-path skill: `${CLAUDE_PLUGIN_ROOT}/skills/study-path.md`
+Read the scoring skill: `${CLAUDE_PLUGIN_ROOT}/skills/scoring.md`
 
 Read quiz history:
 ```

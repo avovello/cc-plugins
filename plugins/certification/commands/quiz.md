@@ -21,7 +21,7 @@ Simulates the Claude Certified Architect – Foundations exam with scenario sele
 
 ### Step 1: Load Scoring Skill
 
-Read: `plugins/certification/skills/scoring.md`
+Read: `${CLAUDE_PLUGIN_ROOT}/skills/scoring.md`
 
 This provides the question selection algorithm, scoring formula, and result format. Internalize its rules before proceeding.
 
@@ -41,11 +41,11 @@ Multiple flags combine naturally: `--domain 2 --hard --count 5` means 5 hard que
 
 Read all question bank files:
 
-- `plugins/certification/resources/question-bank/1-agentic-architecture-and-orchestration.md`
-- `plugins/certification/resources/question-bank/2 Tool Design & MCP Integration.md`
-- `plugins/certification/resources/question-bank/3 Claude Code Configuration & Workflows.md`
-- `plugins/certification/resources/question-bank/4 Prompt Engineering & Structured Output.md`
-- `plugins/certification/resources/question-bank/5 Context Management & Reliability.md`
+- `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/1-agentic-architecture-and-orchestration.md`
+- `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/2-tool-design-and-mcp-integration.md`
+- `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/3-claude-code-configuration-and-workflows.md`
+- `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/4-prompt-engineering-and-structured-output.md`
+- `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/5-context-management-and-reliability.md`
 
 Parse each question and extract: ID, scenario, difficulty, domain, task statement, question text, options A–D, correct answer, and explanation.
 
