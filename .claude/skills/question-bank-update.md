@@ -9,7 +9,7 @@ This skill governs how question bank files are modified. Every change to a quest
 
 ## Question Bank Location
 
-All files live under `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/`:
+All files live under `plugins/certification/resources/question-bank/`:
 
 | Domain | File |
 |--------|------|
@@ -139,7 +139,7 @@ After ANY modification, recount:
 
 When standardizing filenames:
 1. Use `git mv` to preserve history
-2. Update `skills/scoring.md` file path references
+2. Update `plugins/certification/skills/scoring.md` file path references
 3. Update any other skills or commands that reference the old filename
 
 ## Validation Checklist

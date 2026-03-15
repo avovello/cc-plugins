@@ -35,16 +35,16 @@ When the user passes `--docs`, fetch only sources 1-5. When the user passes `--e
 
 Read the exam guide reference:
 
-- `${CLAUDE_PLUGIN_ROOT}/resources/exam-guide-reference.md`
+- `plugins/certification/resources/exam-guide-reference.md`
 
 Read all question bank files:
 
-- Use Glob to find `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/*.md` (exclude `review-findings.md`)
+- Use Glob to find `plugins/certification/resources/question-bank/*.md` (exclude `review-findings.md`)
 - Read each file to build a complete picture of current coverage
 
 Also read the existing review findings:
 
-- `${CLAUDE_PLUGIN_ROOT}/resources/question-bank/review-findings.md`
+- `plugins/certification/resources/question-bank/review-findings.md`
 
 ### Step 3: Compare and Analyze
 
@@ -111,14 +111,14 @@ Wait for the user to confirm or adjust the plan.
 
 ### Step 6: Apply Changes
 
-Use the `certification:question-bank-update` skill to execute each planned change. The skill defines the exact format, numbering, and validation rules.
+Use the `question-bank-update` skill to execute each planned change. The skill defines the exact format, numbering, and validation rules.
 
 For each change:
 1. Read the target question bank file
 2. Apply the modification (edit, add, remove, or replace)
 3. Recount and update the footer metadata
 
-If files need renaming (legacy naming conventions), use `git mv` and update references in `skills/scoring.md`.
+If files need renaming (legacy naming conventions), use `git mv` and update references in `plugins/certification/skills/scoring.md`.
 
 ### Step 7: Validate and Report
 
