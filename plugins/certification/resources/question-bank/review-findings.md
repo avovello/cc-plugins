@@ -1,89 +1,79 @@
 # Question Bank Review Findings
 
 ## Summary
-- Total questions reviewed: 166 (D1: 32, D2: 31, D3: 34, D4: 34, D5: 35)
-- Issues found: 18 (critical: 2, moderate: 10, minor: 6)
+- Total questions: 176 (D1: 37, D2: 31, D3: 36, D4: 35, D5: 37)
+- Last updated: 2026-03-15 (via /update command)
 - Coverage gaps: 0 task statements under-covered (all have >= 3 questions)
-- Scenario gaps: 0 scenarios under-represented (all 6 scenarios appear with 22-30 questions each)
+- Scenario gaps: 0 scenarios under-represented (all 6 scenarios appear with 23-31 questions each)
 
-## Critical Issues (must fix)
+## Resolved Issues (2026-03-15)
 
-### [All files] --- Footer total and distribution claims are wrong
-- **Problem**: Every file's footer metadata is incorrect. The footers all claim "28 questions" but actual counts are: D1=32, D2=31, D3=34, D4=34, D5=35. Difficulty distributions are also wrong in every file:
-  - D1 footer: "5 Easy, 13 Medium, 12 Hard" -- actual: 5 Easy, 17 Medium, 10 Hard
-  - D2 footer: "6 Easy, 12 Medium, 8 Hard" -- actual: 7 Easy, 15 Medium, 9 Hard
-  - D3 footer: "5 Easy, 14 Medium, 9 Hard" -- actual: 7 Easy, 19 Medium, 8 Hard
-  - D4 footer: "4 Easy, 14 Medium, 10 Hard" -- actual: 6 Easy, 19 Medium, 9 Hard
-  - D5 footer: "3 Easy, 15 Medium, 10 Hard" -- actual: 4 Easy, 20 Medium, 11 Hard
-- **Suggested fix**: Update all five footer lines to reflect actual question counts and difficulty distributions.
-
-### [Q1.7.5 + Q4.6.1] --- Near-duplicate testing same concept
-- **Problem**: Q1.7.5 ("Session context isolation for quality") and Q4.6.1 ("Self-review limitations") test the same concept -- that a model retains reasoning context from generation and is less effective at self-review. Both have nearly identical correct answers and explanations. Additionally, Q1.7.5 is arguably misplaced under Task 1.7 (session state/resumption/forking) when the self-review limitation is explicitly a Task 4.6 concept (multi-instance review architectures).
-- **Suggested fix**: Either remove Q1.7.5 and replace it with a genuine session management question, or reframe it to focus on the session forking angle (e.g., using fork_session or a new session for review) rather than the self-review limitation itself.
+- **[RESOLVED] Footer metadata** — All 5 footers now match actual counts and distributions
+- **[RESOLVED] Q1.7.5 near-duplicate** — Replaced with genuine session management question (git worktrees for parallel agent isolation)
+- **[RESOLVED] Q2.5.3 stem ambiguity** — Stem already clarified in prior update (Edit-already-exhausted context explicit)
+- **[RESOLVED] File naming** — All 5 files standardized to hyphenated-lowercase format via `git mv`
+- **[RESOLVED] Domain 1 footer count** — Now correctly shows 37 questions
+- **[RESOLVED] New topic coverage** — Added Q1.5.5 (Agent Teams), Q3.2.7 (Plugins), Q3.6.7 (Hooks for CI/CD)
 
 ## Moderate Issues (should fix)
 
-### [Q1.7.5] --- Misplaced under wrong task statement
-- **Problem**: Q1.7.5 tests self-review limitations, which maps to Task Statement 4.6 ("Design multi-instance and multi-pass review architectures"), not Task Statement 1.7 ("Manage session state, resumption, and forking"). The knowledge tag "Session context isolation for quality" tries to bridge the gap, but the question body and answer are entirely about self-review, not session management.
-- **Suggested fix**: Move or replace with a question that genuinely tests session management knowledge (e.g., choosing between --resume and fork_session for a review workflow).
-
-### [Q2.5.3] --- Distractor B is arguably a valid first approach
-- **Problem**: Q2.5.3 asks about the fallback when Edit fails due to non-unique text. The correct answer is A (Read+Write). However, Option B ("Retry Edit with a longer text anchor") is acknowledged in the explanation as "reasonable" and is a natural first step a practitioner would try before falling back to Read+Write. The question asks for "the correct fallback approach" which implies Edit has already been abandoned, but the stem says Edit failed once -- most practitioners would retry with more context before switching strategies.
-- **Suggested fix**: Clarify the stem to say "you've already tried expanding the text anchor but the file has highly repetitive structure making unique anchors impractical" to make A the unambiguous answer.
-
 ### [Q1.4] --- Only 3 questions (meets minimum but sparse for a 27% domain)
-- **Problem**: Task Statement 1.4 (multi-step workflows with enforcement and handoff patterns) has exactly 3 questions. While this meets the minimum target, Domain 1 has 27% weight and this task statement covers critical concepts (programmatic enforcement, handoff protocols) that are heavily tested in exam sample questions.
-- **Suggested fix**: Add 1-2 more questions to 1.4, perhaps one on handoff summary compilation and one on parallel investigation of multi-concern requests.
+- **Problem**: Task Statement 1.4 (multi-step workflows with enforcement and handoff patterns) has exactly 3 questions. Domain 1 has 27% weight and this task statement covers critical concepts.
+- **Suggested fix**: Add 1-2 more questions to 1.4, perhaps one on handoff summary compilation.
 
 ### [Q1.6] --- Only 3 questions (meets minimum but sparse for a 27% domain)
-- **Problem**: Task Statement 1.6 (task decomposition strategies) has exactly 3 questions. This covers prompt chaining vs dynamic decomposition, a concept that appears across multiple domains.
-- **Suggested fix**: Add 1-2 more questions, perhaps one on adaptive investigation plans and one on decomposing open-ended tasks.
+- **Problem**: Task Statement 1.6 (task decomposition strategies) has exactly 3 questions.
+- **Suggested fix**: Add 1-2 more questions, perhaps one on adaptive investigation plans.
 
 ### [Q5.3] --- Only 4 questions for error propagation
-- **Problem**: Task Statement 5.3 (error propagation in multi-agent systems) has 4 questions. While above minimum, this is a concept that interacts with Tool Design (Domain 2) and could benefit from more coverage.
+- **Problem**: Task Statement 5.3 (error propagation in multi-agent systems) has 4 questions.
 - **Suggested fix**: Consider adding 1 question distinguishing access failures from valid empty results in a multi-agent scenario.
 
 ### [Q5.5] --- Only 4 questions for human review workflows
-- **Problem**: Task Statement 5.5 (human review workflows and confidence calibration) has 4 questions. This covers stratified sampling, field-level confidence, and accuracy-by-segment -- dense material.
+- **Problem**: Task Statement 5.5 (human review workflows and confidence calibration) has 4 questions.
 - **Suggested fix**: Consider adding 1 question on calibrating review thresholds using labeled validation sets.
 
 ### [Difficulty balance] --- Easy questions are under-represented
-- **Problem**: Only 29 of 166 questions (17.5%) are Easy. Domain 5 has only 4 Easy questions out of 35 (11.4%). The exam tests "foundational knowledge" and easy questions serve as accessible entry points for each task statement.
-- **Suggested fix**: Consider converting some Medium questions to Easy for under-represented difficulty levels, particularly in Domains 1 and 5.
+- **Problem**: 35 of 176 questions (19.9%) are Easy. Improved from 17.5% but still below ideal ~25%.
+- **Suggested fix**: Consider converting some Medium questions to Easy, particularly in Domains 1 and 5.
 
 ### [Q4.6] --- Only 4 questions for multi-instance review
-- **Problem**: Task Statement 4.6 (multi-instance and multi-pass review architectures) has only 4 questions. The exam guide lists 3 knowledge items and 3 skills for this task statement, and the sample questions in the exam guide directly test these concepts.
-- **Suggested fix**: Add 1-2 questions, perhaps one on confidence-based review routing (already partially covered by Q4.6.4) and one on when multi-pass is needed vs single-pass.
+- **Problem**: Task Statement 4.6 has only 4 questions for 3 knowledge + 3 skill items.
+- **Suggested fix**: Add 1-2 questions on when multi-pass is needed vs single-pass.
 
 ### [Scenario coverage for CI] --- Scenario 5 (CI) has fewest questions
-- **Problem**: Scenario 5 (Claude Code for Continuous Integration) has 22 questions, the lowest count. While all scenarios are represented, CI is a primary domain for both Domain 3 and Domain 4, and the exam guide lists it as a key scenario.
-- **Suggested fix**: When adding new questions to fill gaps above, prefer Scenario 5 as the context.
+- **Problem**: Scenario 5 (Claude Code for CI/CD) has the lowest count. Improved by Q3.6.7 addition.
+- **Suggested fix**: Continue preferring Scenario 5 when adding new questions.
 
 ## Minor Issues (nice to fix)
 
-### [File naming] --- Inconsistent file naming conventions
-- **Problem**: File 1 uses hyphens and lowercase (`1-agentic-architecture-and-orchestration.md`) while files 2-5 use spaces and title case (`2 Tool Design & MCP Integration.md`). The ampersand and spaces in filenames require quoting in shell commands.
-- **Suggested fix**: Standardize all filenames to use hyphens and lowercase (e.g., `2-tool-design-and-mcp-integration.md`).
-
 ### [Q1.7.4 option D] --- Diff-based approach dismissed too quickly
-- **Problem**: Q1.7.4's explanation says providing a diff is "less effective than describing the change with context." The exam guide says to "inform a resumed session about specific file changes for targeted re-analysis" -- providing a diff IS a way to inform about specific changes. The dismissal is a judgment call presented as fact.
-- **Suggested fix**: Rephrase D's explanation to be clearer about why describing intent is better than raw diff syntax, e.g., "a diff shows what changed syntactically but doesn't explain the purpose, making it harder for the agent to assess downstream impact."
+- **Problem**: Q1.7.4's explanation dismisses providing a diff as "less effective" — a judgment call presented as fact.
+- **Suggested fix**: Rephrase to explain why describing intent is better than raw diff syntax.
 
-### [Domain 1 question count in footer] --- Footer claims "all 7 task statements"
-- **Problem**: The footer is technically correct that all 7 task statements are covered, but the count "28 questions" is wrong (actual: 30 + 2 cross-domain = 32). This metadata is unreliable for anyone using it for coverage planning.
-- **Suggested fix**: Already covered in Critical Issue 1.
-
-### [Q3.3] --- 4 questions but exam guide has 3 knowledge + 3 skill items
-- **Problem**: Task 3.3 (path-specific rules) has 4 questions for a relatively narrow topic (glob patterns in .claude/rules/). This is well-covered relative to its scope.
-- **Suggested fix**: No action needed, but if questions need to be redistributed, this is a candidate to move one to an under-covered task.
+### [Q3.3] --- 4 questions for a relatively narrow topic
+- **Problem**: Task 3.3 (path-specific rules, glob patterns) has 4 questions. Well-covered relative to scope.
+- **Suggested fix**: No action needed, but candidate for redistribution if needed.
 
 ### [Cross-domain questions] --- All are Hard difficulty
-- **Problem**: All 10 cross-domain questions are Hard. This is appropriate for multi-domain synthesis but means cross-domain reasoning is only tested at the highest difficulty level.
-- **Suggested fix**: Consider adding 1-2 Medium cross-domain questions that combine two domains in a straightforward way.
+- **Problem**: All 10 cross-domain questions are Hard.
+- **Suggested fix**: Consider adding 1-2 Medium cross-domain questions.
 
-### [Distractor archetypes] --- Generally well-applied but some patterns repeat
-- **Problem**: The "over-engineered" distractor (routing classifier, ML infrastructure, separate classifier model) appears frequently across domains. While realistic, candidates may learn to eliminate any answer mentioning classifiers or ML infrastructure.
-- **Suggested fix**: Vary the over-engineered distractors occasionally -- use alternatives like excessive abstraction layers, premature optimization, or custom middleware.
+### [Distractor archetypes] --- "Over-engineered" pattern repeats
+- **Problem**: The routing classifier / ML infrastructure distractor appears frequently.
+- **Suggested fix**: Vary with alternatives: excessive abstraction layers, premature optimization, custom middleware.
+
+## New Topics for Future Coverage
+
+These significant Claude Code features are not yet covered in the question bank:
+
+| Topic | Relevant Domain | Priority |
+|-------|----------------|----------|
+| Auto-memory (automatic learning persistence) | Domain 3 (Task 3.1) | Medium |
+| Remote Control / Teleport (cross-device sessions) | Domain 3 (Task 3.6) | Medium |
+| MCP elicitation (interactive structured input) | Domain 2 (Task 2.4) | Low |
+| Files API and Skills API (beta) | Domain 4 (Task 4.5) | Low |
+| `inference_geo` data residency parameter | Domain 4 (Task 4.5) | Low |
 
 ## Coverage Analysis
 
@@ -94,7 +84,7 @@
 | 1.2 | 5 | 3 | PASS |
 | 1.3 | 5 | 3 | PASS |
 | 1.4 | 3 | 3 | PASS (at minimum) |
-| 1.5 | 4 | 3 | PASS |
+| 1.5 | 5 | 3 | PASS |
 | 1.6 | 3 | 3 | PASS (at minimum) |
 | 1.7 | 5 | 3 | PASS |
 | 2.1 | 6 | 3 | PASS |
@@ -103,11 +93,11 @@
 | 2.4 | 5 | 3 | PASS |
 | 2.5 | 6 | 3 | PASS |
 | 3.1 | 6 | 3 | PASS |
-| 3.2 | 6 | 3 | PASS |
+| 3.2 | 7 | 3 | PASS |
 | 3.3 | 4 | 3 | PASS |
 | 3.4 | 5 | 3 | PASS |
 | 3.5 | 5 | 3 | PASS |
-| 3.6 | 6 | 3 | PASS |
+| 3.6 | 7 | 3 | PASS |
 | 4.1 | 5 | 3 | PASS |
 | 4.2 | 6 | 3 | PASS |
 | 4.3 | 6 | 3 | PASS |
@@ -126,9 +116,9 @@
 |---|---|---|
 | 1: Customer Support Resolution Agent | 30 | PASS |
 | 2: Code Generation with Claude Code | 27 | PASS |
-| 3: Multi-Agent Research System | 30 | PASS |
-| 4: Developer Productivity with Claude | 28 | PASS |
-| 5: Claude Code for Continuous Integration | 22 | PASS (lowest) |
+| 3: Multi-Agent Research System | 31 | PASS |
+| 4: Developer Productivity with Claude | 30 | PASS |
+| 5: Claude Code for Continuous Integration | 24 | PASS |
 | 6: Structured Data Extraction | 29 | PASS |
 
 ### Cross-Domain Questions
@@ -136,13 +126,3 @@
 - All are Hard difficulty
 - Domain combinations covered: 1+2+5, 1+5, 2+1+5, 2+3, 3+2+5, 3+4, 4+5, 4+3+1, 5+1+2, 5+1+4
 - Good spread of domain combinations
-
-## Recommendations
-- Fix all five footer metadata lines immediately (critical data integrity issue)
-- Replace Q1.7.5 with a genuine session management question to eliminate the near-duplicate with Q4.6.1
-- Clarify Q2.5.3 stem to make the Edit-already-exhausted context explicit
-- Add 2-3 questions to Task Statements 1.4 and 1.6 (both at minimum for a 27%-weight domain)
-- Add 1-2 Medium cross-domain questions to test cross-domain reasoning below Hard difficulty
-- Prefer Scenario 5 (CI) when writing new questions to balance scenario distribution
-- Standardize file naming to hyphenated-lowercase format
-- Overall quality is high: correct answers align with exam guide, explanations address all distractors, scenarios are appropriate, and distractor quality follows the four archetypes well

@@ -235,6 +235,25 @@ D) Create a separate skill in `.claude/skills/` called `a11y-review` with the ac
 
 ---
 
+### Q3.2.7 — Scenario: Developer Productivity with Claude
+**Difficulty: Easy | Knowledge: Plugin installation and distribution**
+
+Your team has built a set of custom agents, skills, and commands for your organization's development workflow. You want every developer on the team to have access to these without manually copying files into each project. What is the correct distribution mechanism?
+
+A) Package the components as a Claude Code plugin with a `plugin.json` manifest and publish to a marketplace — developers install with `claude plugin install` and get automatic updates.
+
+B) Commit all agent and skill files to a shared Git repository and instruct each developer to clone it into their `~/.claude/` directory.
+
+C) Add the components to the project's `.claude/` directory and ensure every repository includes them via a shared Git submodule.
+
+D) Email the markdown files to each developer with instructions to place them in the correct directories.
+
+**Correct Answer: A**
+
+**Explanation:** The Claude Code plugin system is purpose-built for distributing reusable components. A `plugin.json` manifest declares the plugin's contents, and marketplaces handle versioning and distribution. Developers install once with `claude plugin install` and receive updates automatically. Option B requires manual setup per developer and doesn't handle versioning or updates. Option C ties the components to a specific project rather than making them organization-wide, and submodules add maintenance burden. Option D is manual and error-prone with no version control.
+
+---
+
 ## Task Statement 3.3: Apply path-specific rules for conditional convention loading
 
 ### Q3.3.1 — Scenario: Code Generation with Claude Code
@@ -629,6 +648,25 @@ D) Generate tests only for files that have zero existing test coverage.
 
 ---
 
+### Q3.6.7 — Scenario: Claude Code for Continuous Integration
+**Difficulty: Medium | Knowledge: Hooks for CI/CD automation**
+
+Your CI pipeline uses Claude Code to fix lint errors before committing. After Claude edits a file, you want to automatically run `prettier` on the modified file to enforce formatting standards, without relying on Claude to remember to do it. What is the correct approach?
+
+A) Configure a PostToolUse hook matching the `Write` and `Edit` tools that runs `prettier --write` on the affected file — this executes automatically after every file modification, guaranteeing consistent formatting without prompt instructions.
+
+B) Add "Always run prettier after editing files" to the CLAUDE.md so Claude remembers to format files.
+
+C) Add a PreToolUse hook that runs prettier before each edit to ensure the file is already formatted.
+
+D) Use a Stop hook that runs prettier on all modified files when Claude finishes — this batch-formats everything at the end.
+
+**Correct Answer: A**
+
+**Explanation:** PostToolUse hooks fire after a tool succeeds and can perform side effects like formatting. Matching on `Write` and `Edit` ensures every file modification triggers formatting immediately and programmatically — no prompt instruction needed. Option B relies on prompt-based guidance, which is probabilistic and may be forgotten during complex sessions. Option C runs formatting *before* the edit, which doesn't help since the edit itself introduces unformatted code. Option D delays formatting until Claude stops, but if Claude reads the unformatted file before stopping, it may make unnecessary formatting-related edits.
+
+---
+
 ## Cross-Domain Questions (Domain 3 intersecting with other domains)
 
 ### Q3.X.1 — Scenario: Code Generation with Claude Code
@@ -670,5 +708,5 @@ D) Disable categories that produce false positives. Force all severity ratings t
 ---
 
 *End of Domain 3 Question Bank*
-*Total: 34 questions covering all 6 task statements + 2 cross-domain questions*
-*Distribution: 7 Easy, 19 Medium, 8 Hard*
+*Total: 36 questions covering all 6 task statements + 2 cross-domain questions*
+*Distribution: 8 Easy, 20 Medium, 8 Hard*

@@ -492,6 +492,25 @@ D) A custom MCP resource that provides a status code mapping table the agent can
 
 ---
 
+### Q1.5.5 — Scenario: Multi-Agent Research System
+**Difficulty: Medium | Knowledge: Agent Teams for iterative doer-critic workflows**
+
+Your research system needs an implementation phase where one agent writes code and another reviews it, iterating until the reviewer approves. You want the reviewer to send specific feedback (file, line, issue, fix) back to the implementer without manual intervention. Which Claude Code pattern best supports this?
+
+A) Use Agent Teams to spawn a doer (implementer) and critic (reviewer) as teammates that communicate via `SendMessage` — the critic reviews each iteration and sends structured feedback directly to the doer, who applies fixes and resubmits until the critic approves.
+
+B) Use sequential subagents: dispatch the implementer as a subagent, wait for it to finish, then dispatch the reviewer as a separate subagent, and repeat the cycle manually.
+
+C) Run both agents in a single session and alternate between implementation and review prompts, relying on the shared conversation context for communication.
+
+D) Use the Batch API to submit implementation and review as separate batch requests, parsing results between rounds.
+
+**Correct Answer: A**
+
+**Explanation:** Agent Teams enable persistent teammate relationships where agents communicate directly via `SendMessage`. The doer-critic pattern (do-loop) lets the reviewer send structured feedback to the implementer, who iterates without manual orchestration. Option B uses fire-and-forget subagents that can't communicate with each other — the orchestrator must manually parse results and re-dispatch, losing the iterative feedback loop. Option C overloads a single context window with both implementation and review reasoning, reducing independence and consuming context. Option D is designed for batch processing of independent requests, not iterative multi-agent workflows requiring real-time feedback.
+
+---
+
 ## Task Statement 1.6: Design task decomposition strategies for complex workflows
 
 ### Q1.6.1 — Scenario: Claude Code for Continuous Integration
@@ -673,22 +692,22 @@ D) Provide a diff of the changes so the agent can process exactly what changed.
 
 ---
 
-### Q1.7.5 — Scenario: Claude Code for Continuous Integration
-**Difficulty: Medium | Knowledge: Fork vs fresh session for review workflows**
+### Q1.7.5 — Scenario: Developer Productivity with Claude
+**Difficulty: Medium | Knowledge: Git worktrees for parallel agent isolation**
 
-Your CI pipeline uses Claude Code to generate code and then review it. Currently, both steps happen in the same session. A colleague proposes using `fork_session` after generation to create a separate branch for the review step, arguing it provides isolation. Why is `fork_session` less effective than starting a completely fresh review session for this use case?
+You're running two Claude Code agents in parallel: one implementing a feature on `feature-auth` and another fixing a bug on `fix-login`. Both need to modify files in the same repository. Without isolation, their file edits would conflict. What is the correct approach?
 
-A) `fork_session` creates a branch that inherits the full conversation history including the generation reasoning — the review fork still has the generator's context, reducing review independence. A fresh session with only the generated code and review criteria provides true isolation.
+A) Use `--worktree` (or `-w`) to start each agent in an isolated git worktree — each agent gets its own working directory with a separate branch, so file modifications don't conflict between agents.
 
-B) `fork_session` is slower than starting a fresh session because it must copy the full conversation state.
+B) Use `fork_session` to create isolated conversation branches — one for the feature and one for the bugfix.
 
-C) `fork_session` is designed for exploring alternative implementations, not for review workflows.
+C) Run both agents in the same session and instruct them to coordinate which files they edit to avoid conflicts.
 
-D) `fork_session` doesn't preserve tool results from the parent session, so the reviewer can't see the generated code.
+D) Use `--add-dir` to give each agent a separate directory, preventing them from accessing the same files.
 
 **Correct Answer: A**
 
-**Explanation:** The key distinction is that `fork_session` inherits the parent's full conversation history, including all reasoning context from the generation phase. This means the forked review session is still anchored to the generation logic, undermining review independence. A fresh session that receives only the generated code and explicit review criteria provides genuine isolation — the reviewer evaluates the code without the generator's reasoning influencing its judgment. Option B focuses on performance, which is not the issue. Option C is too narrow — fork_session has many uses, but isolation from prior reasoning isn't one of them. Option D is incorrect — forked sessions do inherit tool results.
+**Explanation:** Git worktrees (`--worktree` or `-w`) create isolated copies of the repository at separate filesystem paths, each on its own branch. This provides true file-level isolation — both agents can modify the same files without conflicts because they're operating on different worktree copies. Option B provides conversation isolation but not filesystem isolation — forked sessions still share the same working directory, so file edits would still conflict. Option C relies on prompt-based coordination, which is unreliable for preventing race conditions on shared files. Option D adds additional read-only directories but doesn't create isolated working copies for parallel modification.
 
 ---
 
@@ -739,5 +758,5 @@ D) Add instructions to the document analysis subagent's prompt to "pay equal att
 ---
 
 *End of Domain 1 Question Bank*
-*Total: 36 questions covering all 7 task statements + 2 cross-domain questions*
-*Distribution: 7 Easy, 19 Medium, 10 Hard*
+*Total: 37 questions covering all 7 task statements + 2 cross-domain questions*
+*Distribution: 7 Easy, 20 Medium, 10 Hard*

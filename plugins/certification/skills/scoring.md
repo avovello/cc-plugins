@@ -86,10 +86,10 @@ Training sessions append to `~/.claude/certification/training-progress.jsonl`:
 ## Question Bank File Paths
 
 - Domain 1: plugins/certification/resources/question-bank/1-agentic-architecture-and-orchestration.md
-- Domain 2: plugins/certification/resources/question-bank/2 Tool Design & MCP Integration.md
-- Domain 3: plugins/certification/resources/question-bank/3 Claude Code Configuration & Workflows.md
-- Domain 4: plugins/certification/resources/question-bank/4 Prompt Engineering & Structured Output.md
-- Domain 5: plugins/certification/resources/question-bank/5 Context Management & Reliability.md
+- Domain 2: plugins/certification/resources/question-bank/2-tool-design-and-mcp-integration.md
+- Domain 3: plugins/certification/resources/question-bank/3-claude-code-configuration-and-workflows.md
+- Domain 4: plugins/certification/resources/question-bank/4-prompt-engineering-and-structured-output.md
+- Domain 5: plugins/certification/resources/question-bank/5-context-management-and-reliability.md
 
 ## Question Format in Bank
 
