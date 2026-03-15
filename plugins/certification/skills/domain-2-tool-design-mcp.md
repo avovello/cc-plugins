@@ -7,7 +7,7 @@ description: Training curriculum for Domain 2: Tool Design & MCP Integration (18
 
 ## Overview
 - Weight: 18% of scored content
-- Task statements: 2.1–2.5
+- Task statements: 2.1–2.6
 - Primary scenarios: Customer Support Resolution Agent, Multi-Agent Research System, Developer Productivity with Claude
 - Cross-domain connections: Agentic Architecture (tool distribution across agents, tool_choice in orchestration), Claude Code Configuration (MCP server integration in .mcp.json), Context Management (error propagation from tools)
 
@@ -129,6 +129,34 @@ The efficient codebase exploration pattern is incremental: start with Grep to fi
 ### Practice Focus
 
 Questions present a task ("find all files that import module X," "find all test files," "update a function signature") and ask which tool to use. Content search = Grep. File name search = Glob. Targeted edit = Edit (with Read+Write fallback). Watch for questions about the incremental exploration pattern — the correct approach always starts narrow and expands, never reads everything upfront.
+
+## Task Statement 2.6: Handle MCP elicitation requests for mid-task user input
+
+### Key Concepts
+
+MCP elicitation allows MCP servers to request structured input from the user mid-task via an interactive dialog. Instead of failing silently when information is missing, the server pauses, displays a dialog, and waits for the user's response before continuing.
+
+There are two elicitation modes: **form fields** and **browser URL**. Form field mode displays structured input fields (text inputs, selections, yes/no confirmations) directly in the terminal — suitable for simple, self-contained input like confirming an action or providing a configuration value. Browser URL mode opens a URL in the user's browser — designed for OAuth flows, external service authorization, and any interaction requiring a web-based interface.
+
+Choosing the right mode depends on the input type. Static credentials (API keys, tokens) should not use elicitation at all — they belong in environment variables referenced via `.mcp.json` expansion (e.g., `${API_KEY}`). OAuth and third-party authentication should use browser URL mode so the identity provider handles credentials securely. Simple confirmations and dynamic preferences should use form field mode for inline response.
+
+In headless/CI environments (`-p` flag), elicitation dialogs cannot display interactively. The solution is **Elicitation hooks** — pre-configured hook responses that automatically satisfy elicitation requests without human interaction. This enables unattended operation while preserving the elicitation capability for interactive sessions.
+
+In multi-agent workflows, elicitation creates mid-task interruptions. If the required input is predictable (e.g., which database partition to query), the coordinator should collect it upfront and pass it as a tool parameter — reserving elicitation for genuinely unpredictable needs like expired token re-authentication.
+
+Security is a critical consideration. Elicitation requests originate from MCP servers, which are third-party code. A malicious server could use form field elicitation to phish for credentials. Teams should audit MCP servers, prefer OAuth (browser URL mode) over raw credential entry for sensitive authentication, and verify what a server is requesting before responding.
+
+### Common Misconceptions
+
+- **Elicitation replaces environment variables for credentials**: Static credentials should use environment variable expansion in `.mcp.json`. Elicitation is for dynamic, session-specific input — not configuration that can be set once.
+- **Form field input is secure by default**: Form field values are sent directly to the requesting MCP server. There is no sandboxing or encryption layer — the server receives exactly what the user types.
+- **Elicitation works the same in headless mode**: Without an interactive terminal, elicitation dialogs cannot display. Elicitation hooks are required for CI/CD and headless pipelines.
+- **All user input should go through elicitation**: Predictable input should be collected upfront and passed as parameters. Elicitation is for genuinely dynamic needs that arise mid-task.
+- **Elicitation is a Claude feature**: Elicitation requests come from MCP servers, not from Claude itself. The trust boundary is the server, not the AI model.
+
+### Practice Focus
+
+Questions test understanding of when to use each elicitation mode, the distinction between elicitation and environment variables for credentials, security implications of form field input, and handling elicitation in non-interactive environments. Watch for questions where elicitation is proposed for static configuration — the correct answer redirects to environment variables. For security questions, remember that MCP servers are third-party code and elicitation is a potential phishing vector.
 
 ## Recurring Themes
 

@@ -28,6 +28,7 @@ Maps task statements to relevant Anthropic documentation for use in training ses
 | 2.3 | Agent SDK MCP integration | [Agent SDK MCP](https://platform.claude.com/docs/en/agent-sdk/mcp) |
 | 2.4 | Built-in tools reference | [Claude Code tools reference](https://code.claude.com/docs/en/tools-reference) |
 | 2.5 | Structured outputs & JSON schemas | [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) |
+| 2.6 | MCP elicitation (mid-task user input) | [Claude Code MCP — Elicitation](https://code.claude.com/docs/en/mcp) |
 
 ## Domain 3: Claude Code Configuration & Workflows
 

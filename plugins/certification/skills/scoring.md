@@ -20,7 +20,7 @@ description: Exam scoring formula, question selection algorithm, and domain weig
 
 ### Full Exam Simulation (/quiz or /quiz --full)
 1. Randomly select 4 of 6 scenarios
-2. Target question count: 30 (mirrors real exam density)
+2. Target question count: 31 (mirrors real exam density)
 3. Distribute by domain weight:
    - Domain 1 Agentic Architecture & Orchestration (27%): 8 questions
    - Domain 2 Tool Design & MCP Integration (18%): 5 questions

@@ -585,6 +585,122 @@ D) Read every test file, check for the old pattern, and Write the updated versio
 
 ---
 
+## Task Statement 2.6: Handle MCP elicitation requests for mid-task user input
+
+### Q2.6.1 — Scenario: Developer Productivity with Claude
+**Difficulty: Easy | Knowledge: MCP elicitation modes (form fields vs browser URL)**
+
+Your team uses an MCP server that integrates with a third-party CI/CD platform requiring OAuth authentication. During a deployment task, the MCP server needs the developer to authorize access. Which MCP elicitation mode is appropriate and why?
+
+A) Browser URL mode — the server opens the OAuth provider's authorization URL in the developer's browser, allowing them to complete the login and consent flow, then confirm back in the CLI.
+
+B) Form field mode — the server displays username and password fields in the terminal so the developer can type their CI/CD credentials directly.
+
+C) No elicitation needed — the MCP server should store OAuth tokens permanently in `.mcp.json` so authorization happens once and never again.
+
+D) The MCP server should fail gracefully with an error message telling the developer to authenticate manually before retrying.
+
+**Correct Answer: A**
+
+**Explanation:** OAuth flows require browser-based authorization where the identity provider handles login, consent, and token exchange. Browser URL elicitation is designed for exactly this — the server requests that Claude Code open a URL, the user completes the flow in their browser, and confirms. Option B exposes credentials in plaintext in the terminal, which is insecure and not how OAuth works. Option C stores tokens in version-controlled config, which is a security risk — credentials belong in environment variables or secure storage. Option D provides a poor experience when elicitation can handle it interactively.
+
+---
+
+### Q2.6.2 — Scenario: Customer Support Resolution Agent
+**Difficulty: Medium | Knowledge: When MCP servers should use elicitation vs alternatives**
+
+Your customer support agent uses an MCP server to access the ticketing system. The server needs an API key to authenticate. Currently, developers must manually set the `TICKET_API_KEY` environment variable before starting Claude Code. A teammate proposes using MCP elicitation to prompt for the API key via a form field dialog when it's missing. What is the best approach?
+
+A) Use environment variable expansion in `.mcp.json` (e.g., `${TICKET_API_KEY}`) for the API key, and only use elicitation as a fallback when the variable is unset — elicitation should handle dynamic or session-specific input, not static credentials that can be configured once.
+
+B) Always use form field elicitation to prompt for the API key at the start of every session — this ensures the key is never stored on disk and maximizes security.
+
+C) Store the API key directly in `.mcp.json` since it's a project-level configuration that all team members need.
+
+D) Use browser URL elicitation to redirect the developer to the ticketing system's settings page where they can copy their API key.
+
+**Correct Answer: A**
+
+**Explanation:** Environment variable expansion is the standard mechanism for credential management in MCP configurations — it avoids committing secrets and works across all team members. Elicitation is best suited for dynamic input needed mid-task (authentication flows, user approvals, conditional configuration), not static credentials that can be set once. Option B creates unnecessary friction every session. Option C commits secrets to version control. Option D adds unnecessary steps for a value the developer already has.
+
+---
+
+### Q2.6.3 — Scenario: Developer Productivity with Claude
+**Difficulty: Medium | Knowledge: Elicitation in CI/CD and headless environments**
+
+Your team runs Claude Code in headless mode (`-p` flag) as part of a CI/CD pipeline. An MCP server used in this pipeline has elicitation requests for confirming destructive database migrations. In headless mode, there is no interactive terminal. How should you handle this?
+
+A) Configure an Elicitation hook to auto-respond to the MCP server's elicitation requests in CI/CD — the hook provides pre-configured responses without requiring interactive input, enabling unattended operation.
+
+B) Switch the CI/CD pipeline from headless mode to interactive mode so elicitation dialogs can be displayed.
+
+C) Remove the elicitation capability from the MCP server since it doesn't work in headless mode.
+
+D) Add a `--skip-elicitation` flag to the Claude Code command to suppress all elicitation requests.
+
+**Correct Answer: A**
+
+**Explanation:** Elicitation hooks are the mechanism for handling elicitation requests in non-interactive environments. They allow you to define pre-configured responses that automatically satisfy the server's input requests without human interaction — essential for CI/CD pipelines. Option B defeats the purpose of headless mode and is impractical in CI. Option C removes a useful safety feature from all environments. Option D is not a real flag, and suppressing confirmations for destructive operations is dangerous.
+
+---
+
+### Q2.6.4 — Scenario: Multi-Agent Research System
+**Difficulty: Medium | Knowledge: Elicitation vs tool parameters for user input**
+
+Your multi-agent research system has a coordinator that dispatches search subagents to different MCP-backed data sources. One data source requires the user to select which database partition to search (partitions change monthly). A developer proposes adding MCP elicitation to the data source server so it can ask the user which partition to query mid-task. What is the problem with this approach?
+
+A) Elicitation requests surface to the end user, interrupting the autonomous flow of the multi-agent system — the coordinator should collect the partition preference upfront via its own prompt and pass it as a tool parameter to the subagent, keeping the workflow non-interactive.
+
+B) There is no problem — elicitation is the correct mechanism for collecting user preferences at any point in a workflow.
+
+C) The problem is that subagents cannot trigger elicitation — only the coordinator agent can display dialogs.
+
+D) Elicitation only supports form fields and cannot present a selection list of partition names.
+
+**Correct Answer: A**
+
+**Explanation:** In multi-agent systems, mid-task user interruptions break the autonomous workflow that makes them valuable. If the coordinator already interacts with the user, it should collect the partition preference during the initial task setup and pass it as a parameter to the subagent. Elicitation is appropriate when the server encounters an unexpected need for input (e.g., authentication challenge), not for predictable configuration that can be gathered upfront. Option B ignores workflow design principles. Option C is technically incorrect — elicitation is a server-side request mechanism. Option D is incorrect — elicitation supports structured form fields including selections.
+
+---
+
+### Q2.6.5 — Scenario: Code Generation with Claude Code
+**Difficulty: Hard | Knowledge: Security considerations for MCP elicitation**
+
+A new MCP server your team installed for database management displays an elicitation dialog asking for the production database password via a form field. A developer enters it without questioning. What security concern does this raise, and what is the correct mitigation?
+
+A) MCP elicitation dialogs come from MCP servers, not from Claude itself — a malicious or poorly designed server could use elicitation to phish for credentials. The mitigation is to verify what the server is requesting and why, prefer OAuth/token-based flows (browser URL mode) over raw credential entry, and audit MCP servers before installation.
+
+B) There is no concern — elicitation dialogs are sandboxed and encrypted, so credentials entered in form fields cannot be accessed by the MCP server.
+
+C) The concern is that production credentials should never be used in development. The fix is to use a separate development database.
+
+D) The concern is that form field values are logged in Claude Code's conversation history. The fix is to use `--no-log` mode when entering credentials.
+
+**Correct Answer: A**
+
+**Explanation:** MCP servers are third-party code — elicitation requests originate from the server, not from Claude's trusted infrastructure. A server requesting raw passwords via form fields could be exfiltrating credentials. The correct approach for sensitive authentication is browser URL elicitation with proper OAuth flows, where the identity provider (not the MCP server) handles credentials. Teams should audit MCP servers and prefer token-based auth. Option B is incorrect — form field values are sent directly to the MCP server. Option C identifies a secondary concern but misses the primary phishing risk. Option D cites a non-existent flag and misidentifies the risk.
+
+---
+
+### Q2.6.6 — Scenario: Customer Support Resolution Agent
+**Difficulty: Hard | Knowledge: Designing MCP servers with appropriate elicitation**
+
+You're building a custom MCP server for your support team's internal tools. The server needs to handle three cases: (1) initial setup requiring an API key, (2) OAuth re-authentication when tokens expire mid-session, and (3) confirmation before escalating a ticket to a manager. How should you design the elicitation strategy?
+
+A) Use environment variable expansion for the API key (no elicitation needed — it's static config). Use browser URL elicitation for OAuth re-authentication (tokens expire unpredictably, and the OAuth flow requires browser interaction). Use form field elicitation for escalation confirmation (a simple yes/no approval that the user can answer directly in the terminal).
+
+B) Use form field elicitation for all three cases — display the API key input, OAuth credentials, and escalation confirmation as form dialogs for consistency.
+
+C) Use browser URL elicitation for all three cases — redirect to a web UI for API key entry, OAuth flow, and escalation approval.
+
+D) Use elicitation for the OAuth flow only. Store the API key in `.mcp.json` and skip escalation confirmation since the agent should handle that autonomously.
+
+**Correct Answer: A**
+
+**Explanation:** Each case has different characteristics requiring different mechanisms. Static credentials belong in environment variables, not elicitation — they're set once and reused. OAuth re-authentication is inherently browser-based (the identity provider must handle the flow). Escalation confirmation is a simple approval best handled inline via form fields. Option B puts static credentials in elicitation (unnecessary friction) and handles OAuth insecurely. Option C over-uses browser redirects for simple operations. Option D commits the API key to version-controlled config (security risk) and removes a human approval gate for escalation.
+
+---
+
 ## Cross-Domain Questions (Domain 2 intersecting with other domains)
 
 ### Q2.X.1 — Scenario: Customer Support Resolution Agent
@@ -626,5 +742,5 @@ D) Add a CLAUDE.md instruction: "Always use the database-schema MCP server for s
 ---
 
 *End of Domain 2 Question Bank*
-*Total: 31 questions covering all 5 task statements + 2 cross-domain questions*
-*Distribution: 7 Easy, 15 Medium, 9 Hard*
+*Total: 37 questions covering all 6 task statements + 2 cross-domain questions*
+*Distribution: 8 Easy, 18 Medium, 11 Hard*

@@ -10,11 +10,11 @@
 | Domain | Weight | Task Statements |
 |--------|--------|-----------------|
 | 1. Agentic Architecture & Orchestration | 27% | 1.1–1.7 (7) |
-| 2. Tool Design & MCP Integration | 18% | 2.1–2.5 (5) |
+| 2. Tool Design & MCP Integration | 18% | 2.1–2.6 (6) |
 | 3. Claude Code Configuration & Workflows | 20% | 3.1–3.6 (6) |
 | 4. Prompt Engineering & Structured Output | 20% | 4.1–4.6 (6) |
 | 5. Context Management & Reliability | 15% | 5.1–5.6 (6) |
-| **Total** | **100%** | **30** |
+| **Total** | **100%** | **31** |
 
 ## Scenarios
 
