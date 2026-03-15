@@ -1,6 +1,6 @@
 # CC Plugins
 
-6 plugins, 10 agents, 8 commands, 19 skills for Claude Code development workflows.
+6 plugins, 10 agents, 8 commands, 20 skills for Claude Code development workflows.
 
 > Agent teams (experimental) require `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
 
@@ -13,7 +13,7 @@ plugins/
 ├── feature-development/  # 1 agent: code-architect + 7 skills + team do-loops
 ├── qa/                   # 0 agents, 1 command, 3 skills + team do-loops
 ├── review/               # 7 agents: 3 investigators + 4 reviewers
-└── certification/        # 0 agents, 4 commands, 7 skills (exam prep)
+└── certification/        # 0 agents, 4 commands, 8 skills (exam prep)
 ```
 
 Each plugin follows:

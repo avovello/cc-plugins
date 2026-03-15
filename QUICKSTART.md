@@ -4,7 +4,7 @@ Get started with CC Plugins in 5 minutes.
 
 ## What is CC Plugins?
 
-A collection of 6 plugins for Claude Code with 8 slash commands, 10 specialized agents, and 19 skills. Covers feature development, code review, bug fixing, quality assurance, and certification exam preparation.
+A collection of 6 plugins for Claude Code with 8 slash commands, 10 specialized agents, and 20 skills. Covers feature development, code review, bug fixing, quality assurance, and certification exam preparation.
 
 ## Prerequisites
 

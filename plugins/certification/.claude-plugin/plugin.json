@@ -1,7 +1,7 @@
 {
   "name": "certification",
   "description": "Claude Certified Architect – Foundations exam preparation with interactive training, mock exam simulation, performance analysis, and content updates",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Claude Code Marketplace Contributors",
     "email": "noreply@anthropic.com"

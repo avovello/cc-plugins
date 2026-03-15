@@ -4,7 +4,7 @@ Core development workflow plugins for Claude Code with specialized agents, Task 
 
 ## Overview
 
-CC Plugins provides **6 plugins with 10 specialized agents, 8 commands, and 19 skills** covering software development workflows and certification exam preparation.
+CC Plugins provides **6 plugins with 10 specialized agents, 8 commands, and 20 skills** covering software development workflows and certification exam preparation.
 
 Bugfix and feature-development plugins use **Claude Code Agent Teams** for iterative do-loops (doer+critic pairs). Requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
 

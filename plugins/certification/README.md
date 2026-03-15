@@ -13,7 +13,8 @@ Claude Certified Architect – Foundations exam preparation with interactive tra
 | `/quiz --hard --count 10` | Custom difficulty and question count |
 | `/analysis` | Performance analysis with domain breakdown, trends, and study recommendations |
 | `/analysis --history` | Show all quiz session results |
-| `/update` | Check for documentation changes that may affect question accuracy |
+| `/update` | Fetch latest docs, compare against question bank, and apply updates |
+| `/update --report-only` | Analysis only, no file modifications |
 
 ## Skills
 
@@ -26,6 +27,7 @@ Claude Certified Architect – Foundations exam preparation with interactive tra
 | `domain-5-context-management` | Training curriculum for Domain 5 (15%) |
 | `scoring` | Scoring formula, question selection algorithm, domain weighting |
 | `study-path` | Adaptive recommendation engine for targeted study |
+| `question-bank-update` | Procedures for modifying question bank files (format, numbering, validation) |
 
 ## Resources
 
